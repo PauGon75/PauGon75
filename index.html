@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- EDIT ME: text shown in the browser tab and on Google -->
+  <title>Your Name - Game Designer</title>
+  <meta name="description" content="Portfolio of Your Name, a game designer specialized in combat and systems design.">
+
+  <!-- Fonts from Google Fonts (free). If you are offline, the site still works with fallback fonts. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= NAVIGATION BAR ================= -->
+  <header class="nav">
+    <a href="#home" class="logo"><strong>your</strong>name</a>
+
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
+
+    <nav class="nav-links" id="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ================= HERO (first thing people see) ================= -->
+    <section id="home" class="hero">
+      <p class="hero-role">Game, combat and technical design</p>
+      <h1 class="hero-name">
+        <span class="line"><span>YOUR</span></span>
+        <span class="line"><span>NAME</span></span>
+      </h1>
+      <p class="hero-sub">I design the systems behind how games feel to play.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn">View my projects</a>
+        <a href="#contact" class="btn btn-ghost">Contact me</a>
+      </div>
+    </section>
+
+    <!-- ================= STATS (numbers count up) ================= -->
+    <!-- EDIT ME: change data-target to your real numbers -->
+    <section class="stats" aria-label="Career highlights">
+      <div class="stat">
+        <span class="stat-number" data-target="12" data-prefix="+">0</span>
+        <span class="stat-label">Finished projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-target="3">0</span>
+        <span class="stat-label">Commercial games</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-target="5">0</span>
+        <span class="stat-label">Engine assets released</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-target="1">0</span>
+        <span class="stat-label">Awards</span>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="section">
+      <h2>About me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <!-- EDIT ME: write your own bio. Use <strong> for words you want in bold. -->
+          <p>I'm a <strong>game designer</strong> focused on <strong>gameplay</strong> and <strong>systems</strong>. Since 2020 I have worked on games and tools in <strong>Unreal Engine</strong> and <strong>Unity</strong>.</p>
+          <p>Right now I design combat for an upcoming action game, and I share what I learn through talks and my blog.</p>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn">View portfolio</a>
+            <a href="mailto:you@example.com" class="btn btn-ghost">Email me</a>
+          </div>
+        </div>
+
+        <!-- EDIT ME: replace this box with your photo:
+             <img class="portrait" src="images/me.jpg" alt="Photo of Your Name"> -->
+        <div class="portrait" role="img" aria-label="Photo placeholder">Your photo here</div>
+      </div>
+    </section>
+
+    <!-- ================= EXPERIENCE (click a card to open details) ================= -->
+    <section id="experience" class="section">
+      <h2>My backstory</h2>
+
+      <div class="timeline">
+
+        <!-- One job = one <article>. Copy/paste it to add more.
+             The button's data-dialog must match the id of its <dialog> below. -->
+        <article class="job">
+          <div class="job-when">2024 - Present</div>
+          <div class="job-body">
+            <h3>Game Designer</h3>
+            <p class="job-company">Company Name</p>
+            <p>Working on a new project from concept to release. Specialized in combat and AI.</p>
+            <button class="btn btn-small" data-dialog="job1">View details</button>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="job-when">2022 - 2024</div>
+          <div class="job-body">
+            <h3>Technical Designer</h3>
+            <p class="job-company">Another Studio</p>
+            <p>Built tools and improved live game content for console and PC.</p>
+            <button class="btn btn-small" data-dialog="job2">View details</button>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="job-when">2020 - 2022</div>
+          <div class="job-body">
+            <h3>Junior Game Designer</h3>
+            <p class="job-company">Indie Team</p>
+            <p>Designed the mechanics of a multiplayer game and programmed the interface.</p>
+            <button class="btn btn-small" data-dialog="job3">View details</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ================= PROJECTS ================= -->
+    <section id="projects" class="section">
+      <h2>My work</h2>
+      <p class="section-intro">Games and prototypes I have worked on, from small indie projects to bigger productions.</p>
+
+      <div class="grid">
+
+        <!-- One project = one <a>. Copy/paste to add more.
+             To use a real image, replace the <div class="thumb"...> line with:
+             <img class="thumb" src="images/project1.jpg" alt="Screenshot of Project One"> -->
+        <a class="project" href="#">
+          <div class="thumb" style="--c1:#4de3d0; --c2:#5b3fd1;"></div>
+          <div class="project-info">
+            <h3>Project One</h3>
+            <p>Third-person action game. I designed the combat system and enemy AI.</p>
+          </div>
+        </a>
+
+        <a class="project" href="#">
+          <div class="thumb" style="--c1:#ffcf5c; --c2:#e0445a;"></div>
+          <div class="project-info">
+            <h3>Project Two</h3>
+            <p>Extraction shooter. I built tools and balanced weapons with data.</p>
+          </div>
+        </a>
+
+        <a class="project" href="#">
+          <div class="thumb" style="--c1:#7be0a0; --c2:#1d6fb8;"></div>
+          <div class="project-info">
+            <h3>Project Three</h3>
+            <p>Isometric multiplayer roguelite for browsers. I designed the mechanics and the UI.</p>
+          </div>
+        </a>
+
+        <a class="project" href="#">
+          <div class="thumb" style="--c1:#ff9a5c; --c2:#7b2a9e;"></div>
+          <div class="project-info">
+            <h3>Personal prototype</h3>
+            <p>One-week challenge to recreate a favorite game's core mechanic.</p>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div>
+          <h3>Design</h3>
+          <ul>
+            <li>Mechanics and gameplay design</li>
+            <li>Combat systems</li>
+            <li>Game balance and progression</li>
+            <li>Level and encounter design</li>
+            <li>UX and menu design</li>
+            <li>Prototyping</li>
+            <li>Clear design documentation</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Technical</h3>
+          <ul>
+            <li>Unreal Engine 4/5 (Blueprints and C++)</li>
+            <li>Unity (C#)</li>
+            <li>Visual Studio, Rider, VS Code</li>
+            <li>Photoshop and Premiere</li>
+            <li>Excel and Google Sheets</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="section contact">
+      <h2>Want to work together?</h2>
+      <p class="section-intro">Send me an email and I will reply as soon as I can.</p>
+      <!-- EDIT ME: your real email -->
+      <a class="btn" href="mailto:you@example.com">you@example.com</a>
+
+      <!-- EDIT ME: your real links -->
+      <ul class="social">
+        <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://itch.io/" target="_blank" rel="noopener">itch.io</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Copyright 2026 Your Name</p>
+  </footer>
+
+
+  <!-- ================= POPUPS FOR "VIEW DETAILS" =================
+       Each <dialog> id matches a button's data-dialog above. -->
+
+  <dialog id="job1">
+    <button class="dialog-close" aria-label="Close">&times;</button>
+    <h3>Game Designer at Company Name</h3>
+    <p>Working on a new action game from concept to release.</p>
+    <h4>Combat</h4>
+    <ul>
+      <li>Designed combo attacks: timings, hitboxes and input buffering.</li>
+      <li>Prototyped and balanced four techniques per character.</li>
+      <li>Configured movement: run, jump, dash.</li>
+    </ul>
+    <h4>AI</h4>
+    <ul>
+      <li>Built behavior trees for enemies, companions and bosses.</li>
+    </ul>
+  </dialog>
+
+  <dialog id="job2">
+    <button class="dialog-close" aria-label="Close">&times;</button>
+    <h3>Technical Designer at Another Studio</h3>
+    <ul>
+      <li>Upgraded multiplayer systems in Unreal Engine.</li>
+      <li>Gathered weapon data: spread, recoil and damage falloff.</li>
+      <li>Built test maps and tools for level designers.</li>
+      <li>Onboarded new designers.</li>
+    </ul>
+  </dialog>
+
+  <dialog id="job3">
+    <button class="dialog-close" aria-label="Close">&times;</button>
+    <h3>Junior Game Designer at Indie Team</h3>
+    <ul>
+      <li>Designed weapons, enemies and skills.</li>
+      <li>Programmed character handling and interfaces in Unity.</li>
+      <li>Implemented multiplayer with Photon.</li>
+    </ul>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>

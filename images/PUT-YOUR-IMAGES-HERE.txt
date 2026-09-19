@@ -1,0 +1,2 @@
+Put your photos and screenshots in this folder.
+Tip: convert them to .webp first at https://squoosh.app so the site loads fast.
