@@ -1201,8 +1201,8 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
   </dialog>
 
   <!-- ================= GAME PHOTOGRAPHY POPUP =================
-       Put your photos in the folder images/photos/ and name them 1.jpg, 2.jpg, 3.jpg ...
-       They appear here automatically (jpg, jpeg, png and webp all work). -->
+       Put your photos in the folder images/photos/. They appear here automatically:
+       any image type works (jpg, png, webp, gif, avif...), in any upper or lowercase. -->
   <dialog id="photos-dialog" aria-labelledby="photos-title">
     <button class="dialog-close" aria-label="Close">&times;</button>
     <div class="photo-head">
@@ -1211,7 +1211,7 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
     </div>
     <div class="photo-scroll">
       <div class="mosaic" id="mosaic"></div>
-      <p class="photo-empty" id="photo-empty" hidden>No photos yet. Add them to the folder images/photos/ named 1.jpg, 2.jpg, 3.jpg and so on.</p>
+      <p class="photo-empty" id="photo-empty" hidden>No photos yet. Add your photos (any image type) to the folder images/photos/.</p>
     </div>
   </dialog>
 
@@ -1392,8 +1392,12 @@ document.querySelectorAll(".job-months").forEach(function (badge) {
 
 /* =====================================================
    6) GAME PHOTOGRAPHY MOSAIC
-   Looks in images/photos/ for 1.jpg, 2.jpg, 3.jpg ... and adds
-   them to the popup by number. Runs the first time you open it.
+   Fills the popup with every photo in images/photos/.
+   - On GitHub Pages it reads the folder, so ANY name and ANY image type works
+     (jpg, png, webp, gif, avif, bmp, svg...), in any upper/lowercase.
+   - On your own computer (or if GitHub does not answer) it looks for
+     1, 2, 3 ... with all the common types.
+   Photos are numbered 1, 2, 3 ... in the order they appear.
    ===================================================== */
 (function () {
   var button = document.getElementById("open-photos");
@@ -1401,32 +1405,51 @@ document.querySelectorAll(".job-months").forEach(function (badge) {
   if (!button || !mosaic) return;
 
   var FOLDER = "images/photos/";
-  var TYPES = ["jpg", "jpeg", "png", "webp"];  // file types it will look for
-  var BATCH = 10;                               // how many numbers it checks at once
+  var IMAGE_TYPES = ["jpg", "jpeg", "png", "webp", "gif", "avif", "jfif", "bmp", "svg", "apng"];
+  // lowercase and UPPERCASE (a website treats 2.JPG and 2.jpg as different files, your computer does not)
+  var TYPES = IMAGE_TYPES.concat(IMAGE_TYPES.map(function (t) { return t.toUpperCase(); }));
+  var BATCH = 10;   // how many numbers it checks at once when guessing
   var started = false;
+  var lastType = null;
+  var counter = 0;
 
   var lightbox = document.getElementById("lightbox");
   var lightboxImg = document.getElementById("lightbox-img");
   lightboxImg.addEventListener("click", function () { lightbox.close(); });
 
-  // Try to load photo number N with each file type. Gives back the image, or null.
+  // Load one image from a known address. Gives back the image, or null if it fails.
+  function loadImage(src) {
+    return new Promise(function (resolve) {
+      var img = new Image();
+      img.decoding = "async";
+      img.onload = function () { resolve(img); };
+      img.onerror = function () { resolve(null); };
+      img.src = src;
+    });
+  }
+
+  // Guess: try photo number N with each file type.
   function findPhoto(number) {
     return new Promise(function (resolve) {
       var img = new Image();
       var t = 0;
-      img.alt = "Game photo " + number;
+      // try the type that worked last time first (faster)
+      var order = lastType ? [lastType].concat(TYPES.filter(function (x) { return x !== lastType; })) : TYPES;
       img.decoding = "async";
       function tryNext() {
-        if (t >= TYPES.length) { resolve(null); return; }
-        img.src = FOLDER + number + "." + TYPES[t++];
+        if (t >= order.length) { resolve(null); return; }
+        img.src = FOLDER + number + "." + order[t++];
       }
-      img.onload = function () { resolve(img); };
+      img.onload = function () { lastType = order[t - 1]; resolve(img); };
       img.onerror = tryNext;
       tryNext();
     });
   }
 
-  function makeFigure(img, number) {
+  function makeFigure(img) {
+    var number = ++counter;
+    img.alt = "Game photo " + number;
+
     var figure = document.createElement("figure");
     figure.className = "photo";
     figure.tabIndex = 0;
@@ -1452,25 +1475,56 @@ document.querySelectorAll(".job-months").forEach(function (badge) {
     return figure;
   }
 
-  // Check photos in groups of 10 and keep going while any are found
+  function addPhotos(images) {
+    images.forEach(function (img) {
+      if (img) mosaic.appendChild(makeFigure(img));
+    });
+  }
+
+  // Guess mode: check numbers in groups of 10 and keep going while any are found
   function loadBatch(start) {
     var jobs = [];
     for (var n = start; n < start + BATCH; n++) jobs.push(findPhoto(n));
     return Promise.all(jobs).then(function (results) {
-      var found = 0;
-      results.forEach(function (img, i) {
-        if (img) { mosaic.appendChild(makeFigure(img, start + i)); found++; }
-      });
-      if (found > 0) return loadBatch(start + BATCH);
+      addPhotos(results);
+      if (results.some(function (img) { return img; })) return loadBatch(start + BATCH);
     });
+  }
+
+  // GitHub Pages mode: ask GitHub which files are in images/photos
+  function listFromGitHub() {
+    var host = location.hostname;
+    if (!/\.github\.io$/i.test(host) || !window.fetch) return Promise.resolve(null);
+    var owner = host.split(".")[0];
+    var first = location.pathname.split("/").filter(Boolean)[0];
+    var repo = (first && first.indexOf(".") === -1) ? first : host;
+    var url = "https://api.github.com/repos/" + owner + "/" + repo + "/contents/" + FOLDER.replace(/\/$/, "");
+    return fetch(url)
+      .then(function (response) { return response.ok ? response.json() : null; })
+      .then(function (list) {
+        if (!Array.isArray(list)) return null;
+        return list
+          .filter(function (f) { return f.type === "file" && /\.(jpe?g|png|gif|webp|avif|bmp|svg|jfif|apng)$/i.test(f.name); })
+          .map(function (f) { return f.name; })
+          .sort(function (a, b) { return a.localeCompare(b, undefined, { numeric: true }); });
+      })
+      .catch(function () { return null; });
   }
 
   button.addEventListener("click", function () {
     if (started) return;
     started = true;
-    loadBatch(1).then(function () {
-      if (mosaic.children.length === 0) document.getElementById("photo-empty").hidden = false;
-    });
+    listFromGitHub()
+      .then(function (names) {
+        if (!names || names.length === 0) return null;
+        return Promise.all(names.map(function (name) { return loadImage(FOLDER + encodeURIComponent(name)); })).then(addPhotos);
+      })
+      .then(function () {
+        if (mosaic.children.length === 0) return loadBatch(1);   // fall back to guessing
+      })
+      .then(function () {
+        if (mosaic.children.length === 0) document.getElementById("photo-empty").hidden = false;
+      });
   });
 })();
   </script>
