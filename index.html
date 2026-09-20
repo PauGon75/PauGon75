@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pau González - Technical Game Designer</title>
+  <title>Pau González | Technical Game Designer and Developer</title>
   <meta name="description" content="Portfolio of Pau González Cayuela, technical game designer from Barcelona. Game balance, game feel, combat design and gameplay programming in Unreal Engine 5 and Unity.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +23,8 @@
   --muted: #b3accf;       /* softer text */
   --accent: #4de3d0;      /* buttons and highlights (teal) */
   --accent-text: #10222a; /* text on top of accent */
+  --tint-light: rgba(46, 26, 92, .5); /* lighter purple filter (backstory and photography): lower last number = more video visible */
+  --tint: rgba(46, 26, 92, .86); /* purple filter over the video in text-heavy sections (last number = strength, 0 to 1) */
 
   --font-title: "Bricolage Grotesque", "Arial Black", sans-serif;
   --font-body: "DM Sans", system-ui, sans-serif;
@@ -136,8 +138,17 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
 }
 .hero-role { color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-bottom: 12px; }
 
-.hero-name { font-size: clamp(4rem, 17vw, 12rem); font-weight: 800; letter-spacing: -0.03em; }
-.hero-name .line { display: block; overflow: hidden; }
+.hero-name {
+  font-size: clamp(2.8rem, 12.5vw, 9.5rem);   /* smaller so GONZÁLEZ always fits */
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.hero-name .line {
+  display: block;
+  overflow: hidden;
+  line-height: 1.12;
+  padding: .1em .12em 0 0;   /* room for the accent on the A and for the last letter */
+}
 .hero-name .line span {
   display: block;
   animation: slide-up .9s cubic-bezier(.2, .8, .2, 1) both;
@@ -161,7 +172,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
   justify-content: space-around;
   gap: 30px;
   padding: 50px 6%;
-  background: var(--panel);
+  background: rgba(37, 31, 69, .85);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -189,30 +200,78 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
 }
 
 /* =====================================================
-   EXPERIENCE TIMELINE
+   EXPERIENCE TIMELINE (line in the middle, cards on both sides)
    ===================================================== */
-.timeline { border-left: 3px solid var(--line); margin-left: 6px; }
-
-.job {
-  display: grid;
-  grid-template-columns: 170px 1fr;
-  gap: 20px;
-  padding: 0 0 44px 32px;
+.timeline {
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 92px;
+  row-gap: 22px;
+  padding: 10px 0;
 }
-.job::before { /* the dot on the line */
+.timeline::before { /* the vertical line */
   content: "";
   position: absolute;
-  left: -10px; top: 6px;
-  width: 17px; height: 17px;
+  top: 0; bottom: 0; left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+  background: var(--line);
+  border-radius: 2px;
+}
+
+/* Odd cards go on the right, even cards on the left.
+   Each card spans two rows so the sides interleave like a zigzag. */
+.job {
+  position: relative;
+  align-self: start;
+  grid-row: var(--n) / span 2;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px 24px;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.job:hover { border-color: var(--accent); transform: translateY(-3px); }
+.job:nth-child(odd)  { grid-column: 2; }
+.job:nth-child(even) { grid-column: 1; }
+
+.job::before { /* dot on the line */
+  content: "";
+  position: absolute;
+  top: 24px;
+  width: 18px; height: 18px;
   border-radius: 50%;
   background: var(--accent);
   border: 4px solid var(--bg);
+  box-sizing: content-box;
+  margin-top: -4px;
 }
-.job-when { color: var(--muted); font-weight: 500; padding-top: 2px; }
-.job h3 { font-size: 1.5rem; }
+.job::after { /* small line from the dot to the card */
+  content: "";
+  position: absolute;
+  top: 34px;
+  width: 46px; height: 3px;
+  background: var(--line);
+}
+.job:nth-child(odd)::before  { left: -59px; }
+.job:nth-child(even)::before { right: -59px; }
+.job:nth-child(odd)::after   { left: -46px; }
+.job:nth-child(even)::after  { right: -46px; }
+
+.job-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 10px; }
+.job-when { color: var(--muted); font-weight: 500; font-size: .9rem; }
+.job-months {
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 700;
+  font-size: .8rem;
+  padding: 2px 12px;
+  border-radius: 999px;
+}
+.job h3 { font-size: 1.35rem; }
 .job-company { color: var(--accent); font-weight: 700; margin: 4px 0 8px; }
-.job-body p:not(.job-company) { max-width: 60ch; color: var(--muted); }
+.job-desc { color: var(--muted); }
 
 /* =====================================================
    PROJECTS GRID
@@ -318,7 +377,12 @@ dialog li { margin-bottom: 6px; }
   .nav-links a { padding: 16px 6%; border-top: 1px solid var(--line); }
 
   .about-grid { grid-template-columns: 1fr; }
-  .job { grid-template-columns: 1fr; gap: 4px; }
+
+  .timeline { grid-template-columns: 1fr; padding-left: 40px; row-gap: 22px; }
+  .timeline::before { left: 14px; transform: none; }
+  .job:nth-child(n) { grid-column: 1; grid-row: auto; }
+  .job:nth-child(n)::before { left: -35px; right: auto; }
+  .job:nth-child(n)::after  { left: -22px; right: auto; width: 22px; }
 }
 
 /* People who prefer less motion: turn animations off */
@@ -341,9 +405,171 @@ dialog li { margin-bottom: 6px; }
 dialog a { color: var(--accent); }
 .skills-grid li strong { color: var(--text); }
 
+/* ---------- Background video ---------- */
+.bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: var(--bg); }
+.bg-glow {
+  position: absolute; inset: -20%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(77, 227, 208, .22), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(123, 63, 209, .38), transparent 50%);
+  animation: drift 18s ease-in-out infinite alternate;
+}
+@keyframes drift { to { transform: translate(4%, -3%) scale(1.1); } }
+.bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.bg::after { content: ""; position: absolute; inset: 0; background: rgba(26, 21, 48, .72); } /* darkens the video so text stays readable */
+@media (prefers-reduced-motion: reduce) { .bg video { display: none; } }
+
+/* ---------- Projects carousel ---------- */
+.carousel-viewport { overflow: hidden; touch-action: pan-y; }
+.carousel-track { display: flex; transition: transform .55s cubic-bezier(.2, .8, .2, 1); }
+
+.slide {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+  padding: 6px;
+}
+
+.gallery { position: relative; aspect-ratio: 1 / 1.1; max-width: 500px; width: 100%; margin: 0 auto; }
+.shot {
+  position: absolute;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  display: grid;
+  place-items: center;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, .4);
+}
+.shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.shot-hint { font-size: .78rem; color: rgba(255, 255, 255, .8); padding: 8px; text-align: center; word-break: break-all; }
+.shot:nth-child(1) { top: 0;   left: 0;   width: 62%; }
+.shot:nth-child(2) { top: 31%; left: 32%; width: 66%; }
+.shot:nth-child(3) { top: 65%; left: 2%;  width: 56%; }
+
+.slide-title { font-size: clamp(1.9rem, 3.4vw, 2.7rem); }
+.slide-meta { color: var(--accent); font-weight: 700; margin: 10px 0 16px; }
+.slide-text > p { color: var(--muted); max-width: 58ch; }
+.slide-text h4 { font-size: 1.05rem; margin: 18px 0 8px; }
+
+.workflow { list-style: none; counter-reset: step; }
+.workflow li { counter-increment: step; position: relative; padding: 4px 0 4px 40px; color: var(--muted); }
+.workflow li::before {
+  content: counter(step);
+  position: absolute; left: 0; top: 5px;
+  width: 26px; height: 26px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--accent); color: var(--accent-text);
+  font-weight: 700; font-size: .85rem;
+}
+
+.tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.tags li { background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; font-size: .9rem; }
+
+.carousel-controls { display: flex; align-items: center; justify-content: center; gap: 22px; margin-top: 30px; }
+.arrow {
+  width: 54px; height: 54px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--panel); color: var(--text);
+  border: 2px solid var(--line);
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease, transform .15s ease;
+}
+.arrow:hover { border-color: var(--accent); background: var(--accent); color: var(--accent-text); transform: scale(1.06); }
+
+.dots { display: flex; gap: 12px; }
+.dot { width: 12px; height: 12px; padding: 0; border-radius: 50%; border: 0; background: var(--line); cursor: pointer; transition: transform .15s ease, background .15s ease; }
+.dot[aria-current="true"] { background: var(--accent); transform: scale(1.35); }
+
+@media (max-width: 860px) {
+  .slide { grid-template-columns: 1fr; gap: 32px; }
+  .gallery { max-width: 460px; margin: 0 auto; width: 100%; }
+}
+
+  .avatar { display: block; width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); margin-bottom: 20px; }
+  
+/* ---------- Purple filter over the video in text-heavy sections ---------- */
+body { overflow-x: hidden; }
+.tinted { position: relative; }
+.tinted::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: var(--tint);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);   /* softly blurs the video so letters stay sharp */
+  z-index: -1;
+}
+  
+/* ---------- Lighter purple filter (backstory + photography) ---------- */
+.tinted-light::before { background: var(--tint-light); }
+
+/* ---------- Game photography button ---------- */
+.photos-cta { padding: 60px 6%; text-align: center; }
+.photo-btn { display: inline-flex; align-items: center; gap: 12px; font-size: 1.15rem; padding: 16px 34px; margin-top: 0; }
+.photo-btn svg { width: 24px; height: 24px; }
+
+/* ---------- Photo popup with mosaic ---------- */
+#photos-dialog { width: min(96vw, 1150px); max-height: 92vh; padding: 0; overflow: hidden; }
+#photos-dialog[open] { display: flex; flex-direction: column; }
+.photo-head { padding: 26px 32px 16px; border-bottom: 1px solid var(--line); }
+.photo-head h3 { margin: 0; }
+.photo-head p { color: var(--muted); margin-top: 6px; font-size: .95rem; }
+.photo-scroll { overflow-y: auto; padding: 22px 32px 32px; flex: 1; min-height: 0; }
+
+.mosaic { column-width: 240px; column-gap: 14px; }
+.photo {
+  position: relative;
+  break-inside: avoid;
+  margin: 0 0 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: var(--bg);
+}
+.photo img { width: 100%; display: block; transition: transform .3s ease; }
+.photo:hover img { transform: scale(1.04); }
+.photo-num {
+  position: absolute; left: 8px; top: 8px;
+  min-width: 30px; height: 30px; padding: 0 8px;
+  border-radius: 15px;
+  display: grid; place-items: center;
+  background: rgba(16, 10, 36, .78);
+  color: #fff; font-weight: 700; font-size: .85rem;
+}
+.photo-empty { color: var(--muted); }
+
+/* ---------- Enlarged photo ---------- */
+#lightbox { width: auto; max-width: 96vw; max-height: none; padding: 0; background: transparent; border: 0; overflow: visible; }
+#lightbox img { display: block; max-width: 94vw; max-height: 88vh; border-radius: 10px; cursor: zoom-out; }
+#lightbox .dialog-close { top: -44px; right: 0; color: #fff; }
+#lightbox::backdrop { background: rgba(8, 5, 20, .92); }
+
+@media (max-width: 760px) {
+  .photo-head { padding: 22px 20px 14px; }
+  .photo-scroll { padding: 16px 20px 24px; }
+  .mosaic { column-width: 150px; column-gap: 10px; }
+  .photo { margin-bottom: 10px; }
+}
   </style>
 </head>
 <body>
+
+  <!-- ================= BACKGROUND (video behind the whole page) =================
+       Put a short looping video at images/background.mp4 and it plays behind the site.
+       Until then, you see the soft animated glow. -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg-glow"></div>
+    <video autoplay muted loop playsinline preload="metadata">
+      <source src="images/background.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <!-- ================= NAVIGATION BAR ================= -->
   <header class="nav">
@@ -396,7 +622,7 @@ dialog a { color: var(--accent); }
     </section>
 
     <!-- ================= ABOUT ================= -->
-    <section id="about" class="section">
+    <section id="about" class="section tinted">
       <h2>About me</h2>
       <div class="about-grid">
         <div class="about-text">
@@ -412,6 +638,7 @@ dialog a { color: var(--accent); }
         <!-- Quick facts box. To use a photo instead, replace this whole <div class="facts"> with:
              <img class="portrait" src="images/me.jpg" alt="Photo of Pau González"> -->
         <div class="facts">
+          <img class="avatar" src="https://avatars.githubusercontent.com/u/121867499?v=4" alt="Photo of Pau González" onerror="this.remove()">
           <h3>Based in</h3>
           <p>Barcelona, Spain</p>
           <h3>Design tools</h3>
@@ -425,121 +652,364 @@ dialog a { color: var(--accent); }
     </section>
 
     <!-- ================= EXPERIENCE ================= -->
-    <section id="experience" class="section">
+    <section id="experience" class="section tinted tinted-light">
       <h2>My backstory</h2>
 
       <div class="timeline">
 
-        <article class="job">
-          <div class="job-when">Sep 2025 - Present</div>
-          <div class="job-body">
-            <h3>Level Designer and QA</h3>
-            <p class="job-company">Forbidden Candy</p>
-            <p>Designing levels and testing the game at a studio in Barcelona.</p>
-            <button class="btn btn-small" data-dialog="job1">View details</button>
+        <article class="job" style="--n:1">
+          <div class="job-head">
+            <span class="job-when">Sep 2025 - Present</span>
+            <!-- The number of months is calculated automatically from these dates. -->
+            <span class="job-months" data-start="2025-09" data-end="present">13 months</span>
           </div>
+          <h3>Level Designer and QA</h3>
+          <p class="job-company">Forbidden Candy</p>
+          <p class="job-desc">Designing levels and testing the game at a studio in Barcelona.</p>
+          <button class="btn btn-small" data-dialog="job1">View details</button>
         </article>
 
-        <article class="job">
-          <div class="job-when">Jan 2026 - Sep 2026</div>
-          <div class="job-body">
-            <h3>Lead Game Designer and Gameplay Programmer</h3>
-            <p class="job-company">The Blue Dot Studio</p>
-            <p>Led the design of a game and prototyped mechanics fast, bridging design and engineering.</p>
-            <button class="btn btn-small" data-dialog="job2">View details</button>
+        <article class="job" style="--n:2">
+          <div class="job-head">
+            <span class="job-when">Jan 2026 - Sep 2026</span>
+            <!-- The number of months is calculated automatically from these dates. -->
+            <span class="job-months" data-start="2026-01" data-end="2026-09">9 months</span>
           </div>
+          <h3>Lead Game Designer and Gameplay Programmer</h3>
+          <p class="job-company">The Blue Dot Studio</p>
+          <p class="job-desc">Led the design of a game and prototyped mechanics fast, bridging design and engineering.</p>
+          <button class="btn btn-small" data-dialog="job2">View details</button>
         </article>
 
-        <article class="job">
-          <div class="job-when">Jan 2026 - Jul 2026</div>
-          <div class="job-body">
-            <h3>Technical Designer</h3>
-            <p class="job-company">Mini-Knight Studio</p>
-            <p>Worked on The Fable of the Eclipse: player, combat, enemies, perks and a full lava map.</p>
-            <button class="btn btn-small" data-dialog="job3">View details</button>
+        <article class="job" style="--n:3">
+          <div class="job-head">
+            <span class="job-when">Jan 2026 - Jul 2026</span>
+            <!-- The number of months is calculated automatically from these dates. -->
+            <span class="job-months" data-start="2026-01" data-end="2026-07">7 months</span>
           </div>
+          <h3>Technical Designer</h3>
+          <p class="job-company">Mini-Knight Studio</p>
+          <p class="job-desc">Worked on The Fable of the Eclipse: player, combat, enemies, perks and a full lava map.</p>
+          <button class="btn btn-small" data-dialog="job3">View details</button>
         </article>
 
-        <article class="job">
-          <div class="job-when">Sep 2025 - Sep 2026</div>
-          <div class="job-body">
-            <h3>University Instructor (review sessions)</h3>
-            <p class="job-company">Universitat Politècnica de Catalunya</p>
-            <p>Helped students with Game Mathematics and Game Programming I and II.</p>
-            <button class="btn btn-small" data-dialog="job4">View details</button>
+        <article class="job" style="--n:4">
+          <div class="job-head">
+            <span class="job-when">Sep 2025 - Sep 2026</span>
+            <!-- The number of months is calculated automatically from these dates. -->
+            <span class="job-months" data-start="2025-09" data-end="2026-09">13 months</span>
           </div>
+          <h3>University Instructor (review sessions)</h3>
+          <p class="job-company">Universitat Politècnica de Catalunya</p>
+          <p class="job-desc">Helped students with Game Mathematics and Game Programming I and II.</p>
+          <button class="btn btn-small" data-dialog="job4">View details</button>
         </article>
 
-        <article class="job">
-          <div class="job-when">Jun 2025 - Nov 2025</div>
-          <div class="job-body">
-            <h3>Co-Founder and Game Designer</h3>
-            <p class="job-company">75 Studio</p>
-            <p>Co-founded an indie studio with four teammates and released two playable demos to pitch to publishers.</p>
-            <button class="btn btn-small" data-dialog="job5">View details</button>
+        <article class="job" style="--n:5">
+          <div class="job-head">
+            <span class="job-when">Jun 2025 - Nov 2025</span>
+            <!-- The number of months is calculated automatically from these dates. -->
+            <span class="job-months" data-start="2025-06" data-end="2025-11">6 months</span>
           </div>
+          <h3>Co-Founder and Game Designer</h3>
+          <p class="job-company">75 Studio</p>
+          <p class="job-desc">Co-founded an indie studio with four teammates and released two playable demos to pitch to publishers.</p>
+          <button class="btn btn-small" data-dialog="job5">View details</button>
         </article>
 
-        <article class="job">
-          <div class="job-when">Nov 2023 - Jul 2025</div>
-          <div class="job-body">
-            <h3>Independent Game Designer</h3>
-            <p class="job-company">itch.io</p>
-            <p>Took part in 8 game jams with different teams.</p>
-            <button class="btn btn-small" data-dialog="job6">View details</button>
+        <article class="job" style="--n:6">
+          <div class="job-head">
+            <span class="job-when">Nov 2023 - Jul 2025</span>
+            <!-- The number of months is calculated automatically from these dates. -->
+            <span class="job-months" data-start="2023-11" data-end="2025-07">21 months</span>
           </div>
+          <h3>Independent Game Designer</h3>
+          <p class="job-company">itch.io</p>
+          <p class="job-desc">Took part in 8 game jams with different teams.</p>
+          <button class="btn btn-small" data-dialog="job6">View details</button>
         </article>
 
       </div>
     </section>
 
-    <!-- ================= PROJECTS ================= -->
-    <section id="projects" class="section">
+    <!-- ================= PROJECTS (one at a time, use the arrows) ================= -->
+    <section id="projects" class="section tinted">
       <h2>My work</h2>
-      <p class="section-intro">Games and prototypes I have designed or built with my teams.</p>
+      <p class="section-intro">Use the arrows to move between projects.</p>
 
-      <div class="grid">
+      <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Projects">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
 
-        <a class="project" href="https://mini-knight-studio.github.io/The-Fable-Of-The-Eclipse/" target="_blank" rel="noopener">
-          <div class="thumb" style="--c1:#ffcf5c; --c2:#e0445a;"></div>
-          <div class="project-info">
-            <h3>The Fable of the Eclipse</h3>
-            <p>Mini-Knight Studio. I worked on the player, combat, enemies, perks and the lava map.</p>
+        <article class="slide" aria-roledescription="slide" aria-label="Project 1 of 7">
+          <!-- To show your photos: save 3 images in the images folder with these exact names. -->
+          <div class="gallery" style="--c1:#ffcf5c; --c2:#e0445a;">
+            <figure class="shot"><span class="shot-hint">images/fable-1.jpg</span><img src="images/fable-1.jpg" alt="The Fable of the Eclipse screenshot 1" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/fable-2.jpg</span><img src="images/fable-2.jpg" alt="The Fable of the Eclipse screenshot 2" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/fable-3.jpg</span><img src="images/fable-3.jpg" alt="The Fable of the Eclipse screenshot 3" loading="lazy" onerror="this.remove()"></figure>
           </div>
-        </a>
 
-        <!-- EDIT ME: change href="#" to the link of the game (itch.io, etc.) and add a short description of what the game is about -->
-        <a class="project" href="#">
-          <div class="thumb" style="--c1:#4de3d0; --c2:#5b3fd1;"></div>
-          <div class="project-info">
-            <h3>C.U.B.E</h3>
-            <p>75 Studio. Playable demo made to pitch to publishers and incubator programs.</p>
+          <div class="slide-text">
+            <h3 class="slide-title">The Fable of the Eclipse</h3>
+            <p class="slide-meta">Technical Designer at Mini-Knight Studio, Jan - Jul 2026</p>
+            <p>A game made with Mini-Knight Studio where I was the technical designer. I worked on the player, the combat and the enemies, and I made sure everything felt good to play.</p>
+
+            <!-- EDIT ME: rewrite these steps with your real workflow -->
+            <h4>My workflow</h4>
+            <ol class="workflow">
+              <li>Design and prototype the player and combat mechanics.</li>
+              <li>Implement the enemies, the player perks and the full lava map.</li>
+              <li>Playtest with the team and note what feels wrong.</li>
+              <li>Polish the game feel until the controls respond well.</li>
+            </ol>
+
+            <h4>Technologies and tools</h4>
+            <ul class="tags">
+              <li>Combat design</li>
+              <li>Player programming</li>
+              <li>Enemy design</li>
+              <li>QA playtesting</li>
+              <li>Engine (edit me)</li>
+            </ul>
+
+            <a class="btn" href="https://mini-knight-studio.github.io/The-Fable-Of-The-Eclipse/" target="_blank" rel="noopener">Visit the game page</a>
           </div>
-        </a>
-
-        <!-- EDIT ME: same here, add the link and a short description -->
-        <a class="project" href="#">
-          <div class="thumb" style="--c1:#ff9a5c; --c2:#7b2a9e;"></div>
-          <div class="project-info">
-            <h3>Roses Are Red</h3>
-            <p>75 Studio. Second playable demo, where I led the game design and documentation.</p>
+        </article>
+        <article class="slide" aria-roledescription="slide" aria-label="Project 2 of 7">
+          <!-- To show your photos: save 3 images in the images folder with these exact names. -->
+          <div class="gallery" style="--c1:#4de3d0; --c2:#5b3fd1;">
+            <figure class="shot"><span class="shot-hint">images/cube-1.jpg</span><img src="images/cube-1.jpg" alt="C.U.B.E screenshot 1" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/cube-2.jpg</span><img src="images/cube-2.jpg" alt="C.U.B.E screenshot 2" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/cube-3.jpg</span><img src="images/cube-3.jpg" alt="C.U.B.E screenshot 3" loading="lazy" onerror="this.remove()"></figure>
           </div>
-        </a>
 
-        <!-- EDIT ME: link to your itch.io profile -->
-        <a class="project" href="#">
-          <div class="thumb" style="--c1:#7be0a0; --c2:#1d6fb8;"></div>
-          <div class="project-info">
-            <h3>Game jam entries</h3>
-            <p>8 jams, including Brackeys, LevelUp 2024, One Button and the Gran CITM GameJam.</p>
+          <div class="slide-text">
+            <h3 class="slide-title">C.U.B.E</h3>
+            <p class="slide-meta">Game Designer and Co-Founder at 75 Studio, 2025</p>
+            <p>One of the two playable demos my studio built to pitch to publishers and incubator programs. I was in charge of the game design and the documentation.</p>
+
+            <!-- EDIT ME: rewrite these steps with your real workflow -->
+            <h4>My workflow</h4>
+            <ol class="workflow">
+              <li>Agree on the concept and creative direction with my four teammates.</li>
+              <li>Write clear design documentation so everyone builds the same game.</li>
+              <li>Build a playable demo quickly and keep iterating on it.</li>
+              <li>Prepare the presentation for publishers.</li>
+            </ol>
+
+            <h4>Technologies and tools</h4>
+            <ul class="tags">
+              <li>Game design</li>
+              <li>Documentation</li>
+              <li>Rapid prototyping</li>
+              <li>Pitching</li>
+              <li>Engine (edit me)</li>
+            </ul>
+
+            <!-- EDIT ME: add a button linking to the game, for example:
+             <a class="btn" href="https://yourname.itch.io/game" target="_blank" rel="noopener">Play on itch.io</a> -->
           </div>
-        </a>
+        </article>
+        <article class="slide" aria-roledescription="slide" aria-label="Project 3 of 7">
+          <!-- To show your photos: save 3 images in the images folder with these exact names. -->
+          <div class="gallery" style="--c1:#ff9a5c; --c2:#7b2a9e;">
+            <figure class="shot"><span class="shot-hint">images/roses-1.jpg</span><img src="images/roses-1.jpg" alt="Roses Are Red screenshot 1" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/roses-2.jpg</span><img src="images/roses-2.jpg" alt="Roses Are Red screenshot 2" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/roses-3.jpg</span><img src="images/roses-3.jpg" alt="Roses Are Red screenshot 3" loading="lazy" onerror="this.remove()"></figure>
+          </div>
 
+          <div class="slide-text">
+            <h3 class="slide-title">Roses Are Red</h3>
+            <p class="slide-meta">Game Designer and Co-Founder at 75 Studio, 2025</p>
+            <p>The second playable demo from 75 Studio, made to pitch to publishers and incubator programs. I led the game design and kept the team communicating.</p>
+
+            <!-- EDIT ME: rewrite these steps with your real workflow -->
+            <h4>My workflow</h4>
+            <ol class="workflow">
+              <li>Agree on the concept and creative direction with the team.</li>
+              <li>Write the design documentation and share it with everyone.</li>
+              <li>Build the demo in short cycles and iterate on feedback.</li>
+              <li>Prepare the presentation for publishers.</li>
+            </ol>
+
+            <h4>Technologies and tools</h4>
+            <ul class="tags">
+              <li>Game design</li>
+              <li>Documentation</li>
+              <li>Team communication</li>
+              <li>Rapid prototyping</li>
+              <li>Engine (edit me)</li>
+            </ul>
+
+            <!-- EDIT ME: add a button linking to the game, for example:
+             <a class="btn" href="https://yourname.itch.io/game" target="_blank" rel="noopener">Play on itch.io</a> -->
+          </div>
+        </article>
+        <article class="slide" aria-roledescription="slide" aria-label="Project 4 of 7">
+          <!-- To show your photos: save 3 images in the images folder with these exact names. -->
+          <div class="gallery" style="--c1:#7be0a0; --c2:#1d6fb8;">
+            <figure class="shot"><span class="shot-hint">images/jams-1.jpg</span><img src="images/jams-1.jpg" alt="Game jams screenshot 1" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/jams-2.jpg</span><img src="images/jams-2.jpg" alt="Game jams screenshot 2" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/jams-3.jpg</span><img src="images/jams-3.jpg" alt="Game jams screenshot 3" loading="lazy" onerror="this.remove()"></figure>
+          </div>
+
+          <div class="slide-text">
+            <h3 class="slide-title">Game jams</h3>
+            <p class="slide-meta">8 jams on itch.io, Nov 2023 - Jul 2025</p>
+            <p>Between 2023 and 2025 I joined eight game jams with different teams, including Brackeys, LevelUp 2024, One Button and the Gran CITM GameJam. Jams are where I practice designing under tight deadlines.</p>
+
+            <!-- EDIT ME: rewrite these steps with your real workflow -->
+            <h4>My workflow</h4>
+            <ol class="workflow">
+              <li>Pick one core mechanic that fits the theme.</li>
+              <li>Prototype it in the first hours.</li>
+              <li>Playtest and cut everything that does not work.</li>
+              <li>Polish it and publish it on itch.io.</li>
+            </ol>
+
+            <h4>Technologies and tools</h4>
+            <ul class="tags">
+              <li>Rapid prototyping</li>
+              <li>Game feel</li>
+              <li>Teamwork</li>
+              <li>itch.io</li>
+            </ul>
+
+            <!-- EDIT ME: add a button linking to the game, for example:
+             <a class="btn" href="https://yourname.itch.io/game" target="_blank" rel="noopener">Play on itch.io</a> -->
+          </div>
+        </article>
+        <article class="slide" aria-roledescription="slide" aria-label="Project 5 of 7">
+          <!-- To show your photos: save 3 images in the images folder with these exact names. -->
+          <div class="gallery" style="--c1:#5cc8ff; --c2:#3a3fd1;">
+            <figure class="shot"><span class="shot-hint">images/bubble-1.jpg</span><img src="images/bubble-1.jpg" alt="Bubble Bobble screenshot 1" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/bubble-2.jpg</span><img src="images/bubble-2.jpg" alt="Bubble Bobble screenshot 2" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/bubble-3.jpg</span><img src="images/bubble-3.jpg" alt="Bubble Bobble screenshot 3" loading="lazy" onerror="this.remove()"></figure>
+          </div>
+
+          <div class="slide-text">
+            <h3 class="slide-title">Bubble Bobble</h3>
+            <p class="slide-meta">Team project with Pato Productions</p>
+            <p>A Bubble Bobble game made with my team, Pato Productions, and published on GitHub. The code is written in C.</p>
+
+            <!-- EDIT ME: rewrite these steps with your real workflow -->
+            <h4>My workflow</h4>
+            <ol class="workflow">
+              <li>Study the rules and level structure of the original game.</li>
+              <li>Design the mechanics and split the work with the team.</li>
+              <li>Program the game in C.</li>
+              <li>Playtest and polish until it plays well.</li>
+            </ol>
+
+            <h4>Technologies and tools</h4>
+            <ul class="tags">
+              <li>C</li>
+              <li>Game programming</li>
+              <li>Team project</li>
+              <li>GitHub</li>
+            </ul>
+
+            <a class="btn" href="https://github.com/PauGon75/BubbleBobble-PatoProductions" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </article>
+        <article class="slide" aria-roledescription="slide" aria-label="Project 6 of 7">
+          <!-- To show your photos: save 3 images in the images folder with these exact names. -->
+          <div class="gallery" style="--c1:#b0ff7a; --c2:#1d8a5a;">
+            <figure class="shot"><span class="shot-hint">images/pong-1.jpg</span><img src="images/pong-1.jpg" alt="PONG in 8086 Assembly screenshot 1" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/pong-2.jpg</span><img src="images/pong-2.jpg" alt="PONG in 8086 Assembly screenshot 2" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/pong-3.jpg</span><img src="images/pong-3.jpg" alt="PONG in 8086 Assembly screenshot 3" loading="lazy" onerror="this.remove()"></figure>
+          </div>
+
+          <div class="slide-text">
+            <h3 class="slide-title">PONG in 8086 Assembly</h3>
+            <p class="slide-meta">Assembly project on GitHub</p>
+            <p>The classic Pong game programmed in 8086 Assembly, working directly with the processor instead of an engine.</p>
+
+            <!-- EDIT ME: rewrite these steps with your real workflow -->
+            <h4>My workflow</h4>
+            <ol class="workflow">
+              <li>Break Pong into its rules: paddles, ball and score.</li>
+              <li>Program the input and drawing routines.</li>
+              <li>Add the ball movement and collisions.</li>
+              <li>Test and fix bugs.</li>
+            </ol>
+
+            <h4>Technologies and tools</h4>
+            <ul class="tags">
+              <li>8086 Assembly</li>
+              <li>Low-level programming</li>
+              <li>GitHub</li>
+            </ul>
+
+            <a class="btn" href="https://github.com/PauGon75/8086-Assembly-PONG" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </article>
+        <article class="slide" aria-roledescription="slide" aria-label="Project 7 of 7">
+          <!-- To show your photos: save 3 images in the images folder with these exact names. -->
+          <div class="gallery" style="--c1:#ff7ac8; --c2:#7a3bd1;">
+            <figure class="shot"><span class="shot-hint">images/magical-1.jpg</span><img src="images/magical-1.jpg" alt="Magical Girls screenshot 1" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/magical-2.jpg</span><img src="images/magical-2.jpg" alt="Magical Girls screenshot 2" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/magical-3.jpg</span><img src="images/magical-3.jpg" alt="Magical Girls screenshot 3" loading="lazy" onerror="this.remove()"></figure>
+          </div>
+
+          <div class="slide-text">
+            <h3 class="slide-title">Magical Girls</h3>
+            <p class="slide-meta">Team game made in Godot</p>
+            <p>A team game built in Godot with GDScript. The code lives on my teammate&#x27;s GitHub.</p>
+
+            <!-- EDIT ME: rewrite these steps with your real workflow -->
+            <h4>My workflow</h4>
+            <ol class="workflow">
+              <li>Agree on the idea and the core mechanic with the team.</li>
+              <li>Split the work and prototype in Godot.</li>
+              <li>Playtest and fix what does not work.</li>
+              <li>Polish and release.</li>
+            </ol>
+
+            <h4>Technologies and tools</h4>
+            <ul class="tags">
+              <li>Godot</li>
+              <li>GDScript</li>
+              <li>Teamwork</li>
+              <li>GitHub</li>
+            </ul>
+
+            <a class="btn" href="https://github.com/Marco-v-BaldanII/MagicalGirls" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </article>
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button class="arrow" id="prev" aria-label="Previous project">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <div class="dots">
+          <button class="dot" aria-label="Go to project 1"></button>
+          <button class="dot" aria-label="Go to project 2"></button>
+          <button class="dot" aria-label="Go to project 3"></button>
+          <button class="dot" aria-label="Go to project 4"></button>
+          <button class="dot" aria-label="Go to project 5"></button>
+          <button class="dot" aria-label="Go to project 6"></button>
+          <button class="dot" aria-label="Go to project 7"></button>
+          </div>
+          <button class="arrow" id="next" aria-label="Next project">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
       </div>
+    </section>
+
+    <!-- ================= GAME PHOTOGRAPHY (button that opens a popup) ================= -->
+    <section id="photos" class="section tinted tinted-light photos-cta">
+      <button class="btn photo-btn" id="open-photos" data-dialog="photos-dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></svg>
+        Game photography
+      </button>
     </section>
 
     <!-- ================= SKILLS ================= -->
-    <section id="skills" class="section">
+    <section id="skills" class="section tinted">
       <h2>Skills</h2>
       <div class="skills-grid">
         <div>
@@ -585,7 +1055,7 @@ dialog a { color: var(--accent); }
     </section>
 
     <!-- ================= EDUCATION ================= -->
-    <section id="education" class="section">
+    <section id="education" class="section tinted">
       <h2>Education</h2>
       <div class="skills-grid">
         <div>
@@ -614,7 +1084,7 @@ dialog a { color: var(--accent); }
 
       <ul class="social">
         <li><a href="https://www.linkedin.com/in/paugonzalezcayuela" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://github.com/paugon75" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://github.com/PauGon75" target="_blank" rel="noopener">GitHub</a></li>
       </ul>
     </section>
 
@@ -700,6 +1170,26 @@ dialog a { color: var(--accent); }
       <li>Brackeys GameJam</li>
       <li>8a Gran CITM GameJam</li>
     </ul>
+  </dialog>
+
+  <!-- ================= GAME PHOTOGRAPHY POPUP =================
+       Put your photos in the folder images/photos/ and name them 1.jpg, 2.jpg, 3.jpg ...
+       They appear here automatically (jpg, jpeg, png and webp all work). -->
+  <dialog id="photos-dialog" aria-labelledby="photos-title">
+    <button class="dialog-close" aria-label="Close">&times;</button>
+    <div class="photo-head">
+      <h3 id="photos-title">Game photography</h3>
+      <p>Photos I take during my playthroughs. Click a photo to enlarge it.</p>
+    </div>
+    <div class="photo-scroll">
+      <div class="mosaic" id="mosaic"></div>
+      <p class="photo-empty" id="photo-empty" hidden>No photos yet. Add them to the folder images/photos/ named 1.jpg, 2.jpg, 3.jpg and so on.</p>
+    </div>
+  </dialog>
+
+  <dialog id="lightbox" aria-label="Enlarged photo">
+    <button class="dialog-close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" alt="">
   </dialog>
 
   <script>
@@ -789,6 +1279,163 @@ document.querySelectorAll(".stat-number").forEach(function (number) {
   observer.observe(number);
 });
 
+
+/* =====================================================
+   4) PROJECTS CAROUSEL
+   Arrows, dots, keyboard arrows and swiping on phones.
+   ===================================================== */
+(function () {
+  var carousel = document.getElementById("carousel");
+  if (!carousel) return;
+
+  var track = carousel.querySelector(".carousel-track");
+  var slides = Array.prototype.slice.call(carousel.querySelectorAll(".slide"));
+  var dots = Array.prototype.slice.call(carousel.querySelectorAll(".dot"));
+  var index = 0;
+
+  function show(i) {
+    index = (i + slides.length) % slides.length; // loops around
+    track.style.transform = "translateX(" + (-index * 100) + "%)";
+
+    slides.forEach(function (slide, n) {
+      var active = n === index;
+      slide.setAttribute("aria-hidden", active ? "false" : "true");
+      if (active) slide.removeAttribute("inert"); else slide.setAttribute("inert", "");
+    });
+    dots.forEach(function (dot, n) {
+      dot.setAttribute("aria-current", n === index ? "true" : "false");
+    });
+  }
+
+  document.getElementById("prev").addEventListener("click", function () { show(index - 1); });
+  document.getElementById("next").addEventListener("click", function () { show(index + 1); });
+  dots.forEach(function (dot, n) {
+    dot.addEventListener("click", function () { show(n); });
+  });
+
+  // Keyboard: left and right arrow keys while focus is inside the carousel
+  carousel.addEventListener("keydown", function (event) {
+    if (event.key === "ArrowLeft") show(index - 1);
+    if (event.key === "ArrowRight") show(index + 1);
+  });
+
+  // Swipe on phones
+  var startX = null;
+  carousel.addEventListener("touchstart", function (event) {
+    startX = event.touches[0].clientX;
+  }, { passive: true });
+  carousel.addEventListener("touchend", function (event) {
+    if (startX === null) return;
+    var diff = event.changedTouches[0].clientX - startX;
+    if (Math.abs(diff) > 50) show(diff < 0 ? index + 1 : index - 1);
+    startX = null;
+  });
+
+  show(0);
+})();
+
+
+/* =====================================================
+   5) MONTHS ON EACH TIMELINE CARD
+   Counts the months between data-start and data-end
+   (both months included). "present" uses today's date.
+   ===================================================== */
+document.querySelectorAll(".job-months").forEach(function (badge) {
+  var start = badge.dataset.start.split("-").map(Number);
+  var end;
+  if (badge.dataset.end === "present") {
+    var now = new Date();
+    end = [now.getFullYear(), now.getMonth() + 1];
+  } else {
+    end = badge.dataset.end.split("-").map(Number);
+  }
+  var months = (end[0] - start[0]) * 12 + (end[1] - start[1]) + 1;
+  badge.textContent = months + (months === 1 ? " month" : " months");
+});
+
+/* =====================================================
+   6) GAME PHOTOGRAPHY MOSAIC
+   Looks in images/photos/ for 1.jpg, 2.jpg, 3.jpg ... and adds
+   them to the popup by number. Runs the first time you open it.
+   ===================================================== */
+(function () {
+  var button = document.getElementById("open-photos");
+  var mosaic = document.getElementById("mosaic");
+  if (!button || !mosaic) return;
+
+  var FOLDER = "images/photos/";
+  var TYPES = ["jpg", "jpeg", "png", "webp"];  // file types it will look for
+  var BATCH = 10;                               // how many numbers it checks at once
+  var started = false;
+
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightbox-img");
+  lightboxImg.addEventListener("click", function () { lightbox.close(); });
+
+  // Try to load photo number N with each file type. Gives back the image, or null.
+  function findPhoto(number) {
+    return new Promise(function (resolve) {
+      var img = new Image();
+      var t = 0;
+      img.alt = "Game photo " + number;
+      img.decoding = "async";
+      function tryNext() {
+        if (t >= TYPES.length) { resolve(null); return; }
+        img.src = FOLDER + number + "." + TYPES[t++];
+      }
+      img.onload = function () { resolve(img); };
+      img.onerror = tryNext;
+      tryNext();
+    });
+  }
+
+  function makeFigure(img, number) {
+    var figure = document.createElement("figure");
+    figure.className = "photo";
+    figure.tabIndex = 0;
+    figure.setAttribute("role", "button");
+    figure.setAttribute("aria-label", "Enlarge photo " + number);
+
+    var label = document.createElement("span");
+    label.className = "photo-num";
+    label.textContent = number;
+
+    figure.appendChild(img);
+    figure.appendChild(label);
+
+    function open() {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.showModal();
+    }
+    figure.addEventListener("click", open);
+    figure.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); }
+    });
+    return figure;
+  }
+
+  // Check photos in groups of 10 and keep going while any are found
+  function loadBatch(start) {
+    var jobs = [];
+    for (var n = start; n < start + BATCH; n++) jobs.push(findPhoto(n));
+    return Promise.all(jobs).then(function (results) {
+      var found = 0;
+      results.forEach(function (img, i) {
+        if (img) { mosaic.appendChild(makeFigure(img, start + i)); found++; }
+      });
+      if (found > 0) return loadBatch(start + BATCH);
+    });
+  }
+
+  button.addEventListener("click", function () {
+    if (started) return;
+    started = true;
+    loadBatch(1).then(function () {
+      if (mosaic.children.length === 0) document.getElementById("photo-empty").hidden = false;
+    });
+  });
+})();
   </script>
 </body>
 </html>
