@@ -618,6 +618,14 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
 
   .btn-steam { display: inline-flex; align-items: center; gap: 10px; }
 .btn-steam svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
+  .shot-cap {
+  position: absolute; top: 8px; left: 8px;
+  padding: 2px 9px;
+  background: rgba(0, 0, 0, .78); color: #fff;
+  font-family: var(--font-title); font-size: .75rem; font-weight: 500;
+  border-radius: 2px;
+  pointer-events: none;
+}
   </style>
 </head>
 <body>
@@ -786,7 +794,7 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
           <!-- To show your photos: save 3 images in the images folder with these exact names. -->
           <div class="gallery" style="--c1:#f2f2f2; --c2:#2a2a2a;">
             <figure class="shot"><span class="shot-hint">images/thornetica-1.jpg</span><img src="images/thornetica-1.jpg" alt="Thornetica screenshot 1" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/thornetica-2.jpg</span><img src="images/thornetica-2.jpg" alt="Thornetica screenshot 2" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/thornetica-2.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="Thornetica gameplay video"><source src="images/thornetica-2.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></figure>
             <figure class="shot"><span class="shot-hint">images/thornetica-3.jpg</span><img src="images/thornetica-3.jpg" alt="Thornetica screenshot 3" loading="lazy" onerror="this.remove()"></figure>
           </div>
 
@@ -795,16 +803,7 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
             <p class="slide-meta">Level Designer and QA at Forbidden Candy, 2025 - Present</p>
             <p>A tactical RPG by Forbidden Candy that mixes Fire Emblem-style battles with Persona-like social bonds, set in a university theater club. The free demo is live on Steam.</p>
 
-            <!-- EDIT ME: rewrite these steps with what you really do on the project -->
-            <h4>My workflow</h4>
-            <ol class="workflow">
-              <li>Design battle maps and encounter layouts for the tactical fights.</li>
-              <li>Playtest every build and report bugs to the team.</li>
-              <li>Tune encounters using playtest feedback.</li>
-              <li>Verify fixes before each demo update.</li>
-            </ol>
-
-            <h4>Technologies and tools</h4>
+<h4>Technologies and tools</h4>
             <ul class="tags">
               <li>Level design</li>
               <li>QA testing</li>
@@ -843,16 +842,7 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
               <li>Game feel polish</li>
             </ul>
 
-            <!-- EDIT ME: rewrite these steps with your real workflow -->
-            <h4>My workflow</h4>
-            <ol class="workflow">
-              <li>Design and prototype the player and combat mechanics.</li>
-              <li>Implement the enemies, the player perks and the full lava map.</li>
-              <li>Playtest with the team and note what feels wrong.</li>
-              <li>Polish the game feel until the controls respond well.</li>
-            </ol>
-
-            <h4>Technologies and tools</h4>
+<h4>Technologies and tools</h4>
             <ul class="tags">
               <li>Combat design</li>
               <li>Player programming</li>
@@ -864,29 +854,46 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
             <a class="btn" href="https://mini-knight-studio.github.io/The-Fable-Of-The-Eclipse/" target="_blank" rel="noopener">Visit the game page</a>
           </div>
         </article>
+
         <article class="slide" aria-roledescription="slide" aria-label="Project 3 of 8">
-          <!-- To show your photos: save 3 images in the images folder with these exact names. -->
-          <div class="gallery" style="--c1:#bdbdbd; --c2:#1a1a1a;">
-            <figure class="shot"><span class="shot-hint">images/cube-1.jpg</span><img src="images/cube-1.jpg" alt="C.U.B.E screenshot 1" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/cube-2.jpg</span><img src="images/cube-2.jpg" alt="C.U.B.E screenshot 2" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/cube-3.jpg</span><img src="images/cube-3.jpg" alt="C.U.B.E screenshot 3" loading="lazy" onerror="this.remove()"></figure>
+          <!-- Frames: save your files in the images folder with the names shown inside each frame. -->
+          <div class="gallery" style="--c1:#8c8c8c; --c2:#0d0d0d;">
+            <figure class="shot"><span class="shot-hint">images/engine-1.jpg</span><img src="images/engine-1.jpg" alt="Game engine screenshot 1" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/engine-2.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="Game engine demo video"><source src="images/engine-2.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></figure>
+            <figure class="shot"><span class="shot-hint">images/engine-3.jpg</span><img src="images/engine-3.jpg" alt="Game engine screenshot 2" loading="lazy" onerror="this.remove()"></figure>
           </div>
 
           <div class="slide-text">
-            <h3 class="slide-title">C.U.B.E</h3>
+            <!-- EDIT ME: change the title, description and tags to match your engine project -->
+            <h3 class="slide-title">Game engine project</h3>
+            <p class="slide-meta">Engine programming project</p>
+            <p>A game engine project I worked on.</p>
+
+<h4>Technologies and tools</h4>
+            <ul class="tags">
+              <li>Game engine</li>
+              <li>Engine programming</li>
+              <li>Language (edit me)</li>
+            </ul>
+
+            <!-- EDIT ME: add a button, for example:
+             <a class="btn" href="https://github.com/PauGon75/your-engine" target="_blank" rel="noopener">View on GitHub</a> -->
+          </div>
+        </article>
+        <article class="slide" aria-roledescription="slide" aria-label="Project 4 of 8">
+          <!-- Frames: save your files in the images folder with the names shown inside each frame. -->
+          <div class="gallery" style="--c1:#a8a8a8; --c2:#151515;">
+            <figure class="shot"><span class="shot-hint">images/roses-video.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="Roses Are Red gameplay video"><source src="images/roses-video.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video><span class="shot-cap">Roses Are Red</span></figure>
+            <figure class="shot"><span class="shot-hint">images/cube-video.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="C.U.B.E gameplay video"><source src="images/cube-video.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video><span class="shot-cap">C.U.B.E</span></figure>
+            <figure class="shot"><span class="shot-hint">images/cube-screenshot.jpg</span><img src="images/cube-screenshot.jpg" alt="C.U.B.E screenshot" loading="lazy" onerror="this.remove()"><span class="shot-cap">C.U.B.E</span></figure>
+          </div>
+
+          <div class="slide-text">
+            <h3 class="slide-title">C.U.B.E and Roses Are Red</h3>
             <p class="slide-meta">Game Designer and Co-Founder at 75 Studio, 2025</p>
-            <p>One of the two playable demos my studio built to pitch to publishers and incubator programs. I was in charge of the game design and the documentation.</p>
+            <p>The two playable demos my studio built to pitch to publishers and incubator programs. I was in charge of the game design and the documentation for both.</p>
 
-            <!-- EDIT ME: rewrite these steps with your real workflow -->
-            <h4>My workflow</h4>
-            <ol class="workflow">
-              <li>Agree on the concept and creative direction with my four teammates.</li>
-              <li>Write clear design documentation so everyone builds the same game.</li>
-              <li>Build a playable demo quickly and keep iterating on it.</li>
-              <li>Prepare the presentation for publishers.</li>
-            </ol>
-
-            <h4>Technologies and tools</h4>
+<h4>Technologies and tools</h4>
             <ul class="tags">
               <li>Game design</li>
               <li>Documentation</li>
@@ -895,43 +902,8 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
               <li>Engine (edit me)</li>
             </ul>
 
-            <!-- EDIT ME: add a button linking to the game, for example:
-             <a class="btn" href="https://yourname.itch.io/game" target="_blank" rel="noopener">Play on itch.io</a> -->
-          </div>
-        </article>
-        <article class="slide" aria-roledescription="slide" aria-label="Project 4 of 8">
-          <!-- To show your photos: save 3 images in the images folder with these exact names. -->
-          <div class="gallery" style="--c1:#8c8c8c; --c2:#0d0d0d;">
-            <figure class="shot"><span class="shot-hint">images/roses-1.jpg</span><img src="images/roses-1.jpg" alt="Roses Are Red screenshot 1" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/roses-2.jpg</span><img src="images/roses-2.jpg" alt="Roses Are Red screenshot 2" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/roses-3.jpg</span><img src="images/roses-3.jpg" alt="Roses Are Red screenshot 3" loading="lazy" onerror="this.remove()"></figure>
-          </div>
-
-          <div class="slide-text">
-            <h3 class="slide-title">Roses Are Red</h3>
-            <p class="slide-meta">Game Designer and Co-Founder at 75 Studio, 2025</p>
-            <p>The second playable demo from 75 Studio, made to pitch to publishers and incubator programs. I led the game design and kept the team communicating.</p>
-
-            <!-- EDIT ME: rewrite these steps with your real workflow -->
-            <h4>My workflow</h4>
-            <ol class="workflow">
-              <li>Agree on the concept and creative direction with the team.</li>
-              <li>Write the design documentation and share it with everyone.</li>
-              <li>Build the demo in short cycles and iterate on feedback.</li>
-              <li>Prepare the presentation for publishers.</li>
-            </ol>
-
-            <h4>Technologies and tools</h4>
-            <ul class="tags">
-              <li>Game design</li>
-              <li>Documentation</li>
-              <li>Team communication</li>
-              <li>Rapid prototyping</li>
-              <li>Engine (edit me)</li>
-            </ul>
-
-            <!-- EDIT ME: add a button linking to the game, for example:
-             <a class="btn" href="https://yourname.itch.io/game" target="_blank" rel="noopener">Play on itch.io</a> -->
+            <!-- EDIT ME: add a button linking to the demos, for example:
+             <a class="btn" href="https://yourname.itch.io/cube" target="_blank" rel="noopener">Play C.U.B.E</a> -->
           </div>
         </article>
         <article class="slide" aria-roledescription="slide" aria-label="Project 5 of 8">
@@ -947,16 +919,7 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
             <p class="slide-meta">8 jams on itch.io, Nov 2023 - Jul 2025</p>
             <p>Between 2023 and 2025 I joined eight game jams with different teams, including Brackeys, LevelUp 2024, One Button and the Gran CITM GameJam. Jams are where I practice designing under tight deadlines.</p>
 
-            <!-- EDIT ME: rewrite these steps with your real workflow -->
-            <h4>My workflow</h4>
-            <ol class="workflow">
-              <li>Pick one core mechanic that fits the theme.</li>
-              <li>Prototype it in the first hours.</li>
-              <li>Playtest and cut everything that does not work.</li>
-              <li>Polish it and publish it on itch.io.</li>
-            </ol>
-
-            <h4>Technologies and tools</h4>
+<h4>Technologies and tools</h4>
             <ul class="tags">
               <li>Rapid prototyping</li>
               <li>Game feel</li>
@@ -981,16 +944,7 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
             <p class="slide-meta">Team project with Pato Productions</p>
             <p>A Bubble Bobble game made with my team, Pato Productions, and published on GitHub. The code is written in C.</p>
 
-            <!-- EDIT ME: rewrite these steps with your real workflow -->
-            <h4>My workflow</h4>
-            <ol class="workflow">
-              <li>Study the rules and level structure of the original game.</li>
-              <li>Design the mechanics and split the work with the team.</li>
-              <li>Program the game in C.</li>
-              <li>Playtest and polish until it plays well.</li>
-            </ol>
-
-            <h4>Technologies and tools</h4>
+<h4>Technologies and tools</h4>
             <ul class="tags">
               <li>C</li>
               <li>Game programming</li>
@@ -1014,16 +968,7 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
             <p class="slide-meta">Assembly project on GitHub</p>
             <p>The classic Pong game programmed in 8086 Assembly, working directly with the processor instead of an engine.</p>
 
-            <!-- EDIT ME: rewrite these steps with your real workflow -->
-            <h4>My workflow</h4>
-            <ol class="workflow">
-              <li>Break Pong into its rules: paddles, ball and score.</li>
-              <li>Program the input and drawing routines.</li>
-              <li>Add the ball movement and collisions.</li>
-              <li>Test and fix bugs.</li>
-            </ol>
-
-            <h4>Technologies and tools</h4>
+<h4>Technologies and tools</h4>
             <ul class="tags">
               <li>8086 Assembly</li>
               <li>Low-level programming</li>
@@ -1046,16 +991,7 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
             <p class="slide-meta">Team game made in Godot</p>
             <p>A team game built in Godot with GDScript. The code lives on my teammate&#x27;s GitHub.</p>
 
-            <!-- EDIT ME: rewrite these steps with your real workflow -->
-            <h4>My workflow</h4>
-            <ol class="workflow">
-              <li>Agree on the idea and the core mechanic with the team.</li>
-              <li>Split the work and prototype in Godot.</li>
-              <li>Playtest and fix what does not work.</li>
-              <li>Polish and release.</li>
-            </ol>
-
-            <h4>Technologies and tools</h4>
+<h4>Technologies and tools</h4>
             <ul class="tags">
               <li>Godot</li>
               <li>GDScript</li>
