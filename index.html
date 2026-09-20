@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
   <title>Pau González | Technical Game Designer and Developer</title>
-  <meta name="description" content="Portfolio of Pau González Cayuela, technical game designer from Barcelona. Game balance, game feel, combat design and gameplay programming in Unreal Engine 5 and Unity.">
+  <meta name="description" content="Portfolio of Pau González Cayuela, technical game designer from Barcelona. Gameplay systems, combat design, game balance and game feel, built in Unreal Engine 4/5, Unity and Godot.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
 
   <style>
 /* =====================================================
@@ -16,18 +17,19 @@
    Change the values below to restyle the whole site.
    ===================================================== */
 :root {
-  --bg: #1a1530;          /* page background (deep plum) */
-  --panel: #251f45;       /* cards and boxes */
-  --line: #3a3366;        /* borders */
-  --text: #f1eefc;        /* main text */
-  --muted: #b3accf;       /* softer text */
-  --accent: #4de3d0;      /* buttons and highlights (teal) */
-  --accent-text: #10222a; /* text on top of accent */
-  --tint-light: rgba(46, 26, 92, .5); /* lighter purple filter (backstory and photography): lower last number = more video visible */
-  --tint: rgba(46, 26, 92, .86); /* purple filter over the video in text-heavy sections (last number = strength, 0 to 1) */
+  color-scheme: dark;
+  --bg: #000000;          /* page background */
+  --panel: #0f0f0f;       /* cards and boxes */
+  --line: #333333;        /* borders */
+  --text: #f0f0f0;        /* main text */
+  --muted: #9b9b9b;       /* softer text */
+  --accent: #ff6a13;      /* buttons and highlights (orange) */
+  --accent-text: #000000; /* text on top of accent */
+  --tint-light: rgba(0, 0, 0, .5);  /* lighter black filter over the video (backstory and photography): lower last number = more video visible */
+  --tint: rgba(0, 0, 0, .86);       /* black filter over the video in text-heavy sections (last number = strength, 0 to 1) */
 
-  --font-title: "Bricolage Grotesque", "Arial Black", sans-serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-title: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
 }
 
 /* =====================================================
@@ -63,7 +65,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
   font-size: 1rem;
   padding: 14px 28px;
   border: 2px solid var(--accent);
-  border-radius: 8px;
+  border-radius: 3px;
   text-decoration: none;
   cursor: pointer;
   transition: transform .15s ease, background .15s ease;
@@ -90,7 +92,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
   align-items: center;
   justify-content: space-between;
   padding: 16px 6%;
-  background: rgba(26, 21, 48, .9);
+  background: rgba(0, 0, 0, .85);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -106,7 +108,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
   background: none;
   color: var(--text);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 3px;
   padding: 6px 14px;
   font: inherit;
   cursor: pointer;
@@ -164,23 +166,6 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
 .hero-buttons { display: flex; flex-wrap: wrap; gap: 14px; }
 
 /* =====================================================
-   STATS
-   ===================================================== */
-.stats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 30px;
-  padding: 50px 6%;
-  background: rgba(37, 31, 69, .85);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.stat { text-align: center; }
-.stat-number { display: block; font-family: var(--font-title); font-weight: 800; font-size: 3.4rem; color: var(--accent); }
-.stat-label { color: var(--muted); }
-
-/* =====================================================
    ABOUT
    ===================================================== */
 .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 50px; align-items: center; }
@@ -191,8 +176,8 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
   aspect-ratio: 4 / 5;
   width: 100%;
   object-fit: cover;
-  border-radius: 12px;
-  background: linear-gradient(160deg, #5b3fd1, #1d6fb8);
+  border-radius: 3px;
+  background: linear-gradient(160deg, #3a3a3a, #111111);
   display: grid;
   place-items: center;
   color: rgba(255, 255, 255, .7);
@@ -228,7 +213,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
   grid-row: var(--n) / span 2;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 3px;
   padding: 22px 24px;
   transition: border-color .2s ease, transform .2s ease;
 }
@@ -241,7 +226,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
   position: absolute;
   top: 24px;
   width: 18px; height: 18px;
-  border-radius: 50%;
+  border-radius: 2px;
   background: var(--accent);
   border: 4px solid var(--bg);
   box-sizing: content-box;
@@ -251,13 +236,13 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
   content: "";
   position: absolute;
   top: 34px;
-  width: 46px; height: 3px;
+  width: 33px; height: 3px;
   background: var(--line);
 }
 .job:nth-child(odd)::before  { left: -59px; }
 .job:nth-child(even)::before { right: -59px; }
-.job:nth-child(odd)::after   { left: -46px; }
-.job:nth-child(even)::after  { right: -46px; }
+.job:nth-child(odd)::after   { left: -33px; }
+.job:nth-child(even)::after  { right: -33px; }
 
 .job-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 10px; }
 .job-when { color: var(--muted); font-weight: 500; font-size: .9rem; }
@@ -267,7 +252,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
   font-weight: 700;
   font-size: .8rem;
   padding: 2px 12px;
-  border-radius: 999px;
+  border-radius: 3px;
 }
 .job h3 { font-size: 1.35rem; }
 .job-company { color: var(--accent); font-weight: 700; margin: 4px 0 8px; }
@@ -283,7 +268,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.1; }
   text-decoration: none;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 3px;
   overflow: hidden;
   transition: transform .2s ease, border-color .2s ease;
 }
@@ -332,9 +317,9 @@ dialog {
   background: var(--panel);
   color: var(--text);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 3px;
 }
-dialog::backdrop { background: rgba(8, 5, 20, .8); }
+dialog::backdrop { background: rgba(0, 0, 0, .85); }
 dialog[open] { animation: pop .2s ease; }
 
 @keyframes pop {
@@ -382,7 +367,7 @@ dialog li { margin-bottom: 6px; }
   .timeline::before { left: 14px; transform: none; }
   .job:nth-child(n) { grid-column: 1; grid-row: auto; }
   .job:nth-child(n)::before { left: -35px; right: auto; }
-  .job:nth-child(n)::after  { left: -22px; right: auto; width: 22px; }
+  .job:nth-child(n)::after  { left: -9px; right: auto; width: 9px; }
 }
 
 /* People who prefer less motion: turn animations off */
@@ -395,7 +380,7 @@ dialog li { margin-bottom: 6px; }
 .facts {
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 3px;
   padding: 28px;
 }
 .facts h3 { font-size: 1rem; color: var(--accent); margin-bottom: 4px; }
@@ -407,16 +392,19 @@ dialog a { color: var(--accent); }
 
 /* ---------- Background video ---------- */
 .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: var(--bg); }
+/* faint technical grid that slowly moves (visible until you add your video) */
 .bg-glow {
-  position: absolute; inset: -20%;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(77, 227, 208, .22), transparent 45%),
-    radial-gradient(circle at 80% 70%, rgba(123, 63, 209, .38), transparent 50%);
-  animation: drift 18s ease-in-out infinite alternate;
+  position: absolute; inset: -48px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: grid-drift 5s linear infinite;
 }
-@keyframes drift { to { transform: translate(4%, -3%) scale(1.1); } }
+@keyframes grid-drift { to { transform: translate(48px, 48px); } }
+.bg::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 88% 105%, rgba(255, 106, 19, .16), transparent 55%); }
 .bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.bg::after { content: ""; position: absolute; inset: 0; background: rgba(26, 21, 48, .72); } /* darkens the video so text stays readable */
+.bg::after { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, .66); } /* darkens the video so text stays readable */
 @media (prefers-reduced-motion: reduce) { .bg video { display: none; } }
 
 /* ---------- Projects carousel ---------- */
@@ -437,7 +425,7 @@ dialog a { color: var(--accent); }
   position: absolute;
   margin: 0;
   aspect-ratio: 16 / 10;
-  border-radius: 12px;
+  border-radius: 3px;
   overflow: hidden;
   border: 1px solid var(--line);
   background: linear-gradient(135deg, var(--c1), var(--c2));
@@ -461,18 +449,18 @@ dialog a { color: var(--accent); }
 .workflow li::before {
   content: counter(step);
   position: absolute; left: 0; top: 5px;
-  width: 26px; height: 26px; border-radius: 50%;
+  width: 26px; height: 26px; border-radius: 2px;
   display: grid; place-items: center;
   background: var(--accent); color: var(--accent-text);
   font-weight: 700; font-size: .85rem;
 }
 
 .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
-.tags li { background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; font-size: .9rem; }
+.tags li { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 4px 14px; font-size: .9rem; }
 
 .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 22px; margin-top: 30px; }
 .arrow {
-  width: 54px; height: 54px; border-radius: 50%;
+  width: 54px; height: 54px; border-radius: 2px;
   display: grid; place-items: center;
   background: var(--panel); color: var(--text);
   border: 2px solid var(--line);
@@ -482,7 +470,7 @@ dialog a { color: var(--accent); }
 .arrow:hover { border-color: var(--accent); background: var(--accent); color: var(--accent-text); transform: scale(1.06); }
 
 .dots { display: flex; gap: 12px; }
-.dot { width: 12px; height: 12px; padding: 0; border-radius: 50%; border: 0; background: var(--line); cursor: pointer; transition: transform .15s ease, background .15s ease; }
+.dot { width: 12px; height: 12px; padding: 0; border-radius: 2px; border: 0; background: var(--line); cursor: pointer; transition: transform .15s ease, background .15s ease; }
 .dot[aria-current="true"] { background: var(--accent); transform: scale(1.35); }
 
 @media (max-width: 860px) {
@@ -490,9 +478,9 @@ dialog a { color: var(--accent); }
   .gallery { max-width: 460px; margin: 0 auto; width: 100%; }
 }
 
-  .avatar { display: block; width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); margin-bottom: 20px; }
+  .avatar { display: block; width: 120px; height: 120px; border-radius: 2px; object-fit: cover; border: 3px solid var(--accent); margin-bottom: 20px; }
   
-/* ---------- Purple filter over the video in text-heavy sections ---------- */
+/* ---------- Black filter over the video in text-heavy sections ---------- */
 body { overflow-x: hidden; }
 .tinted { position: relative; }
 .tinted::before {
@@ -507,7 +495,7 @@ body { overflow-x: hidden; }
   z-index: -1;
 }
   
-/* ---------- Lighter purple filter (backstory + photography) ---------- */
+/* ---------- Lighter black filter (backstory + photography) ---------- */
 .tinted-light::before { background: var(--tint-light); }
 
 /* ---------- Game photography button ---------- */
@@ -528,7 +516,7 @@ body { overflow-x: hidden; }
   position: relative;
   break-inside: avoid;
   margin: 0 0 14px;
-  border-radius: 10px;
+  border-radius: 3px;
   overflow: hidden;
   cursor: zoom-in;
   background: var(--bg);
@@ -538,18 +526,18 @@ body { overflow-x: hidden; }
 .photo-num {
   position: absolute; left: 8px; top: 8px;
   min-width: 30px; height: 30px; padding: 0 8px;
-  border-radius: 15px;
+  border-radius: 3px;
   display: grid; place-items: center;
-  background: rgba(16, 10, 36, .78);
+  background: rgba(0, 0, 0, .8);
   color: #fff; font-weight: 700; font-size: .85rem;
 }
 .photo-empty { color: var(--muted); }
 
 /* ---------- Enlarged photo ---------- */
 #lightbox { width: auto; max-width: 96vw; max-height: none; padding: 0; background: transparent; border: 0; overflow: visible; }
-#lightbox img { display: block; max-width: 94vw; max-height: 88vh; border-radius: 10px; cursor: zoom-out; }
+#lightbox img { display: block; max-width: 94vw; max-height: 88vh; border-radius: 3px; cursor: zoom-out; }
 #lightbox .dialog-close { top: -44px; right: 0; color: #fff; }
-#lightbox::backdrop { background: rgba(8, 5, 20, .92); }
+#lightbox::backdrop { background: rgba(0, 0, 0, .94); }
 
 @media (max-width: 760px) {
   .photo-head { padding: 22px 20px 14px; }
@@ -557,6 +545,79 @@ body { overflow-x: hidden; }
   .mosaic { column-width: 150px; column-gap: 10px; }
   .photo { margin-bottom: 10px; }
 }
+  
+/* ---------- Video frame + key features list ---------- */
+.shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; }
+.features { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; margin-bottom: 4px; }
+.features li { position: relative; padding-left: 20px; color: var(--muted); font-size: .95rem; }
+.features li::before { content: ""; position: absolute; left: 0; top: .6em; width: 9px; height: 9px; border-radius: 3px; background: var(--accent); }
+@media (max-width: 520px) { .features { grid-template-columns: 1fr; } }
+  
+/* =====================================================
+   TECH THEME (terminal look): mono fonts, sharp corners, // and > marks
+   ===================================================== */
+html { scrollbar-color: var(--accent) #000; }
+::selection { background: var(--accent); color: #000; }
+@keyframes blink { 50% { opacity: 0; } }
+
+h1, h2, h3, h4 { letter-spacing: -0.02em; }
+
+.logo { font-family: var(--font-title); font-size: 1.1rem; }
+.logo strong { color: var(--text); font-weight: 800; }
+.logo::after { content: "_"; margin-left: 1px; color: var(--accent); animation: blink 1.1s steps(1) infinite; }
+
+.nav-links a, .nav-toggle { font-family: var(--font-title); font-size: .85rem; }
+.nav-links a::before { content: "./"; color: var(--accent); }
+.nav-links a:hover { color: var(--accent); }
+
+.section h2::before { content: "// "; color: var(--accent); font-weight: 500; }
+
+.hero-role { font-family: var(--font-title); font-weight: 500; color: var(--muted); font-size: 1rem; }
+.hero-role::before { content: "> "; color: var(--accent); }
+.hero-name { font-size: clamp(2.6rem, 13vw, 9rem); letter-spacing: -0.05em; font-weight: 800; }
+.hero-name .line { line-height: 1; padding-top: .14em; }
+.hero-name .line:nth-child(2) span::after { /* blinking underscore cursor */
+  content: "";
+  display: inline-block;
+  width: .5em; height: .09em;
+  margin-left: .12em;
+  background: var(--accent);
+  animation: blink 1.1s steps(1) infinite;
+}
+
+.btn { font-family: var(--font-title); font-size: .9rem; font-weight: 700; }
+.btn:not(.btn-ghost):hover { background: transparent; color: var(--accent); }
+.btn-ghost:hover { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+
+.about-text strong { color: var(--accent); font-weight: 600; }
+.facts h3 { font-family: var(--font-title); font-size: .8rem; font-weight: 500; color: var(--muted); }
+.facts h3::before { content: "> "; color: var(--accent); }
+
+.job-when, .job-months, .job-company, .slide-meta { font-family: var(--font-title); }
+.job-when { font-size: .8rem; }
+.job-company, .slide-meta { font-size: .9rem; font-weight: 500; }
+.job-months { border-radius: 2px; }
+
+.workflow li { padding-left: 46px; }
+.workflow li::before {
+  content: counter(step, decimal-leading-zero);
+  width: 32px; height: 24px; top: 6px;
+  background: transparent; color: var(--accent);
+  border: 1px solid var(--line);
+  font-family: var(--font-title); font-size: .75rem; font-weight: 500;
+}
+
+.tags li { font-family: var(--font-title); font-size: .8rem; }
+
+.arrow { width: 48px; height: 48px; }
+.dot { width: 20px; height: 4px; border-radius: 0; transition: width .25s ease, background .15s ease; }
+.dot[aria-current="true"] { width: 44px; transform: none; }
+
+.skills-grid h3, dialog h4 { font-family: var(--font-title); }
+.footer { font-family: var(--font-title); font-size: .8rem; }
+
+  .btn-steam { display: inline-flex; align-items: center; gap: 10px; }
+.btn-steam svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
   </style>
 </head>
 <body>
@@ -594,30 +655,10 @@ body { overflow-x: hidden; }
         <span class="line"><span>PAU</span></span>
         <span class="line"><span>GONZÁLEZ</span></span>
       </h1>
-      <p class="hero-sub">I design and build gameplay: mechanics, balance and game feel.</p>
+      <p class="hero-sub">I design gameplay systems and build them in Unreal Engine, Unity and Godot.</p>
       <div class="hero-buttons">
         <a href="#projects" class="btn">View my projects</a>
         <a href="#contact" class="btn btn-ghost">Contact me</a>
-      </div>
-    </section>
-
-    <!-- ================= STATS ================= -->
-    <section class="stats" aria-label="Highlights">
-      <div class="stat">
-        <span class="stat-number" data-target="8">0</span>
-        <span class="stat-label">Game jams</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number" data-target="2">0</span>
-        <span class="stat-label">Demos made for publishers</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number" data-target="3">0</span>
-        <span class="stat-label">University subjects supported</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number" data-target="4">0</span>
-        <span class="stat-label">Languages spoken</span>
       </div>
     </section>
 
@@ -626,9 +667,9 @@ body { overflow-x: hidden; }
       <h2>About me</h2>
       <div class="about-grid">
         <div class="about-text">
-          <p>I'm Pau González Cayuela, a <strong>game designer</strong> from Barcelona studying Game Design and Development at CITM, part of the Universitat Politècnica de Catalunya (UPC). I got hooked on design as a kid, making custom levels for Mario and Portal.</p>
-          <p>I work on both sides of a game: <strong>mechanics, balance, level design and game feel</strong> on the design side, and gameplay code in <strong>C#, C++, Unity and Unreal Engine 5</strong> on the technical side. My work has earned university honor titles and game jam awards.</p>
-          <p>I want to join a team that makes memorable games and keep growing as a designer.</p>
+          <p>I'm Pau González Cayuela, a <strong>technical game designer</strong> based in Barcelona who works where <strong>design meets code</strong>. I design <strong>gameplay systems</strong>, combat and progression, then prototype, implement and tune them myself in <strong>Unreal Engine 4/5</strong>, <strong>Unity</strong>, <strong>Godot</strong> and custom engines.</p>
+          <p>My toolkit covers <strong>game balance</strong> (modeled in Machination and Excel), <strong>game feel</strong> polish, <strong>level design</strong> and QA, backed by <strong>C#, C++ and GDScript</strong> plus Assembly. I write clear design documentation and keep teams aligned from prototype to release.</p>
+          <p>I have worked as <strong>Technical Designer</strong>, <strong>Lead Game Designer</strong> and Level Designer, co-founded <strong>75 Studio</strong>, and taught review sessions in Game Mathematics and Game Programming at UPC. My work has earned university <strong>honor titles</strong> and <strong>game jam awards</strong>.</p>
           <div class="hero-buttons">
             <a href="#projects" class="btn">View projects</a>
             <a href="mailto:gpaucayuela@gmail.com" class="btn btn-ghost">Email me</a>
@@ -642,9 +683,9 @@ body { overflow-x: hidden; }
           <h3>Based in</h3>
           <p>Barcelona, Spain</p>
           <h3>Design tools</h3>
-          <p>Coda, Figma, Machination and Excel</p>
+          <p>Figma, Machination and Excel</p>
           <h3>Engines</h3>
-          <p>Unreal Engine 5, Unity and custom engines</p>
+          <p>Unreal Engine 4/5, Unity, Godot and custom engines</p>
           <h3>Currently</h3>
           <p>Level designer and QA at Forbidden Candy</p>
         </div>
@@ -665,7 +706,7 @@ body { overflow-x: hidden; }
           </div>
           <h3>Level Designer and QA</h3>
           <p class="job-company">Forbidden Candy</p>
-          <p class="job-desc">Designing levels and testing the game at a studio in Barcelona.</p>
+          <p class="job-desc">Level design and QA on Thornetica, a tactical RPG with a free demo on Steam.</p>
           <button class="btn btn-small" data-dialog="job1">View details</button>
         </article>
 
@@ -741,18 +782,66 @@ body { overflow-x: hidden; }
         <div class="carousel-viewport">
           <div class="carousel-track">
 
-        <article class="slide" aria-roledescription="slide" aria-label="Project 1 of 7">
+                <article class="slide" aria-roledescription="slide" aria-label="Project 1 of 8">
           <!-- To show your photos: save 3 images in the images folder with these exact names. -->
-          <div class="gallery" style="--c1:#ffcf5c; --c2:#e0445a;">
+          <div class="gallery" style="--c1:#f2f2f2; --c2:#2a2a2a;">
+            <figure class="shot"><span class="shot-hint">images/thornetica-1.jpg</span><img src="images/thornetica-1.jpg" alt="Thornetica screenshot 1" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/thornetica-2.jpg</span><img src="images/thornetica-2.jpg" alt="Thornetica screenshot 2" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/thornetica-3.jpg</span><img src="images/thornetica-3.jpg" alt="Thornetica screenshot 3" loading="lazy" onerror="this.remove()"></figure>
+          </div>
+
+          <div class="slide-text">
+            <h3 class="slide-title">Thornetica</h3>
+            <p class="slide-meta">Level Designer and QA at Forbidden Candy, 2025 - Present</p>
+            <p>A tactical RPG by Forbidden Candy that mixes Fire Emblem-style battles with Persona-like social bonds, set in a university theater club. The free demo is live on Steam.</p>
+
+            <!-- EDIT ME: rewrite these steps with what you really do on the project -->
+            <h4>My workflow</h4>
+            <ol class="workflow">
+              <li>Design battle maps and encounter layouts for the tactical fights.</li>
+              <li>Playtest every build and report bugs to the team.</li>
+              <li>Tune encounters using playtest feedback.</li>
+              <li>Verify fixes before each demo update.</li>
+            </ol>
+
+            <h4>Technologies and tools</h4>
+            <ul class="tags">
+              <li>Level design</li>
+              <li>QA testing</li>
+              <li>Tactical RPG</li>
+              <li>Steam demo</li>
+              <li>Engine (edit me)</li>
+            </ul>
+
+            <a class="btn btn-steam" href="https://store.steampowered.com/app/4503010/Thornetica_Demo/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.187.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg>
+              Thornetica Demo on Steam
+            </a>
+          </div>
+        </article>
+<article class="slide" aria-roledescription="slide" aria-label="Project 2 of 8">
+          <!-- To show your photos: save 3 images in the images folder with these exact names. -->
+          <div class="gallery" style="--c1:#f2f2f2; --c2:#2a2a2a;">
             <figure class="shot"><span class="shot-hint">images/fable-1.jpg</span><img src="images/fable-1.jpg" alt="The Fable of the Eclipse screenshot 1" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/fable-2.jpg</span><img src="images/fable-2.jpg" alt="The Fable of the Eclipse screenshot 2" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/fable-2.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="The Fable of the Eclipse gameplay video"><source src="images/fable-2.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></figure>
             <figure class="shot"><span class="shot-hint">images/fable-3.jpg</span><img src="images/fable-3.jpg" alt="The Fable of the Eclipse screenshot 3" loading="lazy" onerror="this.remove()"></figure>
           </div>
 
           <div class="slide-text">
             <h3 class="slide-title">The Fable of the Eclipse</h3>
             <p class="slide-meta">Technical Designer at Mini-Knight Studio, Jan - Jul 2026</p>
-            <p>A game made with Mini-Knight Studio where I was the technical designer. I worked on the player, the combat and the enemies, and I made sure everything felt good to play.</p>
+            <p>I worked as the Technical Designer on The Fable of the Eclipse, a game made with Mini-Knight Studio.</p>
+
+            <h4>Key features I provided</h4>
+            <ul class="features">
+              <li>Player programming and design</li>
+              <li>Combat design and implementation</li>
+              <li>Full implementation of the lava map</li>
+              <li>Design and implementation of player perks</li>
+              <li>Enemy design</li>
+              <li>QA playtesting</li>
+              <li>Game feel polish</li>
+            </ul>
 
             <!-- EDIT ME: rewrite these steps with your real workflow -->
             <h4>My workflow</h4>
@@ -769,15 +858,15 @@ body { overflow-x: hidden; }
               <li>Player programming</li>
               <li>Enemy design</li>
               <li>QA playtesting</li>
-              <li>Engine (edit me)</li>
+              <li>Custom engine</li>
             </ul>
 
             <a class="btn" href="https://mini-knight-studio.github.io/The-Fable-Of-The-Eclipse/" target="_blank" rel="noopener">Visit the game page</a>
           </div>
         </article>
-        <article class="slide" aria-roledescription="slide" aria-label="Project 2 of 7">
+        <article class="slide" aria-roledescription="slide" aria-label="Project 3 of 8">
           <!-- To show your photos: save 3 images in the images folder with these exact names. -->
-          <div class="gallery" style="--c1:#4de3d0; --c2:#5b3fd1;">
+          <div class="gallery" style="--c1:#bdbdbd; --c2:#1a1a1a;">
             <figure class="shot"><span class="shot-hint">images/cube-1.jpg</span><img src="images/cube-1.jpg" alt="C.U.B.E screenshot 1" loading="lazy" onerror="this.remove()"></figure>
             <figure class="shot"><span class="shot-hint">images/cube-2.jpg</span><img src="images/cube-2.jpg" alt="C.U.B.E screenshot 2" loading="lazy" onerror="this.remove()"></figure>
             <figure class="shot"><span class="shot-hint">images/cube-3.jpg</span><img src="images/cube-3.jpg" alt="C.U.B.E screenshot 3" loading="lazy" onerror="this.remove()"></figure>
@@ -810,9 +899,9 @@ body { overflow-x: hidden; }
              <a class="btn" href="https://yourname.itch.io/game" target="_blank" rel="noopener">Play on itch.io</a> -->
           </div>
         </article>
-        <article class="slide" aria-roledescription="slide" aria-label="Project 3 of 7">
+        <article class="slide" aria-roledescription="slide" aria-label="Project 4 of 8">
           <!-- To show your photos: save 3 images in the images folder with these exact names. -->
-          <div class="gallery" style="--c1:#ff9a5c; --c2:#7b2a9e;">
+          <div class="gallery" style="--c1:#8c8c8c; --c2:#0d0d0d;">
             <figure class="shot"><span class="shot-hint">images/roses-1.jpg</span><img src="images/roses-1.jpg" alt="Roses Are Red screenshot 1" loading="lazy" onerror="this.remove()"></figure>
             <figure class="shot"><span class="shot-hint">images/roses-2.jpg</span><img src="images/roses-2.jpg" alt="Roses Are Red screenshot 2" loading="lazy" onerror="this.remove()"></figure>
             <figure class="shot"><span class="shot-hint">images/roses-3.jpg</span><img src="images/roses-3.jpg" alt="Roses Are Red screenshot 3" loading="lazy" onerror="this.remove()"></figure>
@@ -845,9 +934,9 @@ body { overflow-x: hidden; }
              <a class="btn" href="https://yourname.itch.io/game" target="_blank" rel="noopener">Play on itch.io</a> -->
           </div>
         </article>
-        <article class="slide" aria-roledescription="slide" aria-label="Project 4 of 7">
+        <article class="slide" aria-roledescription="slide" aria-label="Project 5 of 8">
           <!-- To show your photos: save 3 images in the images folder with these exact names. -->
-          <div class="gallery" style="--c1:#7be0a0; --c2:#1d6fb8;">
+          <div class="gallery" style="--c1:#dcdcdc; --c2:#3a3a3a;">
             <figure class="shot"><span class="shot-hint">images/jams-1.jpg</span><img src="images/jams-1.jpg" alt="Game jams screenshot 1" loading="lazy" onerror="this.remove()"></figure>
             <figure class="shot"><span class="shot-hint">images/jams-2.jpg</span><img src="images/jams-2.jpg" alt="Game jams screenshot 2" loading="lazy" onerror="this.remove()"></figure>
             <figure class="shot"><span class="shot-hint">images/jams-3.jpg</span><img src="images/jams-3.jpg" alt="Game jams screenshot 3" loading="lazy" onerror="this.remove()"></figure>
@@ -879,9 +968,9 @@ body { overflow-x: hidden; }
              <a class="btn" href="https://yourname.itch.io/game" target="_blank" rel="noopener">Play on itch.io</a> -->
           </div>
         </article>
-        <article class="slide" aria-roledescription="slide" aria-label="Project 5 of 7">
+        <article class="slide" aria-roledescription="slide" aria-label="Project 6 of 8">
           <!-- To show your photos: save 3 images in the images folder with these exact names. -->
-          <div class="gallery" style="--c1:#5cc8ff; --c2:#3a3fd1;">
+          <div class="gallery" style="--c1:#a8a8a8; --c2:#151515;">
             <figure class="shot"><span class="shot-hint">images/bubble-1.jpg</span><img src="images/bubble-1.jpg" alt="Bubble Bobble screenshot 1" loading="lazy" onerror="this.remove()"></figure>
             <figure class="shot"><span class="shot-hint">images/bubble-2.jpg</span><img src="images/bubble-2.jpg" alt="Bubble Bobble screenshot 2" loading="lazy" onerror="this.remove()"></figure>
             <figure class="shot"><span class="shot-hint">images/bubble-3.jpg</span><img src="images/bubble-3.jpg" alt="Bubble Bobble screenshot 3" loading="lazy" onerror="this.remove()"></figure>
@@ -912,9 +1001,9 @@ body { overflow-x: hidden; }
             <a class="btn" href="https://github.com/PauGon75/BubbleBobble-PatoProductions" target="_blank" rel="noopener">View on GitHub</a>
           </div>
         </article>
-        <article class="slide" aria-roledescription="slide" aria-label="Project 6 of 7">
+        <article class="slide" aria-roledescription="slide" aria-label="Project 7 of 8">
           <!-- To show your photos: save 3 images in the images folder with these exact names. -->
-          <div class="gallery" style="--c1:#b0ff7a; --c2:#1d8a5a;">
+          <div class="gallery" style="--c1:#eeeeee; --c2:#4a4a4a;">
             <figure class="shot"><span class="shot-hint">images/pong-1.jpg</span><img src="images/pong-1.jpg" alt="PONG in 8086 Assembly screenshot 1" loading="lazy" onerror="this.remove()"></figure>
             <figure class="shot"><span class="shot-hint">images/pong-2.jpg</span><img src="images/pong-2.jpg" alt="PONG in 8086 Assembly screenshot 2" loading="lazy" onerror="this.remove()"></figure>
             <figure class="shot"><span class="shot-hint">images/pong-3.jpg</span><img src="images/pong-3.jpg" alt="PONG in 8086 Assembly screenshot 3" loading="lazy" onerror="this.remove()"></figure>
@@ -944,9 +1033,9 @@ body { overflow-x: hidden; }
             <a class="btn" href="https://github.com/PauGon75/8086-Assembly-PONG" target="_blank" rel="noopener">View on GitHub</a>
           </div>
         </article>
-        <article class="slide" aria-roledescription="slide" aria-label="Project 7 of 7">
+        <article class="slide" aria-roledescription="slide" aria-label="Project 8 of 8">
           <!-- To show your photos: save 3 images in the images folder with these exact names. -->
-          <div class="gallery" style="--c1:#ff7ac8; --c2:#7a3bd1;">
+          <div class="gallery" style="--c1:#7a7a7a; --c2:#222222;">
             <figure class="shot"><span class="shot-hint">images/magical-1.jpg</span><img src="images/magical-1.jpg" alt="Magical Girls screenshot 1" loading="lazy" onerror="this.remove()"></figure>
             <figure class="shot"><span class="shot-hint">images/magical-2.jpg</span><img src="images/magical-2.jpg" alt="Magical Girls screenshot 2" loading="lazy" onerror="this.remove()"></figure>
             <figure class="shot"><span class="shot-hint">images/magical-3.jpg</span><img src="images/magical-3.jpg" alt="Magical Girls screenshot 3" loading="lazy" onerror="this.remove()"></figure>
@@ -992,6 +1081,7 @@ body { overflow-x: hidden; }
           <button class="dot" aria-label="Go to project 5"></button>
           <button class="dot" aria-label="Go to project 6"></button>
           <button class="dot" aria-label="Go to project 7"></button>
+          <button class="dot" aria-label="Go to project 8"></button>
           </div>
           <button class="arrow" id="next" aria-label="Next project">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
@@ -1015,12 +1105,11 @@ body { overflow-x: hidden; }
         <div>
           <h3>Design</h3>
           <ul>
-            <li>Game mechanics and gameplay</li>
+            <li>Gameplay systems and mechanics</li>
             <li>Game balance</li>
             <li>Game feel</li>
             <li>Combat and enemy design</li>
             <li>Level design</li>
-            <li>Narrative design</li>
             <li>QA and playtesting</li>
             <li>Documentation and team communication</li>
           </ul>
@@ -1028,15 +1117,15 @@ body { overflow-x: hidden; }
         <div>
           <h3>Technical</h3>
           <ul>
-            <li>Unreal Engine 5</li>
+            <li>Unreal Engine 4/5</li>
             <li>Unity (C#)</li>
+            <li>Godot (GDScript)</li>
             <li>C++</li>
             <li>Assembly (ASM)</li>
             <li>Custom engines</li>
           </ul>
           <h3 class="skills-second">Design tools</h3>
           <ul>
-            <li>Coda</li>
             <li>Figma</li>
             <li>Machination</li>
             <li>Excel</li>
@@ -1100,11 +1189,11 @@ body { overflow-x: hidden; }
   <dialog id="job1">
     <button class="dialog-close" aria-label="Close">&times;</button>
     <h3>Level Designer and QA at Forbidden Candy</h3>
-    <p>Barcelona, since September 2025.</p>
+    <p>Barcelona, since September 2025. Working on <a href="https://store.steampowered.com/app/4503010/Thornetica_Demo/" target="_blank" rel="noopener">Thornetica</a>, a tactical RPG.</p>
     <!-- EDIT ME: add what you do here (tools, levels, bugs found...) -->
     <ul>
-      <li>Designing levels.</li>
-      <li>Testing the game and reporting bugs.</li>
+      <li>Designing levels and battle maps.</li>
+      <li>Playtesting builds and reporting bugs.</li>
     </ul>
   </dialog>
 
@@ -1301,6 +1390,15 @@ document.querySelectorAll(".stat-number").forEach(function (number) {
       var active = n === index;
       slide.setAttribute("aria-hidden", active ? "false" : "true");
       if (active) slide.removeAttribute("inert"); else slide.setAttribute("inert", "");
+      // Videos only play while their project is on screen
+      slide.querySelectorAll("video").forEach(function (video) {
+        if (active && !reduceMotion) {
+          var playing = video.play();
+          if (playing && playing.catch) playing.catch(function () {});
+        } else {
+          video.pause();
+        }
+      });
     });
     dots.forEach(function (dot, n) {
       dot.setAttribute("aria-current", n === index ? "true" : "false");
