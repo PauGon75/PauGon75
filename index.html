@@ -626,6 +626,25 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
   border-radius: 2px;
   pointer-events: none;
 }
+  
+/* ---------- Small projects (compact, low-key list) ---------- */
+.small-projects { margin-top: 80px; padding-top: 26px; border-top: 1px solid var(--line); }
+.small-title { font-size: 1rem; font-weight: 500; color: var(--muted); }
+.small-title::before { content: "// "; }
+.small-intro { color: var(--muted); font-size: .85rem; margin: 4px 0 14px; }
+.mini-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 44px; }
+.mini {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: .88rem; color: var(--muted); text-decoration: none;
+}
+.mini-name { color: var(--text); opacity: .85; }
+.mini-tag { font-family: var(--font-title); font-size: .72rem; color: var(--muted); white-space: nowrap; }
+a.mini:hover { border-bottom-color: var(--accent); }
+a.mini:hover .mini-name { opacity: 1; }
+a.mini:hover .mini-name::after { content: " \2197"; color: var(--accent); }
+@media (max-width: 760px) { .mini-list { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -695,8 +714,6 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
           <p>Figma, Machination and Excel</p>
           <h3>Engines</h3>
           <p>Unreal Engine 4/5, Unity, Godot and custom engines</p>
-          <h3>Interests</h3>
-          <p>Technology, cinema, cooking and old-school FPS shooters</p>
           <h3>Currently</h3>
           <p>Level designer and QA at Forbidden Candy</p>
         </div>
@@ -786,19 +803,19 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
 
     <!-- ================= PROJECTS (one at a time, use the arrows) ================= -->
     <section id="projects" class="section tinted">
-      <h2>My work</h2>
+      <h2>Main projects</h2>
       <p class="section-intro">Use the arrows to move between projects.</p>
 
       <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Projects">
         <div class="carousel-viewport">
           <div class="carousel-track">
 
-                <article class="slide" aria-roledescription="slide" aria-label="Project 1 of 8">
+                <article class="slide" aria-roledescription="slide" aria-label="Project 1 of 7">
           <!-- To show your photos: save 3 images in the images folder with these exact names. -->
           <div class="gallery" style="--c1:#f2f2f2; --c2:#2a2a2a;">
-            <figure class="shot"><span class="shot-hint">images/thornetica-1.jpg</span><img src="images/thornetica-1.jpg" alt="Thornetica screenshot 1" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/thornetica-1.(jpg/png/gif)</span><img src="images/thornetica-1.jpg" data-base="images/thornetica-1" data-try-index="0" alt="Thornetica screenshot 1" loading="lazy" onerror="tryNextShotImage(this)"></figure>
             <figure class="shot"><span class="shot-hint">images/thornetica-2.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="Thornetica gameplay video"><source src="images/thornetica-2.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></figure>
-            <figure class="shot"><span class="shot-hint">images/thornetica-3.jpg</span><img src="images/thornetica-3.jpg" alt="Thornetica screenshot 3" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/thornetica-3.(jpg/png/gif)</span><img src="images/thornetica-3.jpg" data-base="images/thornetica-3" data-try-index="0" alt="Thornetica screenshot 3" loading="lazy" onerror="tryNextShotImage(this)"></figure>
           </div>
 
           <div class="slide-text">
@@ -821,12 +838,12 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
             </a>
           </div>
         </article>
-<article class="slide" aria-roledescription="slide" aria-label="Project 2 of 8">
+<article class="slide" aria-roledescription="slide" aria-label="Project 2 of 7">
           <!-- To show your photos: save 3 images in the images folder with these exact names. -->
           <div class="gallery" style="--c1:#f2f2f2; --c2:#2a2a2a;">
-            <figure class="shot"><span class="shot-hint">images/fable-1.jpg</span><img src="images/fable-1.jpg" alt="The Fable of the Eclipse screenshot 1" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/fable-1.(jpg/png/gif)</span><img src="images/fable-1.jpg" data-base="images/fable-1" data-try-index="0" alt="The Fable of the Eclipse screenshot 1" loading="lazy" onerror="tryNextShotImage(this)"></figure>
             <figure class="shot"><span class="shot-hint">images/fable-2.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="The Fable of the Eclipse gameplay video"><source src="images/fable-2.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></figure>
-            <figure class="shot"><span class="shot-hint">images/fable-3.jpg</span><img src="images/fable-3.jpg" alt="The Fable of the Eclipse screenshot 3" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/fable-3.(jpg/png/gif)</span><img src="images/fable-3.jpg" data-base="images/fable-3" data-try-index="0" alt="The Fable of the Eclipse screenshot 3" loading="lazy" onerror="tryNextShotImage(this)"></figure>
           </div>
 
           <div class="slide-text">
@@ -858,12 +875,12 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
           </div>
         </article>
 
-        <article class="slide" aria-roledescription="slide" aria-label="Project 3 of 8">
+        <article class="slide" aria-roledescription="slide" aria-label="Project 3 of 7">
           <!-- Frames: save your files in the images folder with the names shown inside each frame. -->
           <div class="gallery" style="--c1:#8c8c8c; --c2:#0d0d0d;">
-            <figure class="shot"><span class="shot-hint">images/engine-1.jpg</span><img src="images/engine-1.jpg" alt="Game engine screenshot 1" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/engine-1.(jpg/png/gif)</span><img src="images/engine-1.jpg" data-base="images/engine-1" data-try-index="0" alt="Game engine screenshot 1" loading="lazy" onerror="tryNextShotImage(this)"></figure>
             <figure class="shot"><span class="shot-hint">images/engine-2.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="Game engine demo video"><source src="images/engine-2.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></figure>
-            <figure class="shot"><span class="shot-hint">images/engine-3.jpg</span><img src="images/engine-3.jpg" alt="Game engine screenshot 2" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/engine-3.(jpg/png/gif)</span><img src="images/engine-3.jpg" data-base="images/engine-3" data-try-index="0" alt="Game engine screenshot 2" loading="lazy" onerror="tryNextShotImage(this)"></figure>
           </div>
 
           <div class="slide-text">
@@ -883,12 +900,38 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
              <a class="btn" href="https://github.com/PauGon75/your-engine" target="_blank" rel="noopener">View on GitHub</a> -->
           </div>
         </article>
-        <article class="slide" aria-roledescription="slide" aria-label="Project 4 of 8">
+
+        <article class="slide" aria-roledescription="slide" aria-label="Project 4 of 7">
+          <!-- Frames: save your files in the images folder with the names shown inside each frame. -->
+          <div class="gallery" style="--c1:#8c8c8c; --c2:#0d0d0d;">
+            <figure class="shot"><span class="shot-hint">images/addon-1.(jpg/png/gif)</span><img src="images/addon-1.jpg" data-base="images/addon-1" data-try-index="0" alt="Engine scripting addon screenshot 1" loading="lazy" onerror="tryNextShotImage(this)"></figure>
+            <figure class="shot"><span class="shot-hint">images/addon-2.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="Engine scripting addon demo video"><source src="images/addon-2.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></figure>
+            <figure class="shot"><span class="shot-hint">images/addon-3.(jpg/png/gif)</span><img src="images/addon-3.jpg" data-base="images/addon-3" data-try-index="0" alt="Engine scripting addon screenshot 2" loading="lazy" onerror="tryNextShotImage(this)"></figure>
+          </div>
+
+          <div class="slide-text">
+            <!-- EDIT ME: change the title, description and tags to match your scripting addon project -->
+            <h3 class="slide-title">Scripting Addon for Custom Engine</h3>
+            <p class="slide-meta">Scripting project</p>
+            <p>A script addon I built for a separate custom engine, extending its functionality.</p>
+
+<h4>Technologies and tools</h4>
+            <ul class="tags">
+              <li>Scripting</li>
+              <li>Custom engine</li>
+              <li>Language (edit me)</li>
+            </ul>
+
+            <!-- EDIT ME: add a button, for example:
+             <a class="btn" href="https://github.com/PauGon75/your-addon" target="_blank" rel="noopener">View on GitHub</a> -->
+          </div>
+        </article>
+        <article class="slide" aria-roledescription="slide" aria-label="Project 5 of 7">
           <!-- Frames: save your files in the images folder with the names shown inside each frame. -->
           <div class="gallery" style="--c1:#a8a8a8; --c2:#151515;">
             <figure class="shot"><span class="shot-hint">images/roses-video.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="Roses Are Red gameplay video"><source src="images/roses-video.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video><span class="shot-cap">Roses Are Red</span></figure>
             <figure class="shot"><span class="shot-hint">images/cube-video.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="C.U.B.E gameplay video"><source src="images/cube-video.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video><span class="shot-cap">C.U.B.E</span></figure>
-            <figure class="shot"><span class="shot-hint">images/cube-screenshot.jpg</span><img src="images/cube-screenshot.jpg" alt="C.U.B.E screenshot" loading="lazy" onerror="this.remove()"><span class="shot-cap">C.U.B.E</span></figure>
+            <figure class="shot"><span class="shot-hint">images/cube-screenshot.(jpg/png/gif)</span><img src="images/cube-screenshot.jpg" data-base="images/cube-screenshot" data-try-index="0" alt="C.U.B.E screenshot" loading="lazy" onerror="tryNextShotImage(this)"><span class="shot-cap">C.U.B.E</span></figure>
           </div>
 
           <div class="slide-text">
@@ -909,47 +952,24 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
              <a class="btn" href="https://yourname.itch.io/cube" target="_blank" rel="noopener">Play C.U.B.E</a> -->
           </div>
         </article>
-        <article class="slide" aria-roledescription="slide" aria-label="Project 5 of 8">
-          <!-- To show your photos: save 3 images in the images folder with these exact names. -->
-          <div class="gallery" style="--c1:#dcdcdc; --c2:#3a3a3a;">
-            <figure class="shot"><span class="shot-hint">images/jams-1.jpg</span><img src="images/jams-1.jpg" alt="Game jams screenshot 1" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/jams-2.jpg</span><img src="images/jams-2.jpg" alt="Game jams screenshot 2" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/jams-3.jpg</span><img src="images/jams-3.jpg" alt="Game jams screenshot 3" loading="lazy" onerror="this.remove()"></figure>
-          </div>
-
-          <div class="slide-text">
-            <h3 class="slide-title">Game jams</h3>
-            <p class="slide-meta">8 jams on itch.io, Nov 2023 - Jul 2025</p>
-            <p>Between 2023 and 2025 I joined eight game jams with different teams, including Brackeys, LevelUp 2024, One Button and the Gran CITM GameJam. Jams are where I practice designing under tight deadlines.</p>
-
-<h4>Technologies and tools</h4>
-            <ul class="tags">
-              <li>Rapid prototyping</li>
-              <li>Game feel</li>
-              <li>Teamwork</li>
-              <li>itch.io</li>
-            </ul>
-
-            <!-- EDIT ME: add a button linking to the game, for example:
-             <a class="btn" href="https://yourname.itch.io/game" target="_blank" rel="noopener">Play on itch.io</a> -->
-          </div>
-        </article>
-        <article class="slide" aria-roledescription="slide" aria-label="Project 6 of 8">
+        
+        <article class="slide" aria-roledescription="slide" aria-label="Project 6 of 7">
           <!-- To show your photos: save 3 images in the images folder with these exact names. -->
           <div class="gallery" style="--c1:#a8a8a8; --c2:#151515;">
-            <figure class="shot"><span class="shot-hint">images/bubble-1.jpg</span><img src="images/bubble-1.jpg" alt="Bubble Bobble screenshot 1" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/bubble-2.jpg</span><img src="images/bubble-2.jpg" alt="Bubble Bobble screenshot 2" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/bubble-3.jpg</span><img src="images/bubble-3.jpg" alt="Bubble Bobble screenshot 3" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/bubble-1.(jpg/png/gif)</span><img src="images/bubble-1.jpg" data-base="images/bubble-1" data-try-index="0" alt="Bubble Bobble screenshot 1" loading="lazy" onerror="tryNextShotImage(this)"></figure>
+            <figure class="shot"><span class="shot-hint">images/bubble-2.(jpg/png/gif)</span><img src="images/bubble-2.jpg" data-base="images/bubble-2" data-try-index="0" alt="Bubble Bobble screenshot 2" loading="lazy" onerror="tryNextShotImage(this)"></figure>
+            <figure class="shot"><span class="shot-hint">images/bubble-3.(jpg/png/gif)</span><img src="images/bubble-3.jpg" data-base="images/bubble-3" data-try-index="0" alt="Bubble Bobble screenshot 3" loading="lazy" onerror="tryNextShotImage(this)"></figure>
           </div>
 
           <div class="slide-text">
-            <h3 class="slide-title">Bubble Bobble</h3>
+            <h3 class="slide-title">Bubble Bobble (Raylib C++ port)</h3>
             <p class="slide-meta">Team project with Pato Productions</p>
-            <p>A Bubble Bobble game made with my team, Pato Productions, and published on GitHub. The code is written in C.</p>
+            <p>A C++ port of Bubble Bobble built with Raylib, made with my team, Pato Productions, and published on GitHub.</p>
 
 <h4>Technologies and tools</h4>
             <ul class="tags">
-              <li>C</li>
+              <li>Raylib</li>
+              <li>C++</li>
               <li>Game programming</li>
               <li>Team project</li>
               <li>GitHub</li>
@@ -958,12 +978,12 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
             <a class="btn" href="https://github.com/PauGon75/BubbleBobble-PatoProductions" target="_blank" rel="noopener">View on GitHub</a>
           </div>
         </article>
-        <article class="slide" aria-roledescription="slide" aria-label="Project 7 of 8">
+        <article class="slide" aria-roledescription="slide" aria-label="Project 7 of 7">
           <!-- To show your photos: save 3 images in the images folder with these exact names. -->
           <div class="gallery" style="--c1:#eeeeee; --c2:#4a4a4a;">
-            <figure class="shot"><span class="shot-hint">images/pong-1.jpg</span><img src="images/pong-1.jpg" alt="PONG in 8086 Assembly screenshot 1" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/pong-2.jpg</span><img src="images/pong-2.jpg" alt="PONG in 8086 Assembly screenshot 2" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/pong-3.jpg</span><img src="images/pong-3.jpg" alt="PONG in 8086 Assembly screenshot 3" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="shot"><span class="shot-hint">images/pong-1.(jpg/png/gif)</span><img src="images/pong-1.jpg" data-base="images/pong-1" data-try-index="0" alt="PONG in 8086 Assembly screenshot 1" loading="lazy" onerror="tryNextShotImage(this)"></figure>
+            <figure class="shot"><span class="shot-hint">images/pong-2.(jpg/png/gif)</span><img src="images/pong-2.jpg" data-base="images/pong-2" data-try-index="0" alt="PONG in 8086 Assembly screenshot 2" loading="lazy" onerror="tryNextShotImage(this)"></figure>
+            <figure class="shot"><span class="shot-hint">images/pong-3.(jpg/png/gif)</span><img src="images/pong-3.jpg" data-base="images/pong-3" data-try-index="0" alt="PONG in 8086 Assembly screenshot 3" loading="lazy" onerror="tryNextShotImage(this)"></figure>
           </div>
 
           <div class="slide-text">
@@ -981,30 +1001,7 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
             <a class="btn" href="https://github.com/PauGon75/8086-Assembly-PONG" target="_blank" rel="noopener">View on GitHub</a>
           </div>
         </article>
-        <article class="slide" aria-roledescription="slide" aria-label="Project 8 of 8">
-          <!-- To show your photos: save 3 images in the images folder with these exact names. -->
-          <div class="gallery" style="--c1:#7a7a7a; --c2:#222222;">
-            <figure class="shot"><span class="shot-hint">images/magical-1.jpg</span><img src="images/magical-1.jpg" alt="Magical Girls screenshot 1" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/magical-2.jpg</span><img src="images/magical-2.jpg" alt="Magical Girls screenshot 2" loading="lazy" onerror="this.remove()"></figure>
-            <figure class="shot"><span class="shot-hint">images/magical-3.jpg</span><img src="images/magical-3.jpg" alt="Magical Girls screenshot 3" loading="lazy" onerror="this.remove()"></figure>
-          </div>
-
-          <div class="slide-text">
-            <h3 class="slide-title">Magical Girls</h3>
-            <p class="slide-meta">Team game made in Godot</p>
-            <p>A team game built in Godot with GDScript. The code lives on my teammate&#x27;s GitHub.</p>
-
-<h4>Technologies and tools</h4>
-            <ul class="tags">
-              <li>Godot</li>
-              <li>GDScript</li>
-              <li>Teamwork</li>
-              <li>GitHub</li>
-            </ul>
-
-            <a class="btn" href="https://github.com/Marco-v-BaldanII/MagicalGirls" target="_blank" rel="noopener">View on GitHub</a>
-          </div>
-        </article>
+        
           </div>
         </div>
 
@@ -1020,12 +1017,33 @@ h1, h2, h3, h4 { letter-spacing: -0.02em; }
           <button class="dot" aria-label="Go to project 5"></button>
           <button class="dot" aria-label="Go to project 6"></button>
           <button class="dot" aria-label="Go to project 7"></button>
-          <button class="dot" aria-label="Go to project 8"></button>
           </div>
           <button class="arrow" id="next" aria-label="Next project">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
           </button>
         </div>
+      </div>
+
+      <!-- ================= SMALL PROJECTS (compact list, on purpose not highlighted) =================
+           To add one, copy a <li> line. To make it a link, change <span class="mini"> ... </span> into
+           <a class="mini" href="https://your-link" target="_blank" rel="noopener"> ... </a> -->
+      <div class="small-projects">
+        <h3 class="small-title">Small projects</h3>
+        <p class="small-intro">More games on my <a href="https://paugonzalez.itch.io/" target="_blank" rel="noopener">itch.io page</a>.</p>
+        <ul class="mini-list">
+            <li><a class="mini" href="https://paugonzalez.itch.io/catagochi-ml" target="_blank" rel="noopener"><span class="mini-name">CATAGOCHI ML</span><span class="mini-tag">Unity &middot; AI agent</span></a></li>
+            <li><a class="mini" href="https://paugonzalez.itch.io/banadna" target="_blank" rel="noopener"><span class="mini-name">BanADNa</span><span class="mini-tag">Unity &middot; Scriptable Objects</span></a></li>
+            <li><a class="mini" href="https://paugonzalez.itch.io/the-castles-ascension" target="_blank" rel="noopener"><span class="mini-name">&#x57CE;&#x306E;&#x767B;&#x9AD8; The Castle&#x27;s Ascension</span><span class="mini-tag">Card game</span></a></li>
+            <li><a class="mini" href="https://paugonzalez.itch.io/i-wanna-be-the-president" target="_blank" rel="noopener"><span class="mini-name">I wanna be the president!</span><span class="mini-tag">Unity</span></a></li>
+            <li><a class="mini" href="https://paugonzalez.itch.io/swan-lake" target="_blank" rel="noopener"><span class="mini-name">Swan Lake</span><span class="mini-tag">Card Game</span></a></li>
+            <li><a class="mini" href="https://paugonzalez.itch.io/shojoinfinita" target="_blank" rel="noopener"><span class="mini-name">Shojo Infinita: WVR</span><span class="mini-tag">Godot</span></a></li>
+            <li><a class="mini" href="https://paugonzalez.itch.io/eepy-channel" target="_blank" rel="noopener"><span class="mini-name">Eepy Channel</span><span class="mini-tag">Unity</span></a></li>
+            <li><a class="mini" href="https://paugonzalez.itch.io/deep-thoughts" target="_blank" rel="noopener"><span class="mini-name">Deep Thoughts</span><span class="mini-tag">Godot</span></a></li>
+            <li><a class="mini" href="https://paugonzalez.itch.io/my-little-pinball-my-little-pinball" target="_blank" rel="noopener"><span class="mini-name">My Little Pinball...</span><span class="mini-tag">SDL2 C++</span></a></li>
+            <li><a class="mini" href="https://github.com/PauGon75/Kichiku-Gemu-Platformer" target="_blank" rel="noopener"><span class="mini-name">Kichiku-Gemu-Platformer</span><span class="mini-tag">SDL2 C++</span></a></li>
+            <li><a class="mini" href="https://paugonzalez.itch.io/faded" target="_blank" rel="noopener"><span class="mini-name">FADED</span><span class="mini-tag">Unity</span></a></li>
+            <li><a class="mini" href="https://paugonzalez.itch.io/voltage-horror" target="_blank" rel="noopener"><span class="mini-name">VOLTAGE horror</span><span class="mini-tag">UE5</span></a></li>
+        </ul>
       </div>
     </section>
 
@@ -1307,6 +1325,24 @@ document.querySelectorAll(".stat-number").forEach(function (number) {
   observer.observe(number);
 });
 
+
+/* =====================================================
+   3.5) MAIN PROJECT SCREENSHOTS: jpg, png or gif
+   Each <img> starts on .jpg. If that file is missing, this tries
+   .jpeg, .png, then .gif (same base name) before giving up and
+   removing the image, so any of those formats works with no
+   other changes needed.
+   ===================================================== */
+var SHOT_EXTS = ["jpg", "jpeg", "png", "gif"];
+function tryNextShotImage(img) {
+  var next = parseInt(img.dataset.tryIndex || "0", 10) + 1;
+  if (next < SHOT_EXTS.length) {
+    img.dataset.tryIndex = next;
+    img.src = img.dataset.base + "." + SHOT_EXTS[next];
+  } else {
+    img.remove();
+  }
+}
 
 /* =====================================================
    4) PROJECTS CAROUSEL
