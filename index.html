@@ -25,12 +25,14 @@
   --line-strong: #cbd5e1;
   --text: #0f172a;
   --muted: #64748b;
-  --accent: #0284c7;           /* Vibrant turquoise-cyan / deep cyan */
-  --accent-light: #e0f2fe;     /* Light tint for tags and badges */
+  --accent: #0284c7;           /* Vibrant turquoise-cyan */
+  --accent-light: #e0f2fe;     /* Light turquoise tint */
   --accent-hover: #0369a1;
   --accent-text: #ffffff;
-  --tint-light: rgba(255, 255, 255, .85);
-  --tint: rgba(255, 255, 255, .94);
+
+  /* Low alpha so video is clearly visible throughout */
+  --tint-light: rgba(255, 255, 255, 0.20);
+  --tint: rgba(255, 255, 255, 0.38);
 
   --font-title: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --font-body: "IBM Plex Sans", system-ui, sans-serif;
@@ -84,10 +86,11 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
 }
 
 .btn-ghost {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.88);
   color: var(--accent);
   border-color: var(--line-strong);
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  backdrop-filter: blur(4px);
 }
 .btn-ghost:hover {
   background: var(--accent-light);
@@ -109,7 +112,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
   align-items: center;
   justify-content: space-between;
   padding: 16px 6%;
-  background: rgba(255, 255, 255, .9);
+  background: rgba(255, 255, 255, .85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
@@ -145,7 +148,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
 }
 .section h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 20px; }
 .section h2::before { content: "// "; color: var(--accent); font-weight: 500; }
-.section-intro { color: var(--muted); max-width: 55ch; margin-bottom: 40px; }
+.section-intro { color: var(--muted); max-width: 55ch; margin-bottom: 40px; font-weight: 500; }
 
 /* =====================================================
    HERO
@@ -193,31 +196,32 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
   to   { transform: translateY(0); }
 }
 
-.hero-sub { font-size: 1.3rem; color: var(--muted); max-width: 42ch; margin: 24px 0 32px; font-weight: 400; }
+.hero-sub { font-size: 1.3rem; color: #1e293b; max-width: 42ch; margin: 24px 0 32px; font-weight: 600; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
 .hero-buttons { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 
 /* =====================================================
    ABOUT
    ===================================================== */
 .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 50px; align-items: center; }
-.about-text p { margin-bottom: 18px; max-width: 60ch; color: #334155; }
-.about-text strong { color: var(--accent); font-weight: 600; }
+.about-text p { margin-bottom: 18px; max-width: 60ch; color: #1e293b; font-weight: 500; }
+.about-text strong { color: var(--accent); font-weight: 700; }
 
 .facts {
-  background: var(--bg-subtle);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 28px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 .avatar { display: block; width: 120px; height: 120px; border-radius: 6px; object-fit: cover; border: 3px solid var(--accent); margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.06); }
 .facts h3 { font-family: var(--font-title); font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
 .facts h3::before { content: "> "; color: var(--accent); }
-.facts p { margin-bottom: 18px; color: var(--text); font-weight: 500; }
+.facts p { margin-bottom: 18px; color: var(--text); font-weight: 600; }
 .facts p:last-child { margin-bottom: 0; }
 
 /* =====================================================
-   EXPERIENCE TIMELINE
+   EXPERIENCE TIMELINE (Cleaned: 4 roles + Logos + Contract)
    ===================================================== */
 .timeline {
   position: relative;
@@ -233,24 +237,25 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
   top: 0; bottom: 0; left: 50%;
   width: 2px;
   transform: translateX(-50%);
-  background: var(--line);
+  background: var(--line-strong);
 }
 
 .job {
   position: relative;
   align-self: start;
   grid-row: var(--n) / span 2;
-  background: var(--panel);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 24px 26px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
   transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
 }
 .job:hover {
   border-color: var(--accent);
   transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(2, 132, 199, 0.08);
+  box-shadow: 0 10px 24px rgba(2, 132, 199, 0.12);
 }
 .job:nth-child(odd)  { grid-column: 2; }
 .job:nth-child(even) { grid-column: 1; }
@@ -272,14 +277,23 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
   position: absolute;
   top: 34px;
   width: 33px; height: 2px;
-  background: var(--line);
+  background: var(--line-strong);
 }
 .job:nth-child(odd)::before  { left: -59px; }
 .job:nth-child(even)::before { right: -59px; }
 .job:nth-child(odd)::after   { left: -33px; }
 .job:nth-child(even)::after  { right: -33px; }
 
-.job-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 10px; }
+.job-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; }
+.job-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  object-fit: contain;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  padding: 2px;
+}
 .job-when { color: var(--muted); font-family: var(--font-title); font-weight: 500; font-size: .8rem; }
 .job-months {
   background: var(--accent-light);
@@ -290,14 +304,26 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
   padding: 2px 10px;
   border-radius: 3px;
 }
+.job-tag {
+  background: #f1f5f9;
+  color: #334155;
+  font-family: var(--font-title);
+  font-size: .75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid var(--line-strong);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
 .job h3 { font-size: 1.25rem; color: var(--text); }
-.job-company { color: var(--accent); font-family: var(--font-title); font-size: .88rem; font-weight: 600; margin: 4px 0 8px; }
-.job-desc { color: var(--muted); font-size: .92rem; }
+.job-company { color: var(--accent); font-family: var(--font-title); font-size: .88rem; font-weight: 700; margin: 4px 0 8px; }
+.job-desc { color: #475569; font-size: .92rem; font-weight: 500; }
 
 /* =====================================================
    FULL-SCREEN PROJECTS CAROUSEL
    ===================================================== */
-#projects { max-width: none; padding-left: 0; padding-right: 0; background: var(--bg-subtle); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+#projects { max-width: none; padding-left: 0; padding-right: 0; }
 #projects > :not(.carousel) { max-width: 1150px; margin-left: auto; margin-right: auto; padding-left: 6%; padding-right: 6%; }
 
 .carousel { position: relative; }
@@ -371,7 +397,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
   text-transform: uppercase;
 }
 .pro-badge::before { content: "● "; }
-.pro-copy > p:not(.slide-meta) { color: #334155; max-width: 58ch; font-size: 1.02rem; }
+.pro-copy > p:not(.slide-meta) { color: #1e293b; max-width: 58ch; font-size: 1.02rem; font-weight: 500; }
 
 .meta-grid {
   display: grid;
@@ -383,20 +409,20 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
   border-bottom: 1px solid var(--line);
   font-size: .95rem;
 }
-.meta-grid dt { font-family: var(--font-title); font-size: .78rem; color: var(--muted); padding-top: .15em; }
+.meta-grid dt { font-family: var(--font-title); font-size: .78rem; color: var(--muted); padding-top: .15em; font-weight: 600; }
 .meta-grid dt::before { content: "> "; color: var(--accent); }
-.meta-grid dd { color: var(--text); font-weight: 500; }
+.meta-grid dd { color: var(--text); font-weight: 600; }
 
 .pro-media { display: grid; gap: 14px; }
 .pro-shot { position: relative; width: 100%; border-radius: 6px; }
 .pro-shot-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
 .features { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; margin-bottom: 18px; }
-.features li { position: relative; padding-left: 20px; color: #475569; font-size: .95rem; }
+.features li { position: relative; padding-left: 20px; color: #334155; font-size: .95rem; font-weight: 500; }
 .features li::before { content: ""; position: absolute; left: 0; top: .6em; width: 9px; height: 9px; border-radius: 2px; background: var(--accent); }
 
 .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
-.tags li { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 4px 14px; font-family: var(--font-title); font-size: .8rem; color: var(--text); box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+.tags li { background: rgba(255, 255, 255, 0.94); border: 1px solid var(--line); border-radius: 4px; padding: 4px 14px; font-family: var(--font-title); font-size: .8rem; color: var(--text); box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
 
 .btn-steam { display: inline-flex; align-items: center; gap: 10px; }
 .btn-steam svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
@@ -411,7 +437,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
   width: 48px; height: 48px;
   border-radius: 4px;
   display: grid; place-items: center;
-  background: rgba(255, 255, 255, .9);
+  background: rgba(255, 255, 255, .92);
   color: var(--text);
   border: 1px solid var(--line-strong);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -440,7 +466,7 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
 .dot[aria-current="true"] { width: 44px; background: var(--accent); }
 
 /* =====================================================
-   SIDE DRAWER / FLYOUT PANEL (Clean White Theme)
+   SIDE DRAWER / FLYOUT PANEL (GerloGu / Temtem Style)
    ===================================================== */
 .drawer-backdrop {
   position: fixed;
@@ -580,6 +606,28 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
   margin-bottom: 16px;
 }
 
+/* GIF and Media containers inside Drawers */
+.media-gif {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 16px 0;
+  background: var(--panel-elevated);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+.media-gif img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .video-container {
   position: relative;
   width: 100%;
@@ -597,6 +645,27 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; letter-spaci
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.bullet-features {
+  list-style: none;
+  margin: 18px 0 24px;
+}
+.bullet-features li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 10px;
+  color: #334155;
+  font-weight: 500;
+}
+.bullet-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .6em;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  background: var(--accent);
 }
 
 .drawer-links {
@@ -655,7 +724,7 @@ a.mini:hover .mini-name::after { content: " ↗"; color: var(--accent); }
 
 /* =====================================================
    SKILLS & EDUCATION
-   ===================================================== */
+   ==================================================== */
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
 .skills-grid h3 { font-size: 1.4rem; margin-bottom: 14px; color: var(--accent); }
 .skills-grid ul { list-style: none; }
@@ -709,7 +778,9 @@ dialog a { color: var(--accent); font-weight: 500; }
 }
 .dialog-close:hover { color: var(--accent); border-color: var(--accent); }
 
-/* Clean Minimal Background */
+/* =====================================================
+   BACKGROUND VIDEO (Alpha Lowered to see clearly)
+   ===================================================== */
 .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: #ffffff; }
 .bg-glow {
   position: absolute; inset: -48px;
@@ -718,11 +789,30 @@ dialog a { color: var(--accent); font-weight: 500; }
     linear-gradient(90deg, #f1f5f9 1px, transparent 1px);
   background-size: 40px 40px;
   animation: grid-drift 6s linear infinite;
+  opacity: 0.5;
 }
 @keyframes grid-drift { to { transform: translate(40px, 40px); } }
-.bg::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 88% 10%, rgba(2, 132, 199, 0.08), transparent 60%); }
-.bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; filter: grayscale(1); }
-.bg::after { content: ""; position: absolute; inset: 0; background: rgba(255, 255, 255, 0.7); }
+.bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 88% 10%, rgba(2, 132, 199, 0.10), transparent 60%);
+  z-index: 1;
+}
+.bg video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.88; /* Highly visible */
+}
+.bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.18); /* Lowered alpha so video shines through */
+}
 
 .tinted { position: relative; }
 .tinted::before {
@@ -731,12 +821,16 @@ dialog a { color: var(--accent); font-weight: 500; }
   top: 0; bottom: 0; left: 50%;
   width: 100vw;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--tint);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: -1;
 }
-.tinted-light::before { background: rgba(248, 250, 252, 0.85); }
+.tinted-light::before {
+  background: var(--tint-light);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
 
 html { scrollbar-color: var(--accent) #f1f5f9; }
 ::selection { background: var(--accent-light); color: var(--accent); }
@@ -792,7 +886,7 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
 </head>
 <body>
 
-  <!-- BACKGROUND -->
+  <!-- BACKGROUND VIDEO (Lowered Alpha for High Visibility) -->
   <div class="bg" aria-hidden="true">
     <div class="bg-glow"></div>
     <video autoplay muted loop playsinline preload="metadata">
@@ -837,7 +931,7 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
         <div class="about-text">
           <p>I'm Pau González Cayuela, a <strong>technical game designer</strong> based in Barcelona who works where <strong>design meets code</strong>. I design <strong>gameplay systems</strong>, combat and progression, then prototype, implement and tune them myself in <strong>Unreal Engine 4/5</strong>, <strong>Unity</strong>, <strong>Godot</strong> and custom engines.</p>
           <p>My toolkit covers <strong>game balance</strong> (modeled in Machination and Excel), <strong>game feel</strong> polish, <strong>level design</strong> and QA, backed by <strong>C#, C++ and GDScript</strong> plus Assembly. I write clear design documentation and keep teams aligned from prototype to release.</p>
-          <p>I have worked as <strong>Technical Designer</strong>, <strong>Lead Game Designer</strong> and Level Designer, co-founded <strong>75 Studio</strong>, and taught review sessions in Game Mathematics and Game Programming at UPC. My work has earned university <strong>honor titles</strong> and <strong>game jam awards</strong>.</p>
+          <p>I have worked as <strong>Junior Technical Designer</strong>, <strong>Game Designer and Gameplay Programmer</strong>, and Level Designer &amp; QA, alongside teaching review sessions in Game Mathematics and Game Programming at UPC.</p>
           <p>Outside of work, I'm passionate about <strong>technology</strong> and development, and I love cinema and cooking. I'm also a big fan of <strong>old-school FPS shooters</strong>.</p>
           <div class="hero-buttons">
             <a href="#projects" class="btn">View projects</a>
@@ -859,14 +953,16 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
       </div>
     </section>
 
-    <!-- BACKSTORY -->
+    <!-- BACKSTORY (Updated: 4 focused experiences, logos, and contract tags) -->
     <section id="experience" class="section tinted tinted-light">
       <h2>My backstory</h2>
 
       <div class="timeline">
 
+        <!-- 1. FORBIDDEN CANDY -->
         <article class="job" style="--n:1">
           <div class="job-head">
+            <img class="job-logo" src="images/logo-forbiddencandy.png" alt="Forbidden Candy" onerror="this.src='https://placehold.co/40x40/e0f2fe/0284c7?text=FC'">
             <span class="job-when">Sep 2025 - Present</span>
             <span class="job-months" data-start="2025-09" data-end="present">13 months</span>
           </div>
@@ -876,59 +972,45 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
           <button class="btn btn-small btn-ghost" data-dialog="job1">View details</button>
         </article>
 
+        <!-- 2. THE BLUE DOT STUDIO -->
         <article class="job" style="--n:2">
           <div class="job-head">
+            <img class="job-logo" src="images/logo-bluedot.png" alt="The Blue Dot Studio" onerror="this.src='https://placehold.co/40x40/e0f2fe/0284c7?text=BD'">
             <span class="job-when">Jan 2026 - Sep 2026</span>
             <span class="job-months" data-start="2026-01" data-end="2026-09">9 months</span>
+            <span class="job-tag">Contract</span>
           </div>
-          <h3>Lead Game Designer and Gameplay Programmer</h3>
+          <h3>Game Designer and Gameplay Programmer</h3>
           <p class="job-company">The Blue Dot Studio</p>
-          <p class="job-desc">Led the design of a game and prototyped mechanics fast, bridging design and engineering.</p>
+          <p class="job-desc">Worked on the concept and first prototypes of the game <em>Legend of Kuyana</em>, bridging design and rapid engineering.</p>
           <button class="btn btn-small btn-ghost" data-dialog="job2">View details</button>
         </article>
 
+        <!-- 3. MINI-KNIGHT STUDIO -->
         <article class="job" style="--n:3">
           <div class="job-head">
+            <img class="job-logo" src="images/logo-miniknight.png" alt="Mini-Knight Studio" onerror="this.src='https://placehold.co/40x40/e0f2fe/0284c7?text=MK'">
             <span class="job-when">Jan 2026 - Jul 2026</span>
             <span class="job-months" data-start="2026-01" data-end="2026-07">7 months</span>
           </div>
-          <h3>Technical Designer</h3>
+          <h3>Junior Technical Designer</h3>
           <p class="job-company">Mini-Knight Studio</p>
-          <p class="job-desc">Worked on The Fable of the Eclipse: player, combat, enemies, perks and a full lava map.</p>
+          <p class="job-desc">Worked on The Fable of the Eclipse (16-person team): player movement, combat framework, enemies, perks, and a full lava map.</p>
           <button class="btn btn-small btn-ghost" data-dialog="job3">View details</button>
         </article>
 
+        <!-- 4. UNIVERSITAT POLITÈCNICA DE CATALUNYA -->
         <article class="job" style="--n:4">
           <div class="job-head">
+            <img class="job-logo" src="images/logo-upc.png" alt="UPC" onerror="this.src='https://placehold.co/40x40/e0f2fe/0284c7?text=UPC'">
             <span class="job-when">Sep 2025 - Sep 2026</span>
             <span class="job-months" data-start="2025-09" data-end="2026-09">13 months</span>
+            <span class="job-tag">Contract</span>
           </div>
           <h3>University Instructor (review sessions)</h3>
           <p class="job-company">Universitat Politècnica de Catalunya</p>
           <p class="job-desc">Helped students with Game Mathematics and Game Programming I and II.</p>
           <button class="btn btn-small btn-ghost" data-dialog="job4">View details</button>
-        </article>
-
-        <article class="job" style="--n:5">
-          <div class="job-head">
-            <span class="job-when">Jun 2025 - Nov 2025</span>
-            <span class="job-months" data-start="2025-06" data-end="2025-11">6 months</span>
-          </div>
-          <h3>Co-Founder and Game Designer</h3>
-          <p class="job-company">75 Studio</p>
-          <p class="job-desc">Co-founded an indie studio with four teammates and released two playable demos to pitch to publishers.</p>
-          <button class="btn btn-small btn-ghost" data-dialog="job5">View details</button>
-        </article>
-
-        <article class="job" style="--n:6">
-          <div class="job-head">
-            <span class="job-when">Nov 2023 - Jul 2025</span>
-            <span class="job-months" data-start="2023-11" data-end="2025-07">21 months</span>
-          </div>
-          <h3>Independent Game Designer</h3>
-          <p class="job-company">itch.io</p>
-          <p class="job-desc">Took part in 8 game jams with different teams.</p>
-          <button class="btn btn-small btn-ghost" data-dialog="job6">View details</button>
         </article>
 
       </div>
@@ -944,7 +1026,7 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
           <div class="carousel-track">
 
             <!-- PROJECT 1: THORNETICA -->
-            <article class="slide slide-pro" aria-roledescription="slide" aria-label="Project 1 of 7">
+            <article class="slide slide-pro" aria-roledescription="slide" aria-label="Project 1 of 5">
               <div class="pro-inner">
                 <div class="pro-hero">
                   <div class="pro-copy">
@@ -983,22 +1065,23 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
             </article>
 
             <!-- PROJECT 2: THE FABLE OF THE ECLIPSE -->
-            <article class="slide slide-pro" aria-roledescription="slide" aria-label="Project 2 of 7">
+            <article class="slide slide-pro" aria-roledescription="slide" aria-label="Project 2 of 5">
               <div class="pro-inner">
                 <div class="pro-hero">
                   <div class="pro-copy">
                     <span class="pro-badge">Custom Engine Title</span>
                     <h3 class="slide-title">The Fable of the Eclipse</h3>
-                    <p class="slide-meta">Technical Designer at Mini-Knight Studio &middot; Jan - Jul 2026</p>
-                    <p>An action-adventure title built on a custom engine created from scratch by a dedicated university team. Follow a solarian jerboa venturing into perilous realms to save its world.</p>
+                    <p class="slide-meta">Junior Technical Designer at Mini-Knight Studio &middot; Jan - Jul 2026</p>
+                    <p>An action-adventure isometric game built on a custom C++ engine created from scratch. Follow a solarian jerboa venturing into perilous realms to save its world.</p>
 
                     <dl class="meta-grid">
                       <dt>Genre</dt><dd>Action Adventure / Isometric</dd>
-                      <dt>Role</dt><dd>Technical Game Designer</dd>
+                      <dt>Role</dt><dd>Junior Technical Designer</dd>
                       <dt>Studio</dt><dd>Mini-Knight Studio</dd>
+                      <dt>Team size</dt><dd>16-person team</dd>
                       <dt>Engine</dt><dd>Custom C++ In-House Engine</dd>
                       <dt>Duration</dt><dd>Jan 2026 - Jul 2026 (7 mos)</dd>
-                      <dt>Deliverables</dt><dd>Combat, Player, Lava Map, Perks, QA, Enemy Design</dd>
+                      <dt>Deliverables</dt><dd>Combat, Player Movement, Lava Map, Perks, QA, Enemy Design</dd>
                     </dl>
 
                     <div class="hero-buttons">
@@ -1018,31 +1101,42 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
               </div>
             </article>
 
-            <!-- PROJECT 3: CUSTOM ENGINE -->
-            <article class="slide" aria-roledescription="slide" aria-label="Project 3 of 7">
-              <div class="slide-grid-layout">
-                <div class="gallery">
-                  <figure class="shot"><span class="shot-hint">images/engine-1.(jpg/png/gif)</span><img src="images/engine-1.jpg" data-base="images/engine-1" data-try-index="0" alt="Game engine screenshot 1" loading="lazy" onerror="tryNextShotImage(this)"></figure>
-                  <figure class="shot"><span class="shot-hint">images/engine-2.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="Game engine demo video"><source src="images/engine-2.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></figure>
-                  <figure class="shot"><span class="shot-hint">images/engine-3.(jpg/png/gif)</span><img src="images/engine-3.jpg" data-base="images/engine-3" data-try-index="0" alt="Game engine screenshot 2" loading="lazy" onerror="tryNextShotImage(this)"></figure>
-                </div>
+            <!-- PROJECT 3: CUSTOM GAME ENGINE -->
+            <article class="slide slide-pro" aria-roledescription="slide" aria-label="Project 3 of 5">
+              <div class="pro-inner">
+                <div class="pro-hero">
+                  <div class="pro-copy">
+                    <span class="pro-badge">Engine Programming</span>
+                    <h3 class="slide-title">Game Engine Project</h3>
+                    <p class="slide-meta">C++ / Modern OpenGL Custom 3D Engine</p>
+                    <p>A 3D game engine engineered from scratch with C++ and modern OpenGL, featuring custom scene graph management, component architecture, and real-time rendering pipelines.</p>
 
-                <div class="slide-text">
-                  <h3 class="slide-title">Game engine project</h3>
-                  <p class="slide-meta">Engine programming project</p>
-                  <p style="color: #475569; margin-bottom: 20px;">A 3D game engine engineered from scratch with C++ and modern OpenGL, featuring custom scene graph management, component architecture, and real-time rendering pipelines.</p>
-                  <ul class="tags">
-                    <li>Game engine</li>
-                    <li>Engine programming</li>
-                    <li>C++ OpenGL</li>
-                  </ul>
-                  <a class="btn" href="https://github.com/UPC-GameEngines-BCN-2025/G1Engine" target="_blank" rel="noopener">View on GitHub</a>
+                    <dl class="meta-grid">
+                      <dt>Type</dt><dd>Custom 3D Game Engine</dd>
+                      <dt>Tech</dt><dd>C++, OpenGL, ImGUI</dd>
+                      <dt>Architecture</dt><dd>Component-Based &amp; Scene Graph</dd>
+                      <dt>Features</dt><dd>Script Editor, Model Viewer, Play Mode</dd>
+                    </dl>
+
+                    <div class="hero-buttons">
+                      <button class="btn" data-drawer="drawer-engine">Breakdown of the game engine project &rarr;</button>
+                      <a class="btn btn-ghost" href="https://github.com/UPC-GameEngines-BCN-2025/G1Engine" target="_blank" rel="noopener">View on GitHub</a>
+                    </div>
+                  </div>
+
+                  <div class="pro-media">
+                    <figure class="shot pro-shot"><span class="shot-hint">images/engine-2.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="Game engine demo video"><source src="images/engine-2.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></figure>
+                    <div class="pro-shot-row">
+                      <figure class="shot pro-shot"><span class="shot-hint">images/engine-1.(jpg/png/gif)</span><img src="images/engine-1.jpg" data-base="images/engine-1" data-try-index="0" alt="Game engine screenshot 1" loading="lazy" onerror="tryNextShotImage(this)"></figure>
+                      <figure class="shot pro-shot"><span class="shot-hint">images/engine-3.(jpg/png/gif)</span><img src="images/engine-3.jpg" data-base="images/engine-3" data-try-index="0" alt="Game engine screenshot 2" loading="lazy" onerror="tryNextShotImage(this)"></figure>
+                    </div>
+                  </div>
                 </div>
               </div>
             </article>
 
             <!-- PROJECT 4: SCRIPTING ADDON -->
-            <article class="slide" aria-roledescription="slide" aria-label="Project 4 of 7">
+            <article class="slide" aria-roledescription="slide" aria-label="Project 4 of 5">
               <div class="slide-grid-layout">
                 <div class="gallery">
                   <figure class="shot"><span class="shot-hint">images/addon-1.(jpg/png/gif)</span><img src="images/addon-1.jpg" data-base="images/addon-1" data-try-index="0" alt="Engine scripting addon screenshot 1" loading="lazy" onerror="tryNextShotImage(this)"></figure>
@@ -1064,31 +1158,8 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
               </div>
             </article>
 
-            <!-- PROJECT 5: 75 STUDIO DEMOS -->
-            <article class="slide" aria-roledescription="slide" aria-label="Project 5 of 7">
-              <div class="slide-grid-layout">
-                <div class="gallery">
-                  <figure class="shot"><span class="shot-hint">images/roses-video.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="Roses Are Red gameplay video"><source src="images/roses-video.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></figure>
-                  <figure class="shot"><span class="shot-hint">images/cube-video.mp4 (video)</span><video muted loop playsinline controls preload="metadata" aria-label="C.U.B.E gameplay video"><source src="images/cube-video.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></figure>
-                  <figure class="shot"><span class="shot-hint">images/cube-screenshot.(jpg/png/gif)</span><img src="images/cube-screenshot.jpg" data-base="images/cube-screenshot" data-try-index="0" alt="C.U.B.E screenshot" loading="lazy" onerror="tryNextShotImage(this)"></figure>
-                </div>
-
-                <div class="slide-text">
-                  <h3 class="slide-title">C.U.B.E and Roses Are Red</h3>
-                  <p class="slide-meta">Game Designer and Co-Founder at 75 Studio, 2025</p>
-                  <p style="color: #475569; margin-bottom: 20px;">Playable demos built to pitch to publishers and accelerator programs. Responsible for core game design documentation, balance formulas, and rapid player feel prototyping in Unity.</p>
-                  <ul class="tags">
-                    <li>Game design</li>
-                    <li>Documentation</li>
-                    <li>Rapid prototyping</li>
-                    <li>Unity</li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-
-            <!-- PROJECT 6: BUBBLE BOBBLE -->
-            <article class="slide" aria-roledescription="slide" aria-label="Project 6 of 7">
+            <!-- PROJECT 5: BUBBLE BOBBLE -->
+            <article class="slide" aria-roledescription="slide" aria-label="Project 5 of 5">
               <div class="slide-grid-layout">
                 <div class="gallery">
                   <figure class="shot"><span class="shot-hint">images/bubble-1.(jpg/png/gif)</span><img src="images/bubble-1.jpg" data-base="images/bubble-1" data-try-index="0" alt="Bubble Bobble screenshot 1" loading="lazy" onerror="tryNextShotImage(this)"></figure>
@@ -1111,29 +1182,6 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
               </div>
             </article>
 
-            <!-- PROJECT 7: PONG ASSEMBLY -->
-            <article class="slide" aria-roledescription="slide" aria-label="Project 7 of 7">
-              <div class="slide-grid-layout">
-                <div class="gallery">
-                  <figure class="shot"><span class="shot-hint">images/pong-1.(jpg/png/gif)</span><img src="images/pong-1.jpg" data-base="images/pong-1" data-try-index="0" alt="PONG in 8086 Assembly screenshot 1" loading="lazy" onerror="tryNextShotImage(this)"></figure>
-                  <figure class="shot"><span class="shot-hint">images/pong-2.(jpg/png/gif)</span><img src="images/pong-2.jpg" data-base="images/pong-2" data-try-index="0" alt="PONG in 8086 Assembly screenshot 2" loading="lazy" onerror="tryNextShotImage(this)"></figure>
-                  <figure class="shot"><span class="shot-hint">images/pong-3.(jpg/png/gif)</span><img src="images/pong-3.jpg" data-base="images/pong-3" data-try-index="0" alt="PONG in 8086 Assembly screenshot 3" loading="lazy" onerror="tryNextShotImage(this)"></figure>
-                </div>
-
-                <div class="slide-text">
-                  <h3 class="slide-title">PONG in 8086 Assembly</h3>
-                  <p class="slide-meta">Assembly project on GitHub</p>
-                  <p style="color: #475569; margin-bottom: 20px;">The classic Pong game programmed from bare metal in 8086 Assembly. Interfacing directly with video interrupt routines, CPU registers, and hardware keyboard inputs without an operating system layer.</p>
-                  <ul class="tags">
-                    <li>8086 Assembly</li>
-                    <li>Low-level programming</li>
-                    <li>GitHub</li>
-                  </ul>
-                  <a class="btn" href="https://github.com/PauGon75/8086-Assembly-PONG" target="_blank" rel="noopener">View on GitHub</a>
-                </div>
-              </div>
-            </article>
-
           </div>
         </div>
 
@@ -1147,8 +1195,6 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
             <button class="dot" aria-label="Go to project 3"></button>
             <button class="dot" aria-label="Go to project 4"></button>
             <button class="dot" aria-label="Go to project 5"></button>
-            <button class="dot" aria-label="Go to project 6"></button>
-            <button class="dot" aria-label="Go to project 7"></button>
           </div>
           <button class="arrow" id="next" aria-label="Next project">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
@@ -1161,6 +1207,7 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
         <h3 class="small-title">Small projects</h3>
         <p class="small-intro">More games on my <a href="https://paugonzalez.itch.io/" target="_blank" rel="noopener" style="color: var(--accent);">itch.io page</a>.</p>
         <ul class="mini-list">
+          <li><a class="mini" href="https://github.com/PauGon75/8086-Assembly-PONG" target="_blank" rel="noopener"><span class="mini-name">PONG in 8086 Assembly</span><span class="mini-tag">Low-Level ASM</span></a></li>
           <li><a class="mini" href="https://paugonzalez.itch.io/catagochi-ml" target="_blank" rel="noopener"><span class="mini-name">CATAGOCHI ML</span><span class="mini-tag">Unity &middot; AI agent</span></a></li>
           <li><a class="mini" href="https://paugonzalez.itch.io/banadna" target="_blank" rel="noopener"><span class="mini-name">BanADNa</span><span class="mini-tag">Unity &middot; Scriptable Objects</span></a></li>
           <li><a class="mini" href="https://paugonzalez.itch.io/the-castles-ascension" target="_blank" rel="noopener"><span class="mini-name">城の登高 The Castle's Ascension</span><span class="mini-tag">Card game</span></a></li>
@@ -1271,7 +1318,7 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
   </footer>
 
 
-  <!-- ================= OFF-CANVAS DRAWERS (TEMTEM STYLE) ================= -->
+  <!-- ================= OFF-CANVAS DRAWERS (TEMTEM / GERLOGU STYLE) ================= -->
   <div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
 
   <!-- 1. THE FABLE OF THE ECLIPSE DRAWER -->
@@ -1279,7 +1326,7 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
     <div class="drawer-header">
       <div class="drawer-title-wrap">
         <h3 id="fable-drawer-title">The Fable of the Eclipse</h3>
-        <span class="drawer-sub">Technical Designer &middot; Mini-Knight Studio (Jan - Jul 2026)</span>
+        <span class="drawer-sub">Junior Technical Designer &middot; Mini-Knight Studio (16-person team &middot; Jan - Jul 2026)</span>
       </div>
       <button class="drawer-close" aria-label="Close contributions panel">&times;</button>
     </div>
@@ -1379,7 +1426,7 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
     </div>
   </aside>
 
-  <!-- 2. THORNETICA DRAWER -->
+  <!-- 2. THORNETICA DRAWER (With GIFs for each item) -->
   <aside class="drawer" id="drawer-thornetica" role="dialog" aria-modal="true" aria-labelledby="thornetica-drawer-title">
     <div class="drawer-header">
       <div class="drawer-title-wrap">
@@ -1390,26 +1437,99 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
     </div>
     <div class="drawer-body">
       <div class="drawer-general-box">
-        <p>Level design, encounter pacing, mathematical stat modeling, and live event QA for Thornetica.</p>
+        <p>Level design, encounter pacing, unit balance formulas, and live event QA for Thornetica.</p>
       </div>
 
+      <!-- 1. Levels (Acts) -->
       <div class="contrib-item">
-        <h4>Level &amp; Encounter Design</h4>
-        <p>Designed the levels of the first part of the game (10 acts, 10 levels). Made sure the levels fit within the story, designing mechanics for each level like broken bridges and slippery ice terrain.</p>
+        <h4>Level &amp; Encounter Design (10 Acts)</h4>
+        <p>I designed the levels of the first part of the game (10 acts, 10 levels), making sure every combat encounter fits seamlessly within the narrative pacing of the story.</p>
+        <div class="media-gif">
+          <img src="images/thornetica-levels-acts.gif" data-base="images/thornetica-levels-acts" data-try-index="0" alt="Thornetica levels and acts gif" loading="lazy" onerror="tryNextShotImage(this)">
+        </div>
       </div>
 
+      <!-- 2. Mechanics -->
       <div class="contrib-item">
-        <h4>Systems Balance &amp; Item Creation</h4>
-        <p>Balanced all the units to be on par with the player's experience when they reach a given act, making the experience fair for both underleveled and overleveled players. Designed different weapons, making sure of their balance and costs.</p>
+        <h4>Level Mechanics &amp; Environmental Gimmicks</h4>
+        <p>Designed and tuned the gameplay mechanics for each individual level, such as broken bridges and tactical terrains like slippery ice surfaces that affect unit positioning.</p>
+        <div class="media-gif">
+          <img src="images/thornetica-levels-mechanics.gif" data-base="images/thornetica-levels-mechanics" data-try-index="0" alt="Thornetica level mechanics gif" loading="lazy" onerror="tryNextShotImage(this)">
+        </div>
       </div>
 
+      <!-- 3. Weapons -->
       <div class="contrib-item">
-        <h4>QA &amp; Event Playtesting</h4>
-        <p>Attended events to gather live feedback from players of all ages, plus feedback from the demo and Discord community.</p>
+        <h4>Weapon Arsenal &amp; Economy</h4>
+        <p>Designed different weapons, balancing their ranges, attack power, and purchase costs to give the player strategic choices across the campaign.</p>
+        <div class="media-gif">
+          <img src="images/thornetica-balance-weapons.gif" data-base="images/thornetica-balance-weapons" data-try-index="0" alt="Thornetica weapon design gif" loading="lazy" onerror="tryNextShotImage(this)">
+        </div>
+      </div>
+
+      <!-- 4. Unit Balancing -->
+      <div class="contrib-item">
+        <h4>Combat &amp; Unit Balancing</h4>
+        <p>Balanced all the units to be on par with the player's experience when they reach a given act, ensuring fair encounters for both underleveled and overleveled players.</p>
+        <div class="media-gif">
+          <img src="images/thornetica-balance-units.gif" data-base="images/thornetica-balance-units" data-try-index="0" alt="Thornetica unit balance gif" loading="lazy" onerror="tryNextShotImage(this)">
+        </div>
+      </div>
+
+      <!-- 5. QA & Live Events -->
+      <div class="contrib-item">
+        <h4>QA Playtesting &amp; Public Events</h4>
+        <p>Attended public gaming events to observe blind play sessions, gathering live feedback from players of all ages, as well as managing feedback from the public demo and Discord community.</p>
+        <div class="media-gif">
+          <img src="images/thornetica-qa-events.gif" data-base="images/thornetica-qa-events" data-try-index="0" alt="Thornetica event playtesting gif" loading="lazy" onerror="tryNextShotImage(this)">
+        </div>
       </div>
 
       <div class="drawer-links">
         <a class="btn" href="https://store.steampowered.com/app/4503010/Thornetica_Demo/" target="_blank" rel="noopener">Thornetica Demo on Steam &nearr;</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 3. BREAKDOWN OF THE GAME ENGINE PROJECT DRAWER -->
+  <aside class="drawer" id="drawer-engine" role="dialog" aria-modal="true" aria-labelledby="engine-drawer-title">
+    <div class="drawer-header">
+      <div class="drawer-title-wrap">
+        <h3 id="engine-drawer-title">Breakdown of the Game Engine Project</h3>
+        <span class="drawer-sub">Custom C++ &amp; OpenGL 3D Engine Architecture</span>
+      </div>
+      <button class="drawer-close" aria-label="Close breakdown panel">&times;</button>
+    </div>
+    <div class="drawer-body">
+
+      <div class="drawer-general-box">
+        <p><strong>A 3D game engine engineered from scratch with C++ and modern OpenGL, featuring custom scene graph management, component architecture, and real-time rendering pipelines.</strong></p>
+        <p>This project started from scratch using C++ and the OpenGL and ImGUI libraries. It started as a simple triangle rendered on the screen and reached all the way to a full play mode.</p>
+      </div>
+
+      <div class="contrib-item">
+        <h4>Core Engine Features</h4>
+        <ul class="bullet-features">
+          <li><strong>On-Engine Script Editor:</strong> In-engine scripting capabilities to write, edit, and link gameplay behaviors directly within the editor environment.</li>
+          <li><strong>Model Viewer:</strong> Dedicated viewport with interactive transformation tools, real-time mesh replacer, pivot adjustment, and rotation gizmos.</li>
+        </ul>
+
+        <!-- Requested GIF slot -->
+        <div class="media-gif">
+          <span class="shot-hint" style="position: absolute; z-index: 2;">images/engine-modelviewer.gif</span>
+          <img src="images/engine-modelviewer.gif" data-base="images/engine-modelviewer" data-try-index="0" alt="Model viewer gif" loading="lazy" onerror="tryNextShotImage(this)">
+        </div>
+
+        <ul class="bullet-features" style="margin-top: 18px;">
+          <li><strong>File Explorer &amp; File Viewer:</strong> Real-time asset indexing and directory inspection for drag-and-drop asset loading.</li>
+          <li><strong>Hierarchy &amp; Inspector:</strong> Complete entity-component system (ECS) hierarchy browser and property inspection panel.</li>
+          <li><strong>Scene View &amp; Game View:</strong> Dual viewports supporting free editor camera navigation and in-game camera perspectives.</li>
+          <li><strong>Renderer with Basic Lighting:</strong> Real-time rendering pipeline supporting ambient and directional lighting models, normal vectors, and Phong shading calculations.</li>
+        </ul>
+      </div>
+
+      <div class="drawer-links">
+        <a class="btn" href="https://github.com/UPC-GameEngines-BCN-2025/G1Engine" target="_blank" rel="noopener">View Repository on GitHub &nearr;</a>
       </div>
     </div>
   </aside>
@@ -1428,21 +1548,21 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
 
   <dialog id="job2">
     <button class="dialog-close" aria-label="Close">&times;</button>
-    <h3>Lead Game Designer and Gameplay Programmer at The Blue Dot Studio</h3>
+    <h3>Game Designer and Gameplay Programmer at The Blue Dot Studio (Contract)</h3>
+    <p>Worked on the concept and first prototypes of the game <strong>Legend of Kuyana</strong>.</p>
     <ul>
-      <li>Led game systems design and maintained clear GDD documentation across the team.</li>
-      <li>Rapidly iterated on gameplay mechanics in prototype builds.</li>
+      <li>Led game systems design and rapid prototyping of early mechanics.</li>
       <li>Bridged technical communication between design and engineering.</li>
     </ul>
   </dialog>
 
   <dialog id="job3">
     <button class="dialog-close" aria-label="Close">&times;</button>
-    <h3>Technical Designer at Mini-Knight Studio</h3>
-    <p>Game: <a href="https://mini-knight-studio.github.io/The-Fable-Of-The-Eclipse/" target="_blank" rel="noopener">The Fable of the Eclipse</a></p>
+    <h3>Junior Technical Designer at Mini-Knight Studio</h3>
+    <p>Game: <a href="https://mini-knight-studio.github.io/The-Fable-Of-The-Eclipse/" target="_blank" rel="noopener">The Fable of the Eclipse</a> (16-person team)</p>
     <ul>
-      <li>Player programming and character movement design.</li>
-      <li>Combat feel, hit-stop, and hit detection implementation.</li>
+      <li>Player programming and character locomotion design.</li>
+      <li>Combat framework, hit-stop, and hit detection implementation.</li>
       <li>Full implementation and level scripting of the lava map.</li>
       <li>Design and balancing of player perk upgrades.</li>
       <li>Enemy AI behavior design and QA playtesting.</li>
@@ -1451,37 +1571,11 @@ html { scrollbar-color: var(--accent) #f1f5f9; }
 
   <dialog id="job4">
     <button class="dialog-close" aria-label="Close">&times;</button>
-    <h3>University Instructor at UPC</h3>
+    <h3>University Instructor at UPC (Contract)</h3>
     <p>Review sessions for Game Mathematics and Game Programming I and II.</p>
     <ul>
       <li>Taught math and programming logic applied to video games.</li>
       <li>Guided students through real-world game scenario applications.</li>
-    </ul>
-  </dialog>
-
-  <dialog id="job5">
-    <button class="dialog-close" aria-label="Close">&times;</button>
-    <h3>Co-Founder and Game Designer at 75 Studio</h3>
-    <ul>
-      <li>Co-founded an indie studio with four teammates to develop and pitch original game concepts.</li>
-      <li>Built and released two playable demos for publishers and incubators: <strong>C.U.B.E</strong> and <strong>Roses Are Red</strong>.</li>
-      <li>Authored complete design documentation and directed gameplay systems.</li>
-    </ul>
-  </dialog>
-
-  <dialog id="job6">
-    <button class="dialog-close" aria-label="Close">&times;</button>
-    <h3>Independent Game Designer on itch.io</h3>
-    <p>Took part in 8 game jams with different teams:</p>
-    <ul>
-      <li>IndieGamesTRS Jam</li>
-      <li>7a Gran CITM GameJam</li>
-      <li>FrameGames School first Jam</li>
-      <li>LevelUp GameJam 2024</li>
-      <li>Magical Girl Game Jam #10</li>
-      <li>One Button GameJam</li>
-      <li>Brackeys GameJam</li>
-      <li>8a Gran CITM GameJam</li>
     </ul>
   </dialog>
 
@@ -1588,16 +1682,17 @@ menuLinks.querySelectorAll("a").forEach(function (link) {
 });
 
 /* =====================================================
-   4) MAIN PROJECT SCREENSHOT FALLBACKS
+   4) MAIN PROJECT SCREENSHOT & GIF FALLBACKS
    ===================================================== */
-var SHOT_EXTS = ["jpg", "jpeg", "png", "gif"];
+var SHOT_EXTS = ["gif", "jpg", "jpeg", "png", "webp"];
 function tryNextShotImage(img) {
   var next = parseInt(img.dataset.tryIndex || "0", 10) + 1;
   if (next < SHOT_EXTS.length) {
     img.dataset.tryIndex = next;
     img.src = img.dataset.base + "." + SHOT_EXTS[next];
   } else {
-    img.remove();
+    // Graceful fallback to styled placeholder if file not present
+    img.style.display = "none";
   }
 }
 
