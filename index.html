@@ -521,7 +521,7 @@ body.view-open .hub {
 .about p { margin-bottom: 16px; max-width: 62ch; font-weight: 500; }
 .about strong { font-weight: 700; }
 .facts { border-left: 3px solid var(--black); padding-left: 28px; align-self: start; }
-.facts img { display: block; width: 120px; height: 120px; object-fit: cover; filter: grayscale(1); margin-bottom: 18px; }
+.facts img { display: block; width: 120px; height: 120px; object-fit: cover; margin-bottom: 18px; }
 .facts dt { font-family: var(--font-title); font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gray-3); }
 .facts dd { font-weight: 700; margin-bottom: 14px; }
 
@@ -668,7 +668,6 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
 
   <!-- KOJIMA MONOCHROME VIDEO + RADAR MAP STAGE -->
   <div class="bg" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="metadata"><source src="images/background.mp4" type="video/mp4"></video>
     <svg class="bg-grid" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
       <circle cx="620" cy="500" r="140" stroke-width="1" stroke-dasharray="6 6"/>
       <circle cx="620" cy="500" r="280" stroke-width="0.8"/>
@@ -722,12 +721,12 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
           <button class="menu-btn" role="menuitem"
             data-target="screen-achievements"
             data-kicker="02 // SERVICE RECORD"
-            data-title="My Backstory &amp; Education"
+            data-title="Experience"
             data-desc="Level Designer &amp; QA at Forbidden Candy, Technical Designer at Mini-Knight Studio, and University Instructor at UPC (CITM)."
             data-img="images/fable-1"
             data-label="EXPERIENCE LOG">
             <svg class="menu-icon" viewBox="0 0 34 38" fill="none" stroke-width="2.6"><path d="M17 2l14 8v18l-14 8L3 28V10z"/><path d="M10 19h14"/></svg>
-            <span>Achievements</span>
+            <span>Experience</span>
             <span class="menu-meta">3 ROLES &middot; UPC</span>
           </button>
         </li>
@@ -789,10 +788,6 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
         <div class="btn-row" style="margin-top:0;margin-bottom:18px;">
           <button class="btn" id="sc-open-btn">Open Section</button>
           <a class="btn dark" href="https://store.steampowered.com/app/4503010/Thornetica_Demo/" target="_blank" rel="noopener">Thornetica Steam Demo</a>
-        </div>
-        <div class="sc-thumbs">
-          <span class="sc-thumbs-label">Featured Highlights</span>
-          <div class="news-thumbs" id="news-thumbs"></div>
         </div>
       </aside>
     </div>
@@ -880,8 +875,8 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
   <section class="screen" id="screen-achievements" aria-labelledby="h-ach">
     <div class="screen-head">
       <div>
-        <small>02 // ACHIEVEMENTS</small>
-        <h2 id="h-ach">My Backstory &amp; Education</h2>
+        <small>02 // EXPERIENCE</small>
+        <h2 id="h-ach">Experience</h2>
       </div>
       <button class="btn" data-close-screen>ESC // Return to Menu</button>
     </div>
@@ -1058,21 +1053,26 @@ var SFX = (function () {
     if (ctx && ctx.state === "suspended") ctx.resume();
     return ctx;
   }
-  function beep(f1, f2, dur) {
+  function beep(f1, f2, dur, type, vol) {
     var c = getCtx(); if (!c) return;
-    var o = c.createOscillator(), g = c.createGain();
-    o.type = "sine";
-    o.frequency.setValueAtTime(f1, c.currentTime);
-    if (f2) o.frequency.exponentialRampToValueAtTime(f2, c.currentTime + dur);
-    g.gain.setValueAtTime(0.05, c.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + dur);
-    o.connect(g); g.connect(c.destination);
-    o.start(); o.stop(c.currentTime + dur);
+    var t = c.currentTime;
+    var o = c.createOscillator(), g = c.createGain(), flt = c.createBiquadFilter();
+    o.type = type || "square";
+    o.frequency.setValueAtTime(f1, t);
+    if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
+    flt.type = "bandpass";
+    flt.Q.value = 5;
+    flt.frequency.setValueAtTime(f1 * 1.5, t);
+    flt.frequency.exponentialRampToValueAtTime((f2 || f1) * 1.5, t + dur);
+    g.gain.setValueAtTime(vol || 0.03, t);
+    g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    o.connect(flt); flt.connect(g); g.connect(c.destination);
+    o.start(t); o.stop(t + dur);
   }
   return {
-    tick: function () { beep(920, 1100, 0.035); },
-    open: function () { beep(640, 1280, 0.08); },
-    close: function () { beep(840, 420, 0.07); },
+    tick: function () { beep(2200, 3400, 0.025, "square", 0.02); },
+    open: function () { beep(300, 2400, 0.14, "sawtooth", 0.025); },
+    close: function () { beep(2000, 400, 0.12, "sawtooth", 0.025); },
     toggle: function () { enabled = !enabled; return enabled; }
   };
 })();
@@ -1213,7 +1213,15 @@ var JOBS = [
     drawer: {
       sub: "Barcelona, since September 2025",
       intro: ["Working on Thornetica, a tactical RPG built in Godot. The demo is out now on Steam."],
-      items: [{h:"What I do", list:["Levels and battle maps for Thornetica.","System balance within levels and weapon design.","Playtested builds with players from the target audience."]}],
+      items: [
+        {h:"Thornetica (Godot)", list:[
+          "Level Map and Encounter Design (10 Acts)",
+          "Level Mechanics and Environmental Gimmicks.",
+          "Weapon Arsenal and Economy.",
+          "Combat and Unit Balancing.",
+          "QA Playtesting and Public Events."
+        ]}
+      ],
       links: [{t:"Thornetica Demo on Steam", u:STEAM}]
     }
   },
@@ -1224,8 +1232,18 @@ var JOBS = [
     desc: "The Fable of the Eclipse (16-person team): player, combat and enemy systems. Shipped a full lava-themed level, with QA passes and game feel polish.",
     drawer: {
       sub: "The Fable of the Eclipse \u00b7 16-person team \u00b7 custom engine",
-      intro: ["Technical design across player, combat and enemy systems."],
-      items: [{h:"What I did", list:["Player, combat and enemy systems.","Shipped a full lava-themed level.","QA passes and game feel polish."]}],
+      intro: ["Worked as the Technical Designer for the game: Fable Of The Eclipse."],
+      items: [
+        {h:"Key features I provided:", list:[
+          "Player Programming and Design",
+          "Combat Design and Implementation",
+          "Lava map full Implementation",
+          "Design and Implementation of Player Perks",
+          "Enemy Design",
+          "QA Playtest",
+          "Game feel polish"
+        ]}
+      ],
       links: [{t:"Visit Game Page", u:"https://mini-knight-studio.github.io/The-Fable-Of-The-Eclipse/"}]
     }
   },
@@ -1236,8 +1254,8 @@ var JOBS = [
     desc: "Game Mathematics and Game Programming I and II review sessions, turning theory into practical, real game development scenarios.",
     drawer: {
       sub: "Game Mathematics and Game Programming I and II \u00b7 Sep 2025 - Jul 2026",
-      intro: ["Review sessions for students of the CITM degree."],
-      items: [{h:"What I did", list:["Turned theory into practical, real game development scenarios."]}],
+      intro: ["Provided foundational technical instruction and review sessions for students focused on the essential mathematical and programming logic underpinning game development. Made students earn interests in subjects providing them real game scenarios and applications of the theory."],
+      items: [],
       links: []
     }
   }
@@ -1380,31 +1398,6 @@ function mediaHtml(m, title) {
 
   document.querySelectorAll("[data-jump]").forEach(function (b) {
     b.addEventListener("click", function () { openScreen(b.dataset.jump); });
-  });
-
-  /* Featured project mini-thumbs in the right showcase (like Kojima's news thumbs) */
-  var featured = [
-    { p: "thornetica", k: "FEATURED // NOW PLAYING", head: "Thornetica demo is out now on Steam", desc: "Tactical Turn-Based RPG at Forbidden Candy: 10 acts, unit & weapon balance, and live QA.", img: "images/thornetica-1" },
-    { p: "fable", k: "FEATURED // CUSTOM C++ ENGINE", head: "The Fable of the Eclipse", desc: "Combat framework, isometric dash movement, grapple & torch perks, and the lava level.", img: "images/fable-1" },
-    { p: "engine", k: "FEATURED // ENGINE ARCHITECTURE", head: "3D C++ & Modern OpenGL Engine", desc: "From a single triangle to a full 3D engine with play mode, hierarchy, and script editor.", img: "images/engine-1" }
-  ];
-  var thumbsBox = document.getElementById("news-thumbs");
-  thumbsBox.innerHTML = featured.map(function (f, n) {
-    return '<button class="news-thumb" aria-label="Preview ' + esc(f.head) + '" aria-current="' + (n === 0 ? 'true' : 'false') + '"><b>0' + (n + 1) + '</b>' + imgTag(f.img, "", false) + '</button>';
-  }).join("");
-  var thumbBtns = thumbsBox.querySelectorAll(".news-thumb");
-  thumbBtns.forEach(function (tb, i) {
-    tb.addEventListener("click", function () {
-      SFX.tick();
-      var f = featured[i];
-      thumbBtns.forEach(function (x, n) { x.setAttribute("aria-current", n === i ? "true" : "false"); });
-      scKicker.textContent = f.k;
-      scTitle.textContent = f.head;
-      scDesc.textContent = f.desc;
-      scLabel.textContent = f.p.toUpperCase();
-      setImg(f.img);
-      scOpenBtn.onclick = function () { openScreen("screen-projects", "p-" + f.p); };
-    });
   });
 
   window.addEventListener("keydown", function (e) {
