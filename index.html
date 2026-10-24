@@ -384,7 +384,7 @@ body.view-open .hub {
 .panel-scroll h2, .panel-scroll h3, .panel-scroll h4 { color: var(--black); }
 
 /* =====================================================
-   ABOUT, PROGRAMMING LOGOS, TIMELINE, XP, PROJECTS
+   ABOUT, PROGRAMMING LOGOS, XP, PROJECTS
    ===================================================== */
 .about {
   display: grid;
@@ -437,134 +437,6 @@ body.view-open .hub {
 .cols h3.second { margin-top: 26px; }
 .cols ul { list-style: none; }
 .cols li { padding: 8px 0; border-bottom: 1px solid var(--line); font-weight: 600; }
-
-/* Visual Timeline Chart (Top of Experience) */
-.timeline-wrap {
-  padding: clamp(24px, 3.5vw, 44px) clamp(24px, 4.5vw, 56px);
-  background: #fafafa;
-  border-bottom: 2px solid var(--black);
-}
-.timeline-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 18px;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.timeline-head h3 {
-  font-size: .95rem;
-  letter-spacing: .12em;
-}
-.timeline-head span {
-  font-family: var(--font-title);
-  font-size: .64rem;
-  letter-spacing: .14em;
-  color: var(--gray-3);
-  text-transform: uppercase;
-}
-.tl-axis {
-  display: grid;
-  grid-template-columns: 230px 1fr;
-  gap: 20px;
-  margin-bottom: 8px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--line);
-}
-.tl-years {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  font-family: var(--font-title);
-  font-size: .68rem;
-  font-weight: 800;
-  color: var(--gray-4);
-  letter-spacing: .1em;
-}
-.tl-years span {
-  border-left: 1px solid #bbb;
-  padding-left: 6px;
-}
-.tl-rows {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.tl-row {
-  display: grid;
-  grid-template-columns: 230px 1fr;
-  gap: 20px;
-  align-items: center;
-  cursor: pointer;
-}
-.tl-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-}
-.tl-meta img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  background: var(--black);
-  padding: 2px;
-  flex-shrink: 0;
-}
-.tl-meta-text {
-  min-width: 0;
-}
-.tl-meta-co {
-  font-family: var(--font-title);
-  font-size: .7rem;
-  font-weight: 800;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.tl-meta-role {
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--gray-4);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.tl-track {
-  position: relative;
-  height: 30px;
-  background:
-    repeating-linear-gradient(
-      to right,
-      rgba(0,0,0,0.08) 0,
-      rgba(0,0,0,0.08) 1px,
-      transparent 1px,
-      transparent 33.333%
-    ),
-    var(--gray-1);
-  border: 1px solid #ccc;
-}
-.tl-bar {
-  position: absolute;
-  top: 3px;
-  bottom: 3px;
-  background: var(--black);
-  color: var(--white);
-  font-family: var(--font-title);
-  font-size: .58rem;
-  font-weight: 700;
-  letter-spacing: .06em;
-  display: flex;
-  align-items: center;
-  padding: 0 8px;
-  white-space: nowrap;
-  overflow: hidden;
-  clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-  transition: transform .15s ease, background .15s ease;
-}
-.tl-row:hover .tl-bar {
-  background: #333;
-  transform: scaleY(1.08);
-}
 
 /* Experience Rows */
 .xp {
@@ -683,8 +555,7 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
 @media (max-width: 960px) {
   html, body { overflow-y: auto; }
   .hub { height: auto; min-height: 100svh; padding-top: 90px; padding-bottom: 100px; }
-  .about, .proj, .proj:nth-child(even), .xp, .small-list, .tl-axis, .tl-row { grid-template-columns: 1fr; }
-  .tl-axis { display: none; }
+  .about, .proj, .proj:nth-child(even), .xp, .small-list { grid-template-columns: 1fr; }
   .proj:nth-child(even) .proj-media { order: 0; }
   .screen { padding: 68px 16px 64px; }
 }
@@ -744,7 +615,7 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
           <button class="menu-btn" role="menuitem" data-target="screen-achievements">
             <svg class="menu-icon" viewBox="0 0 34 38" fill="none" stroke-width="2.6"><path d="M17 2l14 8v18l-14 8L3 28V10z"/><path d="M10 19h14"/></svg>
             <span>Experience</span>
-            <span class="menu-meta">5 ROLES &middot; TIMELINE</span>
+            <span class="menu-meta">5 ROLES &middot; UPC</span>
           </button>
         </li>
         <li role="none">
@@ -877,7 +748,7 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
   </section>
 
   <!-- =====================================================
-       SCREEN 2: ACHIEVEMENTS (TIMELINE + EXPERIENCE + EDUCATION)
+       SCREEN 2: ACHIEVEMENTS (EXPERIENCE + EDUCATION)
        ===================================================== -->
   <section class="screen" id="screen-achievements" aria-labelledby="h-ach">
     <div class="screen-head">
@@ -889,24 +760,6 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
     </div>
 
     <div class="panel-scroll">
-      <!-- VISUAL TIMELINE GRAPH -->
-      <div class="timeline-wrap">
-        <div class="timeline-head">
-          <h3>Career Timeline // Overview</h3>
-          <span>Click any bar to inspect details</span>
-        </div>
-        <div class="tl-axis">
-          <div></div>
-          <div class="tl-years">
-            <span>2024</span>
-            <span>2025</span>
-            <span>2026</span>
-          </div>
-        </div>
-        <div class="tl-rows" id="tl-rows"></div>
-      </div>
-
-      <!-- DETAILED LIST -->
       <div id="xp-list"></div>
 
       <div class="sub-head">
@@ -1353,44 +1206,9 @@ function mediaHtml(m, title) {
 }
 
 /* =====================================================
-   RENDER: TIMELINE, EXPERIENCE & PROJECTS
+   RENDER: EXPERIENCE & PROJECTS
    ===================================================== */
 (function () {
-  // 1. Render Career Timeline Graph (Jan 2024 to Dec 2026 = 36 months)
-  var tlBox = document.getElementById("tl-rows");
-  var baseYear = 2024;
-  var totalMonths = 36;
-  function monthIndex(ym) {
-    if (ym === "present") {
-      var n = new Date();
-      return (n.getFullYear() - baseYear) * 12 + n.getMonth();
-    }
-    var p = ym.split("-").map(Number);
-    return (p[0] - baseYear) * 12 + (p[1] - 1);
-  }
-
-  tlBox.innerHTML = JOBS.map(function (j) {
-    var sIdx = Math.max(0, monthIndex(j.start));
-    var eIdx = Math.min(totalMonths - 1, monthIndex(j.end));
-    var leftPct = (sIdx / totalMonths) * 100;
-    var widthPct = Math.max(4, ((eIdx - sIdx + 1) / totalMonths) * 100);
-    return '<div class="tl-row" data-drawer="' + j.id + '" title="Click to view details">' +
-      '<div class="tl-meta">' +
-        logoTag(j.logoBase, esc(j.co), j.fb, "") +
-        '<div class="tl-meta-text">' +
-          '<div class="tl-meta-co">' + esc(j.co) + '</div>' +
-          '<div class="tl-meta-role">' + esc(j.title) + '</div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="tl-track">' +
-        '<div class="tl-bar" style="left:' + leftPct.toFixed(2) + '%;width:' + widthPct.toFixed(2) + '%;">' +
-          esc(j.when) +
-        '</div>' +
-      '</div>' +
-    '</div>';
-  }).join("");
-
-  // 2. Render Experience Cards
   var xpBox = document.getElementById("xp-list");
   xpBox.innerHTML = JOBS.map(function (j) {
     return '<article class="xp">' +
@@ -1411,7 +1229,6 @@ function mediaHtml(m, title) {
     b.textContent = m + (m === 1 ? " month" : " months");
   });
 
-  // 3. Render Projects
   var projBox = document.getElementById("proj-list");
   projBox.innerHTML = PROJECTS.map(function (p) {
     var main = p.media[0], rest = p.media.slice(1);
