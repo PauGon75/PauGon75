@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#000000">
   <title>Pau González | Technical Game Designer and Developer</title>
-  <meta name="description" content="Portfolio of Pau González Cayuela, technical game designer from Barcelona. Gameplay systems, combat design, game balance and game feel, built in Unreal Engine 4/5, Unity and Godot.">
+  <meta name="description" content="Portfolio of Pau González Cayuela, technical game designer and developer from Barcelona. Gameplay systems, combat design, game balance and game feel, built in Unreal Engine 4/5, Unity and Godot.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +27,7 @@
   --font-title: "Orbitron", "Segoe UI", system-ui, sans-serif;
   --font-body: "Rajdhani", system-ui, sans-serif;
   --pad: clamp(20px, 6vw, 120px);
-  --tilt: -2deg;
+  --tilt: 0deg;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -154,7 +154,7 @@ h1, h2, h3, h4 {
 }
 
 /* =====================================================
-   MARCO DI MODICA PAUSE-MENU LAYOUT (IN KOJIMA STYLE)
+   PAUSE-MENU LAYOUT (STRAIGHT, NO RIGHT PREVIEW BOX)
    ===================================================== */
 .hub {
   position: relative;
@@ -164,10 +164,8 @@ h1, h2, h3, h4 {
   max-width: 1640px;
   margin: 0 auto;
   padding: 78px var(--pad) 76px;
-  display: grid;
-  grid-template-columns: minmax(340px, 680px) 1fr;
+  display: flex;
   align-items: center;
-  gap: clamp(28px, 5vw, 80px);
   transition: transform .38s cubic-bezier(.16, 1, .3, 1), opacity .28s ease;
 }
 body.view-open .hub {
@@ -176,16 +174,16 @@ body.view-open .hub {
   pointer-events: none;
 }
 
-/* Left Column: Kojima Boxed Name + Marco Tilted Menu */
 .hub-left {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: clamp(24px, 4.2vh, 44px);
+  width: 100%;
+  max-width: 680px;
 }
 .title-block {
-  transform: rotate(var(--tilt));
-  transform-origin: left center;
+  transform: none;
 }
 .hero-kicker {
   font-family: var(--font-title);
@@ -213,14 +211,13 @@ body.view-open .hub {
   text-transform: uppercase;
 }
 
-/* Marco Di Modica Menu List with Kojima Slanted Selection Bar */
+/* Straight Menu List */
 .menu-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: clamp(4px, 0.9vh, 8px);
-  transform: rotate(var(--tilt));
-  transform-origin: left center;
+  transform: none;
 }
 .menu-btn {
   width: 100%;
@@ -296,130 +293,8 @@ body.view-open .hub {
   border-color: var(--black);
 }
 
-/* Right Column: Kojima Tactical Showcase & Preview Panel */
-.hub-right {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-}
-.showcase-panel {
-  width: min(560px, 100%);
-  border: 1px solid #333;
-  background: rgba(10, 10, 10, 0.82);
-  backdrop-filter: blur(8px);
-  padding: clamp(22px, 3vw, 34px);
-  position: relative;
-  box-shadow: 0 0 60px rgba(255,255,255,.04);
-}
-.showcase-panel::before,
-.showcase-panel::after {
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: var(--white);
-  border-style: solid;
-}
-.showcase-panel::before { top: -2px; left: -2px; border-width: 3px 0 0 3px; }
-.showcase-panel::after { bottom: -2px; right: -2px; border-width: 0 3px 3px 0; }
-
-.sc-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #2a2a2a;
-  padding-bottom: 12px;
-  margin-bottom: 18px;
-  font-family: var(--font-title);
-  font-size: .68rem;
-  letter-spacing: .18em;
-  color: var(--gray-3);
-  text-transform: uppercase;
-}
-.sc-visual {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  background: #050505;
-  border: 1px solid #2c2c2c;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-.sc-visual img,
-.sc-visual video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(.25) contrast(1.08);
-}
-.sc-visual-tag {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background: var(--white);
-  color: var(--black);
-  font-family: var(--font-title);
-  font-weight: 800;
-  font-size: .62rem;
-  letter-spacing: .14em;
-  padding: 5px 12px;
-  text-transform: uppercase;
-}
-.sc-kicker {
-  font-family: var(--font-title);
-  font-size: .68rem;
-  letter-spacing: .2em;
-  color: var(--gray-3);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.sc-title {
-  font-size: clamp(1.3rem, 2.2vw, 1.85rem);
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-.sc-desc {
-  color: #ccc;
-  font-weight: 500;
-  margin-bottom: 18px;
-}
-.sc-thumbs {
-  display: flex;
-  gap: 8px;
-  padding-top: 14px;
-  border-top: 1px solid #262626;
-  align-items: center;
-  justify-content: space-between;
-}
-.sc-thumbs-label {
-  font-family: var(--font-title);
-  font-size: .62rem;
-  letter-spacing: .16em;
-  color: var(--gray-3);
-  text-transform: uppercase;
-}
-.news-thumbs { display: flex; gap: 8px; }
-.news-thumb {
-  position: relative;
-  width: 44px;
-  height: 44px;
-  border: 1px solid #555;
-  background: #111;
-  padding: 0;
-  overflow: hidden;
-  cursor: pointer;
-  opacity: .55;
-  transition: opacity .2s, border-color .2s;
-}
-.news-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.news-thumb b { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-title); font-size: .7rem; color: #888; }
-.news-thumb[aria-current="true"] { opacity: 1; border: 2px solid var(--white); }
-
 /* =====================================================
-   BOTTOM BAR (MARCO KEYBOARD HINTS IN KOJIMA MONOCHROME)
+   BOTTOM BAR
    ===================================================== */
 .bottom-bar {
   position: fixed;
@@ -509,11 +384,11 @@ body.view-open .hub {
 .panel-scroll h2, .panel-scroll h3, .panel-scroll h4 { color: var(--black); }
 
 /* =====================================================
-   KOJIMA PANEL CONTENT STYLES (ABOUT, XP, PROJECTS, SKILLS)
+   ABOUT, PROGRAMMING LOGOS, TIMELINE, XP, PROJECTS
    ===================================================== */
 .about {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: 56px;
   padding: clamp(28px, 4.5vw, 56px);
   border-bottom: 1px solid var(--line);
@@ -521,9 +396,36 @@ body.view-open .hub {
 .about p { margin-bottom: 16px; max-width: 62ch; font-weight: 500; }
 .about strong { font-weight: 700; }
 .facts { border-left: 3px solid var(--black); padding-left: 28px; align-self: start; }
-.facts img { display: block; width: 120px; height: 120px; object-fit: cover; margin-bottom: 18px; }
-.facts dt { font-family: var(--font-title); font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gray-3); }
+.facts > img { display: block; width: 120px; height: 120px; object-fit: cover; margin-bottom: 18px; }
+.facts dt { font-family: var(--font-title); font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gray-3); margin-top: 6px; }
 .facts dd { font-weight: 700; margin-bottom: 14px; }
+
+/* Programming Languages Badges with Logos */
+.lang-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.lang-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1.5px solid var(--black);
+  background: var(--gray-1);
+  padding: 4px 10px;
+  font-family: var(--font-title);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.lang-badge img,
+.lang-badge svg {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
 
 .cols {
   display: grid;
@@ -536,6 +438,134 @@ body.view-open .hub {
 .cols ul { list-style: none; }
 .cols li { padding: 8px 0; border-bottom: 1px solid var(--line); font-weight: 600; }
 
+/* Visual Timeline Chart (Top of Experience) */
+.timeline-wrap {
+  padding: clamp(24px, 3.5vw, 44px) clamp(24px, 4.5vw, 56px);
+  background: #fafafa;
+  border-bottom: 2px solid var(--black);
+}
+.timeline-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.timeline-head h3 {
+  font-size: .95rem;
+  letter-spacing: .12em;
+}
+.timeline-head span {
+  font-family: var(--font-title);
+  font-size: .64rem;
+  letter-spacing: .14em;
+  color: var(--gray-3);
+  text-transform: uppercase;
+}
+.tl-axis {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 20px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+.tl-years {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-family: var(--font-title);
+  font-size: .68rem;
+  font-weight: 800;
+  color: var(--gray-4);
+  letter-spacing: .1em;
+}
+.tl-years span {
+  border-left: 1px solid #bbb;
+  padding-left: 6px;
+}
+.tl-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tl-row {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 20px;
+  align-items: center;
+  cursor: pointer;
+}
+.tl-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.tl-meta img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  background: var(--black);
+  padding: 2px;
+  flex-shrink: 0;
+}
+.tl-meta-text {
+  min-width: 0;
+}
+.tl-meta-co {
+  font-family: var(--font-title);
+  font-size: .7rem;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tl-meta-role {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--gray-4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tl-track {
+  position: relative;
+  height: 30px;
+  background:
+    repeating-linear-gradient(
+      to right,
+      rgba(0,0,0,0.08) 0,
+      rgba(0,0,0,0.08) 1px,
+      transparent 1px,
+      transparent 33.333%
+    ),
+    var(--gray-1);
+  border: 1px solid #ccc;
+}
+.tl-bar {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-title);
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+  transition: transform .15s ease, background .15s ease;
+}
+.tl-row:hover .tl-bar {
+  background: #333;
+  transform: scaleY(1.08);
+}
+
 /* Experience Rows */
 .xp {
   display: grid;
@@ -547,7 +577,7 @@ body.view-open .hub {
 }
 .xp-when { font-family: var(--font-title); font-size: .78rem; font-weight: 700; }
 .xp-when small { display: block; margin-top: 6px; color: var(--gray-3); font-family: var(--font-body); font-size: .95rem; font-weight: 600; }
-.xp-logo { width: 38px; height: 38px; object-fit: contain; background: #111; padding: 3px; margin-bottom: 10px; display: block; }
+.xp-logo { width: 44px; height: 44px; object-fit: contain; background: #111; padding: 4px; margin-bottom: 10px; display: block; }
 .xp h3 { font-size: 1.15rem; margin-bottom: 4px; }
 .xp .co { font-weight: 700; color: var(--gray-4); margin-bottom: 8px; }
 .xp p { font-weight: 500; max-width: 70ch; }
@@ -652,9 +682,9 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
    ===================================================== */
 @media (max-width: 960px) {
   html, body { overflow-y: auto; }
-  .hub { grid-template-columns: 1fr; height: auto; min-height: 100svh; padding-top: 90px; padding-bottom: 100px; }
-  .hub-right { align-items: stretch; }
-  .about, .proj, .proj:nth-child(even), .xp, .small-list { grid-template-columns: 1fr; }
+  .hub { height: auto; min-height: 100svh; padding-top: 90px; padding-bottom: 100px; }
+  .about, .proj, .proj:nth-child(even), .xp, .small-list, .tl-axis, .tl-row { grid-template-columns: 1fr; }
+  .tl-axis { display: none; }
   .proj:nth-child(even) .proj-media { order: 0; }
   .screen { padding: 68px 16px 64px; }
 }
@@ -693,103 +723,52 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
   </header>
 
   <!-- =====================================================
-       MARCO DI MODICA PAUSE-MENU HUB (WITH KOJIMA AESTHETIC)
+       PAUSE-MENU HUB (STRAIGHT, CLEAN RIGHT SIDE)
        ===================================================== -->
   <main class="hub" id="hub">
-    <!-- Left Column: Boxed Name + Tilted Pause Menu -->
     <div class="hub-left">
       <div class="title-block">
-        <p class="hero-kicker">Technical Game Designer | Systems and gameplay</p>
+        <p class="hero-kicker">Technical Designer | Developer</p>
         <h1 class="boxed" aria-label="Pau González"><span>Pau</span><span>González</span></h1>
       </div>
 
       <ul class="menu-list" id="menu-list" role="menubar" aria-label="Main Menu">
         <li role="none">
-          <button class="menu-btn active" role="menuitem"
-            data-target="screen-intro"
-            data-kicker="01 // OPERATIVE PROFILE"
-            data-title="About Me &amp; Technical Toolkit"
-            data-desc="I design gameplay systems, combat and balance, and build them in Unreal Engine 4/5, Unity, Godot and C++."
-            data-img="images/thornetica-1"
-            data-label="BARCELONA, SPAIN">
+          <button class="menu-btn active" role="menuitem" data-target="screen-intro">
             <svg class="menu-icon" viewBox="0 0 34 38" fill="none" stroke-width="2.6"><path d="M17 2l14 8v18l-14 8L3 28V10z"/><path d="M10 19h14"/></svg>
             <span>Introduction</span>
             <span class="menu-meta">BIO &amp; SKILLS</span>
           </button>
         </li>
         <li role="none">
-          <button class="menu-btn" role="menuitem"
-            data-target="screen-achievements"
-            data-kicker="02 // SERVICE RECORD"
-            data-title="Experience"
-            data-desc="Systems &amp; Level Designer and Scripter (GDScript) at Forbidden Candy, Technical Designer at Mini-Knight Studio, and University Instructor at UPC (CITM)."
-            data-img="images/fable-1"
-            data-label="EXPERIENCE LOG">
+          <button class="menu-btn" role="menuitem" data-target="screen-achievements">
             <svg class="menu-icon" viewBox="0 0 34 38" fill="none" stroke-width="2.6"><path d="M17 2l14 8v18l-14 8L3 28V10z"/><path d="M10 19h14"/></svg>
             <span>Experience</span>
-            <span class="menu-meta">3 ROLES &middot; UPC</span>
+            <span class="menu-meta">5 ROLES &middot; TIMELINE</span>
           </button>
         </li>
         <li role="none">
-          <button class="menu-btn" role="menuitem"
-            data-target="screen-projects"
-            data-kicker="03 // ARCHIVE DATABASE"
-            data-title="Projects Library"
-            data-desc="Thornetica, The Fable of the Eclipse, Custom C++ 3D Engine, Mono Scripting Addon, plus 13 game jam &amp; assembly prototypes."
-            data-img="images/engine-1"
-            data-label="6 MAIN + 13 MINI">
+          <button class="menu-btn" role="menuitem" data-target="screen-projects">
             <svg class="menu-icon" viewBox="0 0 34 38" fill="none" stroke-width="2.6"><path d="M17 2l14 8v18l-14 8L3 28V10z"/><path d="M10 19h14"/></svg>
             <span>Projects Library</span>
             <span class="menu-meta">ALL WORKS</span>
           </button>
         </li>
         <li role="none">
-          <button class="menu-btn" role="menuitem"
-            data-target="screen-contact"
-            data-kicker="04 // DIRECT TRANSMISSION"
-            data-title="Want to work together?"
-            data-desc="Send an email to gpaucayuela@gmail.com or connect on LinkedIn, GitHub and itch.io."
-            data-img="images/addon-1"
-            data-label="OPEN CHANNEL">
+          <button class="menu-btn" role="menuitem" data-target="screen-contact">
             <svg class="menu-icon" viewBox="0 0 34 38" fill="none" stroke-width="2.6"><path d="M17 2l14 8v18l-14 8L3 28V10z"/><path d="M10 19h14"/></svg>
             <span>Contact me!</span>
             <span class="menu-meta">EMAIL &amp; LINKS</span>
           </button>
         </li>
         <li role="none">
-          <button class="menu-btn" role="menuitem"
-            data-target="screen-exit"
-            data-kicker="05 // EXTERNAL DISPATCH"
-            data-title="External Links &amp; Steam Demo"
-            data-desc="Jump straight to the Thornetica Steam Demo, GitHub source repositories, or my itch.io page."
-            data-img="images/thornetica-3"
-            data-label="EXTERNAL LINKS">
+          <button class="menu-btn" role="menuitem" data-target="screen-exit">
             <svg class="menu-icon" viewBox="0 0 34 38" fill="none" stroke-width="2.6"><path d="M17 2l14 8v18l-14 8L3 28V10z"/><path d="M10 19h14"/></svg>
             <span>Exit</span>
             <span class="menu-meta">QUICK LINKS</span>
           </button>
         </li>
       </ul>
-    </div>
-
-    <!-- Right Column: Kojima Tactical Showcase Panel -->
-    <div class="hub-right">
-      <aside class="showcase-panel" aria-live="polite">
-        <div class="sc-top">
-          <span id="sc-kicker">01 // OPERATIVE PROFILE</span>
-          <span>SYS.READY</span>
-        </div>
-        <div class="sc-visual">
-          <img id="sc-img" src="images/thornetica-1.jpg" data-base="images/thornetica-1" data-i="0" alt="Preview" onerror="tryNextImage(this)">
-          <span class="sc-visual-tag" id="sc-label">BARCELONA, SPAIN</span>
-        </div>
-        <h2 class="sc-title" id="sc-title">About Me &amp; Technical Toolkit</h2>
-        <p class="sc-desc" id="sc-desc">I design gameplay systems, combat and balance, and build them in Unreal Engine 4/5, Unity, Godot and C++.</p>
-        <div class="btn-row" style="margin-top:0;margin-bottom:18px;">
-          <button class="btn" id="sc-open-btn">Open Section</button>
-          <a class="btn dark" href="https://store.steampowered.com/app/4503010/Thornetica_Demo/" target="_blank" rel="noopener">Thornetica Steam Demo</a>
-        </div>
-      </aside>
     </div>
   </main>
 
@@ -809,8 +788,8 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
       <div class="about">
         <div>
           <p>Technical Designer specializing in gameplay systems, combat feel, and in-engine implementation.</p>
-          <p>Based in Barcelona, I bridge the gap between creative design vision and engineering pipelines. I design, prototype, and tune core gameplay mechanics focusing on state machines, dynamic parameters, and mathematical balance (Machinations and Excel) in Unreal Engine (C++/Blueprints), Unity (C#) and Godot (GDscript).</p>
-          <p>Having worked across gameplay programming, technical design, and QA as well as teaching Game Mathematics and Programming at UPC. I bring a strong architectural foundation to design teams, ensuring systems are both deeply satisfying to play and performant under the hood.</p>
+          <p>Based in Barcelona, I bridge the gap between creative design vision and engineering pipelines. I design, prototype, and tune core gameplay mechanics focusing on state machines, dynamic parameters, and mathematical balance (Machinations and Excel) in Unreal Engine (C++/Blueprints), Unity (C#) and Godot (GDScript).</p>
+          <p>Having worked across gameplay programming, technical design, and QA as well as teaching Game Mathematics and Programming at UPC, I bring a strong architectural foundation to design teams, ensuring systems are both deeply satisfying to play and performant under the hood.</p>
           <p>Outside of work, I'm passionate about <strong>technology</strong> and development, and I love cinema and cooking. I'm also a big fan of <strong>old-school FPS shooters</strong>.</p>
           <div class="btn-row">
             <button class="btn" data-jump="screen-projects">View Projects Library</button>
@@ -819,10 +798,38 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
         </div>
         <dl class="facts">
           <img src="https://avatars.githubusercontent.com/u/121867499?v=4" alt="Photo of Pau González" onerror="this.remove()">
-          <dt>Based in</dt><dd>Barcelona, Spain</dd>
-          <dt>Design tools</dt><dd>Figma, Machination and Excel</dd>
-          <dt>Engines</dt><dd>Unreal Engine 4/5, Unity, Godot and custom engines</dd>
-          <dt>Currently</dt><dd>Systems and level designer and scripter (GDScript) at Forbidden Candy</dd>
+          <dt>Based in</dt>
+          <dd>Barcelona, Spain</dd>
+
+          <dt>Programming Languages</dt>
+          <dd>
+            <div class="lang-badges">
+              <span class="lang-badge">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C"> C
+              </span>
+              <span class="lang-badge">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#"> C#
+              </span>
+              <span class="lang-badge">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++"> C++
+              </span>
+              <span class="lang-badge">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"> Python
+              </span>
+              <span class="lang-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="1"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg> ASM x86
+              </span>
+              <span class="lang-badge">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/godot/godot-original.svg" alt="GDScript"> GDScript
+              </span>
+            </div>
+          </dd>
+
+          <dt>Engines</dt>
+          <dd>Unreal Engine 4/5, Unity, Godot and custom engines</dd>
+
+          <dt>Currently</dt>
+          <dd>Content Designer and Developer (Godot) at Forbidden Candy</dd>
         </dl>
       </div>
 
@@ -870,7 +877,7 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
   </section>
 
   <!-- =====================================================
-       SCREEN 2: ACHIEVEMENTS (EXPERIENCE + EDUCATION)
+       SCREEN 2: ACHIEVEMENTS (TIMELINE + EXPERIENCE + EDUCATION)
        ===================================================== -->
   <section class="screen" id="screen-achievements" aria-labelledby="h-ach">
     <div class="screen-head">
@@ -882,6 +889,24 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
     </div>
 
     <div class="panel-scroll">
+      <!-- VISUAL TIMELINE GRAPH -->
+      <div class="timeline-wrap">
+        <div class="timeline-head">
+          <h3>Career Timeline // Overview</h3>
+          <span>Click any bar to inspect details</span>
+        </div>
+        <div class="tl-axis">
+          <div></div>
+          <div class="tl-years">
+            <span>2024</span>
+            <span>2025</span>
+            <span>2026</span>
+          </div>
+        </div>
+        <div class="tl-rows" id="tl-rows"></div>
+      </div>
+
+      <!-- DETAILED LIST -->
       <div id="xp-list"></div>
 
       <div class="sub-head">
@@ -892,15 +917,15 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
         <div>
           <h3>Studies</h3>
           <ul>
-            <li><strong>Game Design and Development</strong><br>CITM, Universitat Politècnica de Catalunya (since Sep 2023)</li>
+            <li><strong>Bachelor's Degree in Game Design and Development</strong><br>CITM, Universitat Politècnica de Catalunya (Sep 2023 - Jul 2027)</li>
             <li><strong>Bachillerato Tecnológico</strong><br>Jesuïtes Casp - Sagrat Cor de Jesús (2021 - 2023)</li>
           </ul>
         </div>
         <div>
           <h3>Courses</h3>
           <ul>
-            <li>Diseño y Producción de Videojuegos de 0 a Profesional</li>
-            <li>Unreal Engine 5 de 0 a dios</li>
+            <li>Design and Production of Videogames from 0 to Advanced</li>
+            <li>Unreal Engine 5 from 0 to Advanced</li>
             <li>Complete C# Unity Game Developer 3D</li>
           </ul>
         </div>
@@ -1001,7 +1026,7 @@ dialog::backdrop { background: rgba(0,0,0,.85); }
   </section>
 
   <!-- =====================================================
-       BOTTOM CONTROL BAR (MARCO FOOTER + KOJIMA STYLING)
+       BOTTOM CONTROL BAR
        ===================================================== -->
   <footer class="bottom-bar">
     <div class="controls-hint">
@@ -1085,21 +1110,21 @@ document.getElementById("sound-toggle").addEventListener("click", function () {
 });
 
 /* =====================================================
-   DATA (UNTOUCHED FROM YOUR ORIGINAL FILE)
+   DATA
    ===================================================== */
 var STEAM = "https://store.steampowered.com/app/4503010/Thornetica_Demo/";
 
 var PROJECTS = [
   {
     id: "thornetica", badge: "Professional project", title: "Thornetica",
-    meta: "Systems and Level Designer and Scripter (GDScript) at Forbidden Candy",
+    meta: "Content Designer and Developer (Godot) at Forbidden Candy",
     desc: "Thornetica is a strategy RPG revolving around a university theater club. Take part in classic strategy battles and choose who to cast in each role as these students step on stage to perform. Relax, build bonds and play minigames backstage!",
-    specs: [["Genre","Tactical Turn-Based RPG"],["Platform","PC / Console (soon)"],["Studio","Forbidden Candy"],["Team size","3 + outsourcing collaborators"],["Duration","Sep 2025 - May 2027"],["Tools","Godot, Figma, Excel"]],
+    specs: [["Genre","Tactical Turn-Based RPG"],["Platform","PC / Console (soon)"],["Studio","Forbidden Candy"],["Team size","3 + outsourcing collaborators"],["Duration","Sep 2025 - Oct 2026"],["Tools","Godot, Figma, Excel"]],
     media: [{v:"images/thornetica-2.mp4"},{i:"images/thornetica-1"},{i:"images/thornetica-3"}],
     links: [{t:"Play Demo on Steam", u:STEAM}],
     drawerLabel: "My contributions",
     drawer: {
-      sub: "Level Designer and QA \u00b7 Forbidden Candy (Sep 2025 - Present)",
+      sub: "Content Designer and Developer (Godot) \u00b7 Forbidden Candy (Sep 2025 - Oct 2026)",
       intro: ["Level design, encounter pacing, unit balance formulas, and live event QA for Thornetica."],
       items: [
         {h:"Level & Encounter Design (10 Acts)", p:"I designed the levels of the first part of the game (10 acts, 10 levels), making sure every combat encounter fits seamlessly within the narrative pacing of the story.", gif:"images/thornetica-levels-acts"},
@@ -1113,14 +1138,14 @@ var PROJECTS = [
   },
   {
     id: "fable", badge: "Custom engine title", title: "The Fable of the Eclipse",
-    meta: "Junior Technical Designer at Mini-Knight Studio (Student dev team) \u00b7 Jan - Jul 2026",
+    meta: "Technical Designer at Mini-Knight Studio (Student project) \u00b7 Jun 2025 - Jul 2026",
     desc: "An action-adventure isometric game built on a custom C++ engine created from scratch. Follow a solarian jerboa venturing into perilous realms to save its world.",
-    specs: [["Genre","Action Adventure / Isometric"],["Role","Junior Technical Designer"],["Studio","Mini-Knight Studio (Student dev team)"],["Team size","16-person team"],["Engine","Custom C++ In-House Engine"],["Duration","Jan 2026 - Jul 2026 (7 mos)"],["Deliverables","Combat, Player Movement, Lava Map, Perks, QA, Enemy Design"]],
+    specs: [["Genre","Action Adventure / Isometric"],["Role","Technical Designer"],["Studio","Mini-Knight Studio (Student dev team)"],["Team size","16-person team"],["Engine","Custom C++ In-House Engine"],["Duration","Jun 2025 - Jul 2026 (1 yr 2 mos)"],["Deliverables","Combat, Player Movement, Lava Map, Perks, QA, Enemy Design"]],
     media: [{v:"images/fable-2.mp4"},{i:"images/fable-1"},{i:"images/fable-3"}],
     links: [{t:"Visit Game Website", u:"https://mini-knight-studio.github.io/The-Fable-Of-The-Eclipse/"}],
     drawerLabel: "My contributions",
     drawer: {
-      sub: "Junior Technical Designer \u00b7 Mini-Knight Studio (16-person team \u00b7 Jan - Jul 2026)",
+      sub: "Technical Designer \u00b7 Mini-Knight Studio (16-person team \u00b7 Jun 2025 - Jul 2026)",
       intro: ["In this project I've especially learned and focused on the bridge between design and programming: how conceptual ideas can be applied onto a game framework, doing it fast and sustainably so things can be iterated as soon as possible. Also, breaking things apart to see what is actually failing and how to improve its feeling."],
       quote: "Simplicity is a great virtue but it requires hard work to achieve it and education to appreciate it. And to make things worse: complexity sells better.",
       items: [
@@ -1188,9 +1213,9 @@ var PROJECTS = [
   },
   {
     id: "cube", badge: "Unity prototypes & demos", title: "C.U.B.E and Roses Are Red",
-    meta: "Game Designer",
+    meta: "Game Developer",
     desc: "Two playable demos built to pitch to publishers and accelerator programs. Responsible for core game design documentation, balance formulas, and rapid player feel prototyping in Unity.",
-    specs: [["Role","Game Designer"],["Focus","Design documentation, balance formulas, rapid prototyping"],["Engine","Unity"]],
+    specs: [["Role","Game Developer"],["Focus","Design documentation, balance formulas, rapid prototyping"],["Engine","Unity"]],
     media: [{v:"images/roses-video.mp4", label:"Roses Are Red"},{v:"images/cube-video.mp4", label:"C.U.B.E"},{i:"images/cube-screenshot", label:"C.U.B.E"}],
     links: []
   },
@@ -1206,15 +1231,15 @@ var PROJECTS = [
 
 var JOBS = [
   {
-    id: "job-fc", when: "Sep 2025 - Present", start: "2025-09", end: "present", tag: "Godot",
-    logo: "images/logo-forbiddencandy.png", fb: "FC",
-    title: "Systems and Level Designer and Scripter (GDScript)", co: "Forbidden Candy",
-    desc: "Systems and level design for Thornetica, a tactical RPG with a free demo on Steam. Scripting gameplay systems in GDScript, balancing levels and weapon design, and playtesting builds with players from the target audience.",
+    id: "job-fc", when: "Sep 2025 - Oct 2026", start: "2025-09", end: "2026-10", tag: "Godot",
+    logoBase: "images/logo-forbiddencandy", fb: "FC",
+    title: "Content Designer and Developer (Godot)", co: "Forbidden Candy",
+    desc: "Content design and development for Thornetica, a tactical RPG with a free demo on Steam. Designing level maps, mechanics, weapon arsenal, economy, and combat balance.",
     drawer: {
-      sub: "Barcelona, since September 2025",
+      sub: "Barcelona, Cataluña, España \u00b7 Sep 2025 - Oct 2026",
       intro: ["Working on Thornetica, a tactical RPG built in Godot. The demo is out now on Steam."],
       items: [
-        {h:"Thornetica (Godot)", list:[
+        {h:"Thornetica (Godot):", list:[
           "Level Map and Encounter Design (10 Acts)",
           "Level Mechanics and Environmental Gimmicks.",
           "Weapon Arsenal and Economy.",
@@ -1226,12 +1251,43 @@ var JOBS = [
     }
   },
   {
-    id: "job-mk", when: "Jan 2026 - Jul 2026", start: "2026-01", end: "2026-07", tag: "Custom engine",
-    logo: "images/logo-miniknight.png", fb: "MK",
-    title: "Technical Designer", co: "Mini-Knight Studio",
-    desc: "The Fable of the Eclipse (16-person team): player, combat and enemy systems. Shipped a full lava-themed level, with QA passes and game feel polish.",
+    id: "job-bd", when: "Jan 2026 - Sep 2026", start: "2026-01", end: "2026-09", tag: "Unity",
+    logoBase: "images/logo-bluedot", fb: "BD",
+    title: "Junior Gameplay Programmer & Designer (volunteer)", co: "The Blue Dot Studio",
+    desc: "Contributed as part of a remote, early-stage indie development team on Kuyana Legacy, an unreleased prototype in Unity (C#) mixing cooking with an emotional narrative experience.",
     drawer: {
-      sub: "The Fable of the Eclipse \u00b7 16-person team \u00b7 custom engine",
+      sub: "Madrid, España (Remote) \u00b7 Jan 2026 - Sep 2026",
+      intro: ["Contributed as part of a remote, early-stage indie development team on an unreleased prototype (Unity / C#). Kuyana Legacy was aimed to be a game that mixes cooking with an emotional narrative experience that resembles games like Outer Wilds."],
+      items: [
+        {h:"What I did", list:[
+          "Gameplay and Mechanics Prototyping: Handled weekly feature tasks, scripting basic character interactions and gameplay mechanics in Unity (C#).",
+          "Design and Systems Exploration: Tested gameplay balancing ideas and parameter adjustments based on design discussions.",
+          "Collaborative Environment: Gained early experience working in a team pipeline with Git version control, task tracking, and iterative feedback."
+        ]},
+        {h:"Note", p:"Project was an early-stage indie prototype that concluded before commercial production."}
+      ],
+      links: []
+    }
+  },
+  {
+    id: "job-upc", when: "Sep 2025 - Sep 2026", start: "2025-09", end: "2026-09", tag: "Academic",
+    logoBase: "images/logo-upc", fb: "UPC",
+    title: "University Instructor (review): Game Mathematics & Game Programming I and II", co: "Universitat Politècnica de Catalunya",
+    desc: "Provided foundational technical instruction and review sessions for students focused on the essential mathematical and programming logic underpinning game development.",
+    drawer: {
+      sub: "Barcelona, Cataluña, España \u00b7 Sep 2025 - Sep 2026",
+      intro: ["Provided foundational technical instruction and review sessions for students focused on the essential mathematical and programming logic underpinning game development. Made students earn interests in subjects providing them real game scenarios and applications of the theory."],
+      items: [],
+      links: []
+    }
+  },
+  {
+    id: "job-mk", when: "Jun 2025 - Jul 2026", start: "2025-06", end: "2026-07", tag: "Custom engine",
+    logoBase: "images/logo-miniknight", fb: "MK",
+    title: "Technical Designer (student project) CUSTOM ENGINE", co: "Mini-Knight Studio",
+    desc: "Worked as the Technical Designer for The Fable of the Eclipse: player programming and design, combat implementation, full lava map implementation, perks, enemy design, and QA.",
+    drawer: {
+      sub: "Barcelona, Cataluña, España \u00b7 Jun 2025 - Jul 2026",
       intro: ["Worked as the Technical Designer for the game: Fable Of The Eclipse."],
       items: [
         {h:"Key features I provided:", list:[
@@ -1248,32 +1304,18 @@ var JOBS = [
     }
   },
   {
-    id: "job-upc", when: "Sep 2025 - Jul 2026", start: "2025-09", end: "2026-07", tag: "Contract",
-    logo: "images/logo-upc.png", fb: "UPC",
-    title: "University Instructor (review sessions)", co: "Universitat Politècnica de Catalunya (CITM)",
-    desc: "Game Mathematics and Game Programming I and II review sessions, turning theory into practical, real game development scenarios.",
+    id: "job-fnac", when: "Aug 2024 - Nov 2024", start: "2024-08", end: "2024-11", tag: "Retail",
+    logoBase: "images/logo-fnac", fb: "FN",
+    title: "Technical Seller & Videogames Specialist", co: "Fnac",
+    desc: "Advised customers on technical products and recommended video games based on their tastes and platform. Specialized in the videogames section.",
     drawer: {
-      sub: "Game Mathematics and Game Programming I and II \u00b7 Sep 2025 - Jul 2026",
-      intro: ["Provided foundational technical instruction and review sessions for students focused on the essential mathematical and programming logic underpinning game development. Made students earn interests in subjects providing them real game scenarios and applications of the theory."],
-      items: [],
-      links: []
-    }
-  },
-  {
-    id: "job-bd", when: "Jan 2026 - Sep 2026", start: "2026-01", end: "2026-09", tag: "Unity",
-    logo: "images/logo-bluedot.png", fb: "BD",
-    title: "Junior Gameplay Scripter & Designer (Indie Project)", co: "The Blue Dot Studio",
-    desc: "Remote, early-stage indie team on Kuyana Legacy, an unreleased cooking and narrative prototype in Unity (C#). Gameplay mechanics scripting, balancing and Git-based team workflow.",
-    drawer: {
-      sub: "The Blue Dot Studio \u00b7 Apprenticeship \u00b7 Remote",
-      intro: ["Contributed as part of a remote, early-stage indie development team on an unreleased prototype (Unity / C#). Kuyana Legacy was aimed to be a game that mixes cooking with an emotional narrative experience that resembles games like Outer Wilds."],
+      sub: "Barcelona, Cataluña, España \u00b7 Aug 2024 - Nov 2024",
+      intro: ["Specialized in the videogames section, keeping up with releases and the catalog while advising customers on technical products."],
       items: [
-        {h:"What I did", list:[
-          "Gameplay and Mechanics Prototyping: Handled weekly feature tasks, scripting basic character interactions and gameplay mechanics in Unity (C#).",
-          "Design and Systems Exploration: Tested gameplay balancing ideas and parameter adjustments based on design discussions.",
-          "Collaborative Environment: Gained early experience working in a team pipeline with Git version control, task tracking, and iterative feedback."
-        ]},
-        {h:"Note", p:"Project was an early-stage indie prototype that concluded before commercial production."}
+        {h:"Responsibilities", list:[
+          "Advised customers on technical products and recommended video games based on their tastes and platform.",
+          "Specialized in the videogames section, keeping up with releases and the catalog."
+        ]}
       ],
       links: []
     }
@@ -1283,14 +1325,24 @@ var JOBS = [
 /* =====================================================
    HELPERS
    ===================================================== */
-var EXTS = ["jpg", "gif", "jpeg", "png", "webp"];
+var EXTS = ["png", "jpg", "jpeg", "webp", "gif", "svg"];
 function tryNextImage(img) {
   var next = parseInt(img.dataset.i || "0", 10) + 1;
-  if (next < EXTS.length) { img.dataset.i = next; img.src = img.dataset.base + "." + EXTS[next]; }
-  else { img.style.display = "none"; }
+  if (next < EXTS.length) {
+    img.dataset.i = next;
+    img.src = img.dataset.base + "." + EXTS[next];
+  } else if (img.dataset.fb) {
+    img.onerror = null;
+    img.src = "https://placehold.co/64x64/000/fff?text=" + encodeURIComponent(img.dataset.fb);
+  } else {
+    img.style.display = "none";
+  }
 }
 function imgTag(base, alt, lazy) {
-  return '<img src="' + base + '.jpg" data-base="' + base + '" data-i="0" alt="' + alt + '"' + (lazy ? ' loading="lazy"' : '') + ' onerror="tryNextImage(this)">';
+  return '<img src="' + base + '.jpg" data-base="' + base + '" data-i="1" alt="' + alt + '"' + (lazy ? ' loading="lazy"' : '') + ' onerror="tryNextImage(this)">';
+}
+function logoTag(base, alt, fb, cls) {
+  return '<img class="' + cls + '" src="' + base + '.png" data-base="' + base + '" data-i="0" data-fb="' + fb + '" alt="' + alt + '" onerror="tryNextImage(this)">';
 }
 function videoTag(src, alt) {
   return '<video muted loop playsinline controls preload="metadata" aria-label="' + alt + '"><source src="' + src + '" type="video/mp4"></video>';
@@ -1301,14 +1353,51 @@ function mediaHtml(m, title) {
 }
 
 /* =====================================================
-   RENDER: EXPERIENCE & PROJECTS
+   RENDER: TIMELINE, EXPERIENCE & PROJECTS
    ===================================================== */
 (function () {
+  // 1. Render Career Timeline Graph (Jan 2024 to Dec 2026 = 36 months)
+  var tlBox = document.getElementById("tl-rows");
+  var baseYear = 2024;
+  var totalMonths = 36;
+  function monthIndex(ym) {
+    if (ym === "present") {
+      var n = new Date();
+      return (n.getFullYear() - baseYear) * 12 + n.getMonth();
+    }
+    var p = ym.split("-").map(Number);
+    return (p[0] - baseYear) * 12 + (p[1] - 1);
+  }
+
+  tlBox.innerHTML = JOBS.map(function (j) {
+    var sIdx = Math.max(0, monthIndex(j.start));
+    var eIdx = Math.min(totalMonths - 1, monthIndex(j.end));
+    var leftPct = (sIdx / totalMonths) * 100;
+    var widthPct = Math.max(4, ((eIdx - sIdx + 1) / totalMonths) * 100);
+    return '<div class="tl-row" data-drawer="' + j.id + '" title="Click to view details">' +
+      '<div class="tl-meta">' +
+        logoTag(j.logoBase, esc(j.co), j.fb, "") +
+        '<div class="tl-meta-text">' +
+          '<div class="tl-meta-co">' + esc(j.co) + '</div>' +
+          '<div class="tl-meta-role">' + esc(j.title) + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="tl-track">' +
+        '<div class="tl-bar" style="left:' + leftPct.toFixed(2) + '%;width:' + widthPct.toFixed(2) + '%;">' +
+          esc(j.when) +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join("");
+
+  // 2. Render Experience Cards
   var xpBox = document.getElementById("xp-list");
   xpBox.innerHTML = JOBS.map(function (j) {
     return '<article class="xp">' +
-      '<div class="xp-when"><img class="xp-logo" src="' + j.logo + '" alt="' + esc(j.co) + '" onerror="this.src=\'https://placehold.co/40x40/000/fff?text=' + j.fb + '\'">' +
-        j.when + '<small class="job-months" data-start="' + j.start + '" data-end="' + j.end + '"></small></div>' +
+      '<div class="xp-when">' +
+        logoTag(j.logoBase, esc(j.co), j.fb, "xp-logo") +
+        j.when + '<small class="job-months" data-start="' + j.start + '" data-end="' + j.end + '"></small>' +
+      '</div>' +
       '<div><h3>' + esc(j.title) + '</h3><p class="co">' + esc(j.co) + '</p><p>' + esc(j.desc) + '</p><span class="chip">' + esc(j.tag) + '</span></div>' +
       '<div><button class="btn" data-drawer="' + j.id + '">Read more</button></div>' +
     '</article>';
@@ -1322,6 +1411,7 @@ function mediaHtml(m, title) {
     b.textContent = m + (m === 1 ? " month" : " months");
   });
 
+  // 3. Render Projects
   var projBox = document.getElementById("proj-list");
   projBox.innerHTML = PROJECTS.map(function (p) {
     var main = p.media[0], rest = p.media.slice(1);
@@ -1341,36 +1431,17 @@ function mediaHtml(m, title) {
 })();
 
 /* =====================================================
-   MARCO PAUSE-MENU CONTROLLER + KOJIMA SHOWCASE
+   PAUSE-MENU CONTROLLER
    ===================================================== */
 (function () {
   var buttons = Array.prototype.slice.call(document.querySelectorAll(".menu-btn"));
   var screens = Array.prototype.slice.call(document.querySelectorAll(".screen"));
-  var scKicker = document.getElementById("sc-kicker");
-  var scTitle = document.getElementById("sc-title");
-  var scDesc = document.getElementById("sc-desc");
-  var scImg = document.getElementById("sc-img");
-  var scLabel = document.getElementById("sc-label");
-  var scOpenBtn = document.getElementById("sc-open-btn");
   var curIdx = 0;
   var activeScreen = null;
-
-  function setImg(base) {
-    scImg.style.display = "";
-    scImg.dataset.base = base;
-    scImg.dataset.i = "0";
-    scImg.src = base + ".jpg";
-  }
 
   function highlight(idx, sound) {
     curIdx = (idx + buttons.length) % buttons.length;
     buttons.forEach(function (b, i) { b.classList.toggle("active", i === curIdx); });
-    var b = buttons[curIdx];
-    scKicker.textContent = b.dataset.kicker;
-    scTitle.textContent = b.dataset.title;
-    scDesc.textContent = b.dataset.desc;
-    scLabel.textContent = b.dataset.label;
-    setImg(b.dataset.img);
     if (sound) SFX.tick();
   }
 
@@ -1405,10 +1476,6 @@ function mediaHtml(m, title) {
       highlight(idx, false);
       openScreen(btn.dataset.target);
     });
-  });
-
-  scOpenBtn.addEventListener("click", function () {
-    openScreen(buttons[curIdx].dataset.target);
   });
 
   document.querySelectorAll("[data-close-screen]").forEach(function (b) {
@@ -1462,7 +1529,7 @@ function mediaHtml(m, title) {
       if (it.p) h += '<p>' + esc(it.p) + '</p>';
       if (it.bullets) h += '<ul class="spec">' + it.bullets.map(function (b) { return '<li><b>' + esc(b[0]) + ':</b> ' + esc(b[1]) + '</li>'; }).join("") + '</ul>';
       if (it.list) h += '<ul class="spec">' + it.list.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>';
-      if (it.gif) h += '<div class="gif">' + imgTag(it.gif, esc(it.h), true).replace('.jpg"', '.gif"').replace('data-i="0"', 'data-i="1"') + '</div>';
+      if (it.gif) h += '<div class="gif">' + imgTag(it.gif, esc(it.h), true).replace('.jpg"', '.gif"').replace('data-i="1"', 'data-i="4"') + '</div>';
       if (it.yt) h += '<div class="yt"><iframe src="https://www.youtube.com/embed/' + it.yt + '" title="' + esc(it.h) + '" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>';
       h += '</div>';
     });
