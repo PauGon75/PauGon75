@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1035" height="546" viewBox="0 0 1035 546" font-family="Consolas, 'DejaVu Sans Mono', 'Courier New', monospace" font-size="14">
-<rect width="1035" height="546" rx="10" fill="#0d1117"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1035" height="561" viewBox="0 0 1035 561" font-family="Consolas, 'DejaVu Sans Mono', 'Courier New', monospace" font-size="14">
+<rect width="1035" height="561" rx="10" fill="#0d1117"/>
 <text x="18" y="33.0" fill="#c9d1d9" xml:space="preserve" textLength="436.8" lengthAdjust="spacing">                   &#x27;:+***====X###*+xXx+-,.          </text>
 <text x="18" y="48.0" fill="#c9d1d9" xml:space="preserve" textLength="436.8" lengthAdjust="spacing">                `;+*xXXx*xxxxXXx*+=xx**~;`,`        </text>
 <text x="18" y="63.0" fill="#c9d1d9" xml:space="preserve" textLength="436.8" lengthAdjust="spacing">              `-=x*+-:`,:+%@=:&#x27;.&#x27;,;~x*#~::+xx~&#x27;     </text>
@@ -34,20 +34,25 @@
 <text x="18" y="498.0" fill="#c9d1d9" xml:space="preserve" textLength="436.8" lengthAdjust="spacing">               -*xX#Xx*~-;-+*x*~;,&#x27;&#x27;&#x27;.&#x27;;=%@@+``-:&#x27;&#x27;`</text>
 <text x="18" y="513.0" fill="#c9d1d9" xml:space="preserve" textLength="436.8" lengthAdjust="spacing">               `*xx*x***=+~=x*+;`&#x27;&#x27;. &#x27;:~*#@#``=XX*=+</text>
 <text x="18" y="528.0" fill="#c9d1d9" xml:space="preserve" textLength="436.8" lengthAdjust="spacing">                ,=*=+~~+=****+;,&#x27;.  .-*xx*;.;*#%@%%#</text>
-<text x="480.0" y="153.0" fill="#79c0ff" xml:space="preserve">pau@citm -------------------------------------------------------</text>
-<text x="480.0" y="168.0" xml:space="preserve"><tspan fill="#ffa657">Role</tspan><tspan fill="#484f58"> ....................... </tspan><tspan fill="#c9d1d9">Gameplay Programmer &amp; Tech Designer</tspan></text>
-<text x="480.0" y="183.0" xml:space="preserve"><tspan fill="#ffa657">Education</tspan><tspan fill="#484f58"> ...................... </tspan><tspan fill="#c9d1d9">CITM-UPC, Barcelona (2023-2027)</tspan></text>
-<text x="480.0" y="198.0" xml:space="preserve"><tspan fill="#ffa657">Studio</tspan><tspan fill="#484f58"> ..................... </tspan><tspan fill="#c9d1d9">Forbidden Candy (Thornetica, Godot)</tspan></text>
-<text x="480.0" y="213.0" xml:space="preserve"><tspan fill="#ffa657">Languages</tspan><tspan fill="#484f58"> ................ </tspan><tspan fill="#c9d1d9">C++, C#, C, GDScript, Python, x86 ASM</tspan></text>
-<text x="480.0" y="228.0" xml:space="preserve"><tspan fill="#ffa657">Engines</tspan><tspan fill="#484f58"> ....... </tspan><tspan fill="#c9d1d9">Unity, Godot, Unreal Engine 5, custom C++/OpenGL</tspan></text>
-<text x="480.0" y="243.0" xml:space="preserve"><tspan fill="#ffa657">Tools</tspan><tspan fill="#484f58"> ......................................... </tspan><tspan fill="#c9d1d9">Git, CMake, Jira</tspan></text>
-<text x="480.0" y="258.0" xml:space="preserve"><tspan fill="#ffa657">Focus</tspan><tspan fill="#484f58"> ................... </tspan><tspan fill="#c9d1d9">Performance optimization, real-time 3D</tspan></text>
-<text x="480.0" y="273.0" xml:space="preserve"><tspan fill="#ffa657">Hobbies.Software</tspan><tspan fill="#484f58"> ..................... </tspan><tspan fill="#c9d1d9">Simulations, game engines</tspan></text>
-<text x="480.0" y="303.0" fill="#79c0ff" xml:space="preserve">- Highlights ---------------------------------------------------</text>
-<text x="480.0" y="318.0" xml:space="preserve"><tspan fill="#ffa657">Fable of the Eclipse</tspan><tspan fill="#484f58"> .... </tspan><tspan fill="#c9d1d9">Best Student Project nominee, SAGA BCN</tspan></text>
-<text x="480.0" y="333.0" xml:space="preserve"><tspan fill="#ffa657">Thornetica</tspan><tspan fill="#484f58"> ................. </tspan><tspan fill="#c9d1d9">Steam demo live, 11 levels designed</tspan></text>
-<text x="480.0" y="363.0" fill="#79c0ff" xml:space="preserve">- Contact ------------------------------------------------------</text>
-<text x="480.0" y="378.0" xml:space="preserve"><tspan fill="#ffa657">LinkedIn</tspan><tspan fill="#484f58"> .................... </tspan><tspan fill="#c9d1d9">linkedin.com/in/paugonzalezcayuela</tspan></text>
-<text x="480.0" y="393.0" xml:space="preserve"><tspan fill="#ffa657">Portfolio</tspan><tspan fill="#484f58"> .......................... </tspan><tspan fill="#c9d1d9">paugon75.github.io/PauGon75</tspan></text>
-<text x="480.0" y="408.0" xml:space="preserve"><tspan fill="#ffa657">itch.io</tspan><tspan fill="#484f58"> .................................... </tspan><tspan fill="#c9d1d9">paugonzalez.itch.io</tspan></text>
+<text x="18" y="543.0" fill="#c9d1d9" xml:space="preserve" textLength="436.8" lengthAdjust="spacing"></text>
+<text x="480.0" y="123.0" fill="#79c0ff" xml:space="preserve">pau@citm -------------------------------------------------------</text>
+<text x="480.0" y="138.0" xml:space="preserve"><tspan fill="#ffa657">Role</tspan><tspan fill="#484f58"> ....................... </tspan><tspan fill="#c9d1d9">Gameplay Programmer &amp; Tech Designer</tspan></text>
+<text x="480.0" y="153.0" xml:space="preserve"><tspan fill="#ffa657">Education</tspan><tspan fill="#484f58"> ...................... </tspan><tspan fill="#c9d1d9">CITM-UPC, Barcelona (2023-2027)</tspan></text>
+<text x="480.0" y="168.0" xml:space="preserve"><tspan fill="#ffa657">Studio</tspan><tspan fill="#484f58"> ..................... </tspan><tspan fill="#c9d1d9">Forbidden Candy (Thornetica, Godot)</tspan></text>
+<text x="480.0" y="183.0" xml:space="preserve"><tspan fill="#ffa657">Languages</tspan><tspan fill="#484f58"> ................ </tspan><tspan fill="#c9d1d9">C++, C#, C, GDScript, Python, x86 ASM</tspan></text>
+<text x="480.0" y="198.0" xml:space="preserve"><tspan fill="#ffa657">Engines</tspan><tspan fill="#484f58"> ....... </tspan><tspan fill="#c9d1d9">Unity, Godot, Unreal Engine 5, custom C++/OpenGL</tspan></text>
+<text x="480.0" y="213.0" xml:space="preserve"><tspan fill="#ffa657">Tools</tspan><tspan fill="#484f58"> ......................................... </tspan><tspan fill="#c9d1d9">Git, CMake, Jira</tspan></text>
+<text x="480.0" y="228.0" xml:space="preserve"><tspan fill="#ffa657">Focus</tspan><tspan fill="#484f58"> ................... </tspan><tspan fill="#c9d1d9">Performance optimization, real-time 3D</tspan></text>
+<text x="480.0" y="243.0" xml:space="preserve"><tspan fill="#ffa657">Hobbies.Software</tspan><tspan fill="#484f58"> ..................... </tspan><tspan fill="#c9d1d9">Simulations, game engines</tspan></text>
+<text x="480.0" y="273.0" fill="#79c0ff" xml:space="preserve">- Highlights ---------------------------------------------------</text>
+<text x="480.0" y="288.0" xml:space="preserve"><tspan fill="#ffa657">Fable of the Eclipse</tspan><tspan fill="#484f58"> .... </tspan><tspan fill="#c9d1d9">Best Student Project nominee, SAGA BCN</tspan></text>
+<text x="480.0" y="303.0" xml:space="preserve"><tspan fill="#ffa657">Thornetica</tspan><tspan fill="#484f58"> ................. </tspan><tspan fill="#c9d1d9">Steam demo live, 11 levels designed</tspan></text>
+<text x="480.0" y="333.0" fill="#79c0ff" xml:space="preserve">- GitHub -------------------------------------------------------</text>
+<text x="480.0" y="348.0" xml:space="preserve"><tspan fill="#ffa657">Public repos</tspan><tspan fill="#484f58"> ................................................ </tspan><tspan fill="#c9d1d9">23</tspan></text>
+<text x="480.0" y="363.0" xml:space="preserve"><tspan fill="#ffa657">Followers</tspan><tspan fill="#484f58"> ................................................... </tspan><tspan fill="#c9d1d9">24</tspan></text>
+<text x="480.0" y="378.0" xml:space="preserve"><tspan fill="#ffa657">Contributions (12 mo)</tspan><tspan fill="#484f58"> ...................................... </tspan><tspan fill="#c9d1d9">296</tspan></text>
+<text x="480.0" y="408.0" fill="#79c0ff" xml:space="preserve">- Contact ------------------------------------------------------</text>
+<text x="480.0" y="423.0" xml:space="preserve"><tspan fill="#ffa657">LinkedIn</tspan><tspan fill="#484f58"> .................... </tspan><tspan fill="#c9d1d9">linkedin.com/in/paugonzalezcayuela</tspan></text>
+<text x="480.0" y="438.0" xml:space="preserve"><tspan fill="#ffa657">Portfolio</tspan><tspan fill="#484f58"> .......................... </tspan><tspan fill="#c9d1d9">paugon75.github.io/PauGon75</tspan></text>
+<text x="480.0" y="453.0" xml:space="preserve"><tspan fill="#ffa657">itch.io</tspan><tspan fill="#484f58"> .................................... </tspan><tspan fill="#c9d1d9">paugonzalez.itch.io</tspan></text>
 </svg>
