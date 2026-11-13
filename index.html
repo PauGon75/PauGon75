@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <title>Pau González Cayuela · Game Programmer & Software Engineer</title>
 <meta name="description" content="Pau González Cayuela, junior game programmer and software engineer in Barcelona. Gameplay systems and engine tools in C++, C# and Unity, Godot. Graduating July 2027, open to junior roles and internships.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,6 @@
 <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
 :root{--bg:#fff;--fg:rgba(0,0,0,.9);--mid:rgba(0,0,0,.62);--soft:rgba(0,0,0,.45);--line:rgba(0,0,0,.08);--hover:rgba(0,0,0,.05);--card:#fff;--accent:#16a34a;color-scheme:light}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0a0a0a;--fg:rgba(255,255,255,.9);--mid:rgba(255,255,255,.7);--soft:rgba(255,255,255,.5);--line:rgba(255,255,255,.1);--hover:rgba(255,255,255,.07);--card:#111;--accent:#4ade80;color-scheme:dark}}
 :root[data-theme=dark]{--bg:#0a0a0a;--fg:rgba(255,255,255,.9);--mid:rgba(255,255,255,.7);--soft:rgba(255,255,255,.5);--line:rgba(255,255,255,.1);--hover:rgba(255,255,255,.07);--card:#111;--accent:#4ade80;color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -45,6 +44,8 @@ a.row:hover,button.row:hover{background:var(--hover)}
 button.row{border:0;background:none;font:inherit;text-align:left;width:100%;cursor:pointer}
 .row .t{font-weight:500}
 .row .d{display:block;color:var(--soft);font-size:15px;line-height:1.5;font-weight:400}
+.kw{color:var(--fg);font-weight:600}
+.row .r .kw{font-weight:600}
 .row .r .lang{display:block;text-align:right;color:var(--fg);opacity:.75;font-weight:500}
 .row .r{flex:none;color:var(--soft);font-size:14px;white-space:nowrap}
 .pts{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
@@ -133,8 +134,8 @@ dialog::backdrop{background:rgba(0,0,0,.6);backdrop-filter:blur(6px)}
 <header id="home">
   <img class="avatar" src="https://avatars.githubusercontent.com/u/121867499?v=4" alt="Pau González Cayuela" width="60" height="60" onerror="this.style.visibility='hidden'">
   <h1>Pau González Cayuela</h1>
-  <p class="bio">I'm a game programmer and software engineer in Barcelona, looking for my first junior role.</p>
-  <p class="sub">I build the systems players actually feel: combat, movement, physics and the tools behind them. I'm strongest in C++ and also work in C#/Unity and Godot. Last year I worked on a custom engine with a 17-person team, and on a commercial game with a live Steam demo. I graduate from CITM-UPC in July 2027.</p>
+  <p class="bio">I'm a Software Engineer and Game Programmer from Barcelona.</p>
+  <p class="sub">I write C++ and C# for real-time, interactive software: 3D engines, physics, simulation and the tools around them. I'm strongest in C++ and also work in C#/.NET, Unity and Python. I've built a 3D engine from scratch, shipped features in a 17-person team, and worked on a commercial product with a live Steam demo. I graduate in July 2027 from CITM-UPC (BSc Game Development · Computer Science &amp; Software Engineering).</p>
   <span class="status"><span class="dot"></span>Open to junior game programmer and software engineer roles · Remote or onsite, anywhere</span>
   <div class="links">
     <a href="mailto:gpaucayuela@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>Email</a>
@@ -148,9 +149,10 @@ dialog::backdrop{background:rgba(0,0,0,.6);backdrop-filter:blur(6px)}
 <section id="bring">
   <h2>What I bring</h2>
   <ul class="pts">
-    <li><b>Real gameplay code, written inside a team.</b> Combat framework, isometric movement and dash, haptic polish, enemy behaviours, and a grapple with a mesh-based rope, all on a custom engine built by 17 students.</li>
-    <li><b>I understand what's under the engine.</b> I've built a 3D engine from scratch (ECS, scene graph, editor, Phong lighting) and a Mono C# scripting layer with hot reload on top of a C++ one. Honors in Computer Architecture & Operating Systems.</li>
-    <li><b>I work like a professional.</b> Git and Jira pipelines, QA passes and public playtests, balance data and design docs, plus a commercial game with a demo on Steam.</li>
+    <li><b>Solid C++/C# and low-level foundations.</b> I built a 3D engine from scratch in C++ and OpenGL (ECS, scene graph, editor tools...). My low-level knowledge comes from C and 8086 assembly work and from my distinction (honors) in Computer Architecture and Operating Systems.</li>
+    <li><b>I build systems other developers use.</b> For example, a Mono C# scripting layer with hot reload on top of a C++ engine, plus the editor, model viewer and inspector tools around it.</li>
+    <li><b>I deliver as part of a team.</b> I worked on combat, movement, rope physics and enemy behaviour in a 17-person project, using Git, Jira, QA passes and public playtests. I also worked on a commercial game through to its Steam demo release.</li>
+    <li><b>I explain things clearly.</b> I taught maths and programming review sessions at UPC. Outside of coding, I learn languages: on my own I reached an intermediate level of Japanese and an elementary level of Chinese.</li>
   </ul>
 </section>
 
@@ -197,7 +199,7 @@ dialog::backdrop{background:rgba(0,0,0,.6);backdrop-filter:blur(6px)}
 <section id="education">
   <h2>Education</h2>
   <div class="list">
-    <div class="row"><div><span class="t">Game Design and Development, Computer Science</span><span class="d">CITM, Universitat Politècnica de Catalunya. Honors (with distinction) in Computer Architecture & Operating Systems, Project I (Game Development) and Level Design.</span></div><span class="r">2023 – 2027</span></div>
+    <div class="row"><div><span class="t">BSc Game Development · Computer Science &amp; Software Engineering</span><span class="d">CITM, Universitat Politècnica de Catalunya. Honors (with distinction) in Computer Architecture & Operating Systems, Project I (Game Development) and Level Design.</span></div><span class="r">2023 – 2027</span></div>
     <div class="row"><div><span class="t">Courses</span><span class="d">Unreal Engine 5 from 0 to Advanced · Complete C# Unity Game Developer 3D · Design and Production of Videogames</span></div></div>
   </div>
 </section>
@@ -274,7 +276,7 @@ var PROJECTS = [
     }
   },
   {
-    id: "engine", badge: "Engine programming", title: "Game Engine Project",
+    id: "engine", badge: "Engine programming", title: "OpenGL C++ Based Graphics / Game Engine",
     meta: "C++ / Modern OpenGL Custom 3D Engine",
     desc: "A 3D game engine engineered from scratch with C++ and modern OpenGL, featuring custom scene graph management, component architecture, and real-time rendering pipelines.",
     specs: [["Type","Custom 3D Game Engine"],["Tech","C++, OpenGL, ImGUI"],["Architecture","Component-Based & Scene Graph"],["Features","Script Editor, Model Viewer, Play Mode"]],
@@ -291,7 +293,7 @@ var PROJECTS = [
           ["File Explorer & File Viewer","Real-time asset indexing and directory inspection for drag-and-drop asset loading."],
           ["Hierarchy & Inspector","Complete entity-component system (ECS) hierarchy browser and property inspection panel."],
           ["Scene View & Game View","Dual viewports supporting free editor camera navigation and in-game camera perspectives."],
-          ["Renderer with Basic Lighting","Real-time rendering pipeline supporting ambient and directional lighting models, normal vectors, and Phong shading calculations."]
+          ["Basic Renderer","A basic real-time OpenGL renderer that draws the scene and game views, with no lighting."]
         ]}
       ],
       links: [{t:"View Repository on GitHub", u:"https://github.com/UPC-GameEngines-BCN-2025/G1Engine"}]
@@ -389,10 +391,10 @@ var JOBS = [
     logoBase: "images/logo-upc", fb: "UPC",
     title: "University Instructor | Game Mathematics & Game Programming I\u2013II", co: "Universitat Politècnica de Catalunya",
     dtitle: "University Instructor (review): Game Mathematics & Game Programming I and II at Universitat Politècnica de Catalunya",
-    desc: "Taught foundational technical content and review sessions on the mathematics and programming logic behind game development, using real game scenarios to connect theory to practice.",
+    desc: "Taught foundational technical content and review sessions on the mathematics and programming logic behind game development, using real game scenarios to connect theory to practice. Classes were taught in C and C++, covering algorithms, memory allocation and more.",
     drawer: {
       sub: "Barcelona, Cataluña, España \u00b7 Sep 2025 - Sep 2026",
-      intro: ["Provided foundational technical instruction and review sessions for students focused on the essential mathematical and programming logic underpinning game development. Made students earn interests in subjects providing them real game scenarios and applications of the theory."],
+      intro: ["Provided foundational technical instruction and review sessions for students focused on the essential mathematical and programming logic underpinning game development. Made students earn interests in subjects providing them real game scenarios and applications of the theory. The classes were taught in C and C++ and covered algorithms, memory allocation and more."],
       items: [],
       links: []
     }
@@ -444,13 +446,13 @@ var JOBS = [
 var ORDER = ["fable","engine","addon","bubble","thornetica","cube"];
 var LINE = {
   fable: ["Combat, movement, grapple rope physics and polish on a custom C++/OpenGL engine", "C++ · 17 people"],
-  engine: ["A 3D engine from scratch: ECS, scene graph, editor, Phong lighting", "C++ · OpenGL · ImGui"],
+  engine: ["A 3D engine from scratch: ECS, scene graph, editor...", "C++ · OpenGL · ImGui"],
   addon: ["Mono C# scripting with hot reload for a C++ engine, 8 subsystems", "C++ · C# · Mono"],
   bubble: ["Arcade classic recreated with grid collision, custom physics and enemy AI", "C++ · Raylib"],
   thornetica: ["Levels, encounters and balance on a commercial tactical RPG. Demo on Steam", "GDScript · Steam"],
   cube: ["Two playable pitch demos with design docs and balance formulas", "Unity"]
 };
-var JLANG = {"job-fc":"GDScript","job-bd":"C#","job-mk":"C++"};
+var JLANG = {"job-fc":"GDScript","job-bd":"C#","job-upc":"C / C++","job-mk":"C++"};
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;")}
 var EXTS=["jpg","png","jpeg","webp","gif","svg"];
 function placeholder(label){var t=String(label||"").replace(/[<>&"']/g,"").slice(0,28);return "data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360"><rect width="640" height="360" fill="#888" fill-opacity=".15"/><text x="320" y="190" font-family="Arial,sans-serif" font-size="30" fill="#888" text-anchor="middle">'+t+'</text></svg>')}
@@ -502,7 +504,7 @@ function videoTag(src,alt){return '<video muted loop playsinline controls preloa
 
 (function(){
   var b=document.getElementById("theme");
-  b.addEventListener("click",function(){var r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;var n=dark?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}});
+  b.addEventListener("click",function(){var r=document.documentElement,dark=r.dataset.theme==="dark";var n=dark?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}});
 })();
 
 (function(){
@@ -547,6 +549,22 @@ function videoTag(src,alt){return '<video muted loop playsinline controls preloa
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){for(var k in links)links[k].classList.remove("on");if(links[e.target.id])links[e.target.id].classList.add("on")}})},{rootMargin:"-20% 0px -65% 0px"});
   Object.keys(links).forEach(function(k){var el=document.getElementById(k);if(el)io.observe(el)});
   links.home.classList.add("on");
+})();
+
+(function(){
+  var re=/(C\+\+|C#|GDScript|Python|8086 assembly|8086 ASM|(?<![\w.])C(?![\w+#.]))/g;
+  var roots=document.querySelectorAll(".sub,.pts li,.row .r,.row .d,.row .t,dl dd,#small .r,#small .t");
+  [].forEach.call(roots,function(root){
+    var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[],n;
+    while(n=w.nextNode())nodes.push(n);
+    nodes.forEach(function(tn){
+      if(!re.test(tn.nodeValue)){re.lastIndex=0;return}re.lastIndex=0;
+      var f=document.createDocumentFragment(),last=0,s=tn.nodeValue,m;
+      while((m=re.exec(s))){if(m.index>last)f.appendChild(document.createTextNode(s.slice(last,m.index)));var sp=document.createElement("span");sp.className="kw";sp.textContent=m[0];f.appendChild(sp);last=m.index+m[0].length}
+      if(last<s.length)f.appendChild(document.createTextNode(s.slice(last)));
+      tn.parentNode.replaceChild(f,tn);
+    });
+  });
 })();
 
 document.querySelectorAll("dialog").forEach(function (d) {
