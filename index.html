@@ -371,10 +371,10 @@ var PROJECTS = [
     }
   },
   {
-    id: "cube", badge: "Unity prototype & demo", title: "C.U.B.E",
+    id: "cube", badge: "Unity game", title: "C.U.B.E",
     meta: "Game Developer",
-    desc: "A playable demo built to pitch to publishers and accelerator programs. Responsible for core game design documentation, balance formulas, and rapid player feel prototyping in Unity.",
-    specs: [["Role","Game Developer"],["Focus","Design documentation, balance formulas, rapid prototyping"],["Engine","Unity"]],
+    desc: "A Unity game built around switching perspective: press Q to toggle between a 3D isometric view and a 2D view. When the camera goes from 3D to 2D, the elements of the scene collapse onto a plane, so what looked like a cube in isometric view becomes a flat 2D shape.",
+    specs: [["Role","Game Developer"],["Engine","Unity"]],
     media: [{v:"images/cube-video.mp4", label:"C.U.B.E"},{i:"images/cube-screenshot", label:"C.U.B.E"}],
     links: []
   },
@@ -494,7 +494,7 @@ var LINE = {
   addon: ["Mono C# scripting with hot reload for a C++ engine, 8 subsystems", "C++ · C# · Mono"],
   bubble: ["Arcade classic recreated with grid collision, custom physics and enemy AI", "C++ · Raylib"],
   thornetica: ["Levels, encounters and balance on a commercial tactical RPG. Demo on Steam", "GDScript · Steam"],
-  cube: ["Unity pitch demo with design docs and balance formulas", "Unity"]
+  cube: ["Press Q to switch between 3D and 2D: objects flatten onto the plane", "Unity"]
 };
 var JLANG = {"job-fc":"GDScript","job-bd":"C#","job-upc":"C / C++","job-mk":"C++"};
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;")}
@@ -525,15 +525,15 @@ function tags(a){return a.map(function(x){return x.indexOf("t:")===0?chip(x.slic
   // more projects: thumbnails. Put your own image at images/more/<slug>.jpg (or .png/.webp) to override the itch.io cover.
   var IT="https://img.itch.zone/";
   var MORE=[
-   ["voltage","VOLTAGE horror",["ue5"],"https://paugonzalez.itch.io/voltage-horror",IT+"aW1nLzI1MzI3ODk0LnBuZw==/508x254%23b/Y6S1WW.png"],
    ["president","I wanna be the president!",["unity"],"https://paugonzalez.itch.io/i-wanna-be-the-president",IT+"aW1nLzE2ODMzMzk4LnBuZw==/508x254%23b/GAVTFK.png"],
+   ["voltage","VOLTAGE horror",["ue5"],"https://paugonzalez.itch.io/voltage-horror",IT+"aW1nLzI1MzI3ODk0LnBuZw==/508x254%23b/Y6S1WW.png"],
    ["banadna","BanADNa",["unity","t:Scriptable Objects"],"https://paugonzalez.itch.io/banadna",IT+"aW1nLzE5NjExNDYyLnBuZw==/508x254%23b/4%2F9OgL.png"],
    ["shojo","Shojo Infinita: WVR",["godot"],"https://paugonzalez.itch.io/shojoinfinita",IT+"aW1nLzE3NzQ1MjY2LnBuZw==/508x254%23b/JRK7gC.png"],
    ["pong","PONG in 8086 Assembly",["asm","t:8086"],"https://github.com/PauGon75/8086-Assembly-PONG",""],
    ["catagochi","CATAGOCHI ML",["unity","t:ML AI agent"],"https://paugonzalez.itch.io/catagochi-ml",IT+"aW1nLzI1MzI3NTYxLnBuZw==/508x254%23b/9LOrWJ.png"],
    ["eepy","Eepy Channel",["unity"],"https://paugonzalez.itch.io/eepy-channel",IT+"aW1nLzE0ODkzNjA3LmpwZw==/508x254%23b/r%2FnovR.jpg"],
    ["deepthoughts","Deep Thoughts",["godot"],"https://paugonzalez.itch.io/deep-thoughts",IT+"aW1nLzE2NTc3Nzk3LnBuZw==/508x254%23b/fGM962.png"],
-   ["pinball","Pinball",["cpp"],"https://paugonzalez.itch.io/my-little-pinball-my-little-pinball",IT+"aW1nLzE4NjM1NjU5LnBuZw==/508x254%23b/%2BF4dXa.png"],
+   ["pinball","Pinball",["cpp"],"https://paugonzalez.itch.io/my-little-pinball-my-little-pinball",""],
    ["kichiku","Kichiku-Gemu-Platformer",["sdl","cpp"],"https://github.com/PauGon75/Kichiku-Gemu-Platformer",""],
    ["faded","FADED",["unity"],"https://paugonzalez.itch.io/faded",IT+"aW1nLzEzODI4MDQxLnBuZw==/508x254%23b/H%2B2f%2FT.png"],
    ["castle","城の登高 The Castle's Ascension",["t:Card game"],"https://paugonzalez.itch.io/the-castles-ascension",IT+"aW1nLzE4OTgyOTkxLnBuZw==/508x254%23bb/1TVknu.png"],
